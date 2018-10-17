@@ -1,0 +1,261 @@
+:root{
+	--font-size: 16em;
+	--primary-color: #00D6FF;
+	--secondary-color: #ffffff;
+	padding: 0px;
+}
+
+*{
+	table-layout: fixed;
+	/*height: 100%;*/
+	margin: 0px;
+	padding: 0px;
+}
+/*------------Login--------------*/
+
+.login-container{
+	background-color: white;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-left: -150px;
+	margin-top: -152.845px;
+	width: 300px;
+	height: 305.69px;
+	font-family: Lato;
+}
+
+.login-container a{
+	color: #8190A5;
+	text-decoration: none;
+	font-size: 7px;
+}
+
+.login-header{
+	margin-top: 44px;
+	font-size: 20px;
+	width: 100%;
+	text-align: center;
+	font-weight: bold;
+	color: #47525E;
+}
+
+.login-form{
+	margin-top: 28.875px;
+	width: 100%;
+}
+
+.login-form input{
+	position: absolute;
+	height: 26.06px;
+	width: 148.5px;
+	border-radius: 5px;
+	left: 50%;
+	margin-left: -74.25px;
+	border: 1px solid #8492A6;
+}
+
+#loginPassword{
+	margin-top: 37.75px;
+}
+
+.login-submit{
+	position: absolute;
+	margin-top: 125px;
+}
+
+.login-submit button{
+	width: 148.5px;
+	height: 26.06px;
+	background-color: #47525E;
+	color: #ffffff;
+	margin-left: 74.25px;
+	border-radius: 5px;
+	border: 1px solid #47525E;
+}
+/*-------Home-----------*/
+
+.menu{
+	margin: 0px;
+	padding: 0px;
+	position: fixed;
+	height: 100%;
+	background-color: #F9FAFC;
+	border: 2px solid black;
+}
+
+.dropdown-menu{
+	border-top: 2px solid black;
+	border-bottom: 2px solid black;
+}
+
+.dropdown-menu:last-child{
+	border-top: none;
+}
+
+.menu a{
+	text-decoration: none;
+	color: black;
+}
+
+/*----------Navbar----------*/
+.navbar-main{
+	display: flex;
+	align-items: center;
+	border-bottom: 1px solid #E5E9F2;
+}
+
+.navbar-item{
+	padding: 2em;
+	color: black;
+}
+
+#navbar-logo{
+	padding: 2em 5em 2em 5em;
+	border-right: 1px solid #E5E9F2;
+}
+
+#navbar-profile{
+	margin-left: auto;
+	cursor: pointer;
+}
+
+nav a:hover {
+	text-decoration: none;
+}
+
+nav a:active > .navbar-item{
+	background-color: var(--primary-color);
+	color: white;
+}
+
+#modal-profile-content{
+	height: 20em;
+	float: right;
+	top: 5em;
+	right: 1em;
+	width: 20em;
+}
+
+/*---------Sidebar---------*/
+.sidebar-main{
+	display: inline-flex;
+	flex-direction: column;
+	width: 12.3em;
+	border-right: 1px solid #E5E9F2;
+}
+
+.search-dropdown, .sidebar-edit, .sidebar-delete, .sidebar-add{
+	display: flex;
+	border-bottom: 1px solid #E5E9F2;
+	align-items: center;
+	padding: 0.6em 0em 0.6em 0em;
+	cursor: pointer;
+}
+
+.search-parameter{
+	background-color: #F9FAFC;
+	border-bottom: 1px solid #E5E9F2;
+}
+
+.search-id, .search-name{
+	padding: 0.6em 0em 0.6em 0.6em;
+}
+
+.search-id > input, .search-name > input{
+	width: 95%;
+}
+
+/*---------Body_Div-----------------*/
+.page-body{
+	display: flex;
+	justify-content: space-between;
+}
+
+/*---------Employee_Content---------*/
+.content{
+	flex-wrap: wrap;
+	float: right;
+	display: inline-flex;
+	width: 85%;
+	justify-content: center;
+	margin-right: 1em;
+	margin-top: 1em;
+}
+
+.employee-table{
+	padding: auto;
+	display: table;
+	border: 1px solid #E5E9F2;
+	height: 35em;
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.employee-table th, .employee-table td{
+	padding-left: 1em;
+	padding-bottom: 1em;
+	border: 1px solid black;
+}
+
+.employee-table tr:nth-child(odd){
+	background-color: #F9FAFC;
+}
+
+.employee-table tr:hover{
+	background-color: #DDDDDD;
+}
+
+/*-----------Pagination---------------*/
+.pagination-container {
+	margin-top: 1.5em;
+	display: flex;
+	align-self: flex-end;
+    text-align: center;
+}
+
+.pagination {
+    display: inline-block;
+}
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;-
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #DDDDDD;
+}
+
+.pagination a.active {
+    background-color: var(--primary-color);
+    color: white;
+    border: 1px solid var(--primary-color);
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
+
+/*---------ModalAdd----------*/
+.modal-body{
+	width: 100%;
+	height: 50%;
+}
+
+.modal-add-employee-container{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	flex-direction: row;
+	width: 100%;
+}
+
+#modal-add-employee-header, #modal-add-employee-footer	{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.modal-add-employee-credential, .modal-add-employee-passwords{
+	display: flex;
+	flex-direction: column;
+}
