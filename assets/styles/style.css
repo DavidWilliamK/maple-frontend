@@ -259,3 +259,13 @@ nav a:active > .navbar-item{
 	display: flex;
 	flex-direction: column;
 }
+
+/*----------------------SEARCH-------------------*/
+.search-result{
+	z-index: 1;
+	position: absolute;
+}
+
+.list-group{
+	flex: 0 0 12em;
+}
