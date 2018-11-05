@@ -1,3 +1,4 @@
+var selectedUser = [];
 $(document).ready(function(){
       $(".navbar-part").load("../../components/navbar.html",function(){
             $(".sidebar-part").load("../../components/sidebar.html", function(){
@@ -13,16 +14,16 @@ $(document).ready(function(){
       load();
 });
 
-//Body onClick function still error
+//Finished
 function searchById(){
       $("#idResult").html('');
       var searchField = $("#idSearch").val();
       var exp = new RegExp(searchField, "i");
       $.ajax({
             type: "GET",
-            url: "https://jsonplaceholder.typicode.com/users",
+            url: "http://localhost:8080/employee",
             success: function(response){
-                  $.each(response, function(key, val){
+                  $.each(response.value, function(key, val){
                         if(val.id.search(exp) != -1){ //Gabisa jalan karena id di placeholder bukan String -> Regex ga jalan di integer
                               $("#idResult").append("<li class='list-group-item'>" + val.id + " <span> | </span>"+ val.name+ "</li>");
                         }
@@ -33,19 +34,19 @@ function searchById(){
             }
       });
       $("body").click(function(){
-            // $("#idResult").html('');
+            $("#idResult").html('');
       })
 }
-
+//Finished
 function searchByName(){
       $("#nameResult").html('');
       var searchField = $("#nameSearch").val();
       var exp = new RegExp(searchField, "i");
       $.ajax({
             type: "GET",
-            url: "https://jsonplaceholder.typicode.com/users",
+            url: "http://localhost:8080/employee/",
             success: function(response){
-                  $.each(response, function(key, val){
+                  $.each(response.value, function(key, val){
                         if(val.name.search(exp) != -1){
                               $("#nameResult").append("<li class='list-group-item'>" + val.id + " <span> | </span>"+ val.name+ "</li>");
                         }
@@ -59,44 +60,24 @@ function searchByName(){
             $("#nameResult").html('');
       })
 }
-
+//Finished - pagination
 function load(){
       $.ajax({
             type: "GET",
             dataType: "json",
-//          url: "http://localhost:8080/employee"
-            url: "https://jsonplaceholder.typicode.com/users", //Dummy URL
-            // success: function(response){
-            //       var employeeDataContainer = response.value;
-            //       var employeeData = "";
-            //       var i = 0;
-            //       $.each(employeeDataContainer, function(key, value){
-            //             employeeData += "<tr id = employeeRow["+i+"]>";
-            //             employeeData += "<td id = employeeId["+i+"]>"+value.id+"</td>";
-            //             employeeData += "<td id = employeeName["+i+"]>"+value.name+"</td>";
-            //             employeeData += "<td id = employeePhone["+i+"]>"+value.phone+"</td>";
-            //             employeeData += "<td id = employee["+i+"]selected><input type=checkbox></input></td>"
-            //             employeeData += "</tr>";
-            //             i++;
-            //       });
-            //       $("#viewEmployeeTable").append(employeeData);
-            // },
-            // error: function(response){
-            //       alert(response.errorMessage);
-            //       console.log(response);
-            // }
-//DummyData
+            url: "http://localhost:8080/employee/",
             success: function(response){
-                  var employeeDataContainer = response;
+                  var employeeDataContainer = response.value;
                   var employeeData = "";
-                  var i = 1;
-                  $.each(employeeDataContainer, function(key, val){
+                  var i = 0;
+                  $.each(employeeDataContainer, function(key, value){
                         employeeData += "<tr id = employeeRow["+i+"]>";
-                        employeeData += "<td id = employeeId["+i+"]>"+val.id+"</td>";
-                        employeeData += "<td id = employeeName["+i+"]>"+val.name+"</td>";
-                        employeeData += "<td id = employeePhone["+i+"]>"+val.phone+"</td>";
-                        employeeData += "<td id = employee["+i+"]selected><input type=checkbox id= employee["+i+"]checkbox></input></td>"
+                        employeeData += "<td id = employeeId["+i+"]>"+value.id+"</td>";
+                        employeeData += "<td id = employeeName["+i+"]>"+value.name+"</td>";
+                        employeeData += "<td id = employeeUsername["+i+"]>"+value.username+"</td>";
+                        employeeData += "<td class = checkbox id = employee["+i+"]selected><input type=checkbox id = employee["+i+"]checkbox value = "+value.username+"></input></td>"
                         employeeData += "</tr>";
+                        selectedUser.push(value.username);
                         i++;
                   });
                   $("#viewEmployeeTable").append(employeeData);
@@ -107,82 +88,100 @@ function load(){
             }
       });
 }
-
+//Need to differ between update and add
 function save(){
       var name = $("#fullname").val();
       var username = $("#username").val();
       var phone = $("#phone").val();
       var superior = $("#superiorId").val();
       var password = $("#password").val();
+      var email = $("#email").val();
 
       var newUser = {
             "employeeId":null,
             "username": username,
             "password": password,
             "superiorId": superior,
-            "fullname": name,
-            "phone": phone
+            "name": name,
+            "phone": phone,
+            "email": email
       }
 
       $.ajax({
             type: "POST",
-            url: "https://jsonplaceholder.typicode.com/users",
+            url: "http://localhost:8080/employee/",
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             data: JSON.stringify(newUser),
             success: function(response){
-                  console.log("Successfully saved");
+                  if(response.code != 500){
+                        console.log("Successfully saved");
+                        console.log(newUser);
+                  }
+                  else{
+                        console.log(response.errorMessage);
+                  }
             },
             error: function(response){
                   console.log(response);
             }
       });
 }
-
+//Finished
 function add(){
       $("#fullname").val("");
       $("#username").val("")
       $("#phone").val("");
+      $("#email").val("");
+      $("#superiorId").val("");
+      $("#password").val("");
+      $("#confirmPassword").val("");
 }
-
-//Display value of checked item in modal edit
+//FaultyAPI(?)
 function edit(){
       $("#fullname").val("");
       $("#username").val("")
       $("#phone").val("");
-      var check;
-      for (var i = 1; i <= 10; i++) { //Change i's limit to amount of data in a page
+      $("#email").val("");
+      $("#superiorId").val("");
+      $("#password").val("");
+      $("#confirmPassword").val("");
+      var check = "null";
+      for (var i = 0; i <= 2; i++) { //Change i's limit to amount of data in a page
+            console.log(i);
             if ($("input:checkbox[id = 'employee["+i+"]checkbox']").is(':checked')) {
-                  check = i;
+                  check = $("input:checkbox[id = 'employee["+i+"]checkbox']").val();
             }
       }
-      console.log(check);
 
       $.ajax({
       type: "GET",
-      url: "https://jsonplaceholder.typicode.com/users/" + check,
+      url: "http://localhost:8080/employee/" + check,
       dataType: "json",
       success: function(response){
-            $("#fullname").val(response.name);
-            $("#username").val(response.username)
-            $("#phone").val(response.phone);
+            var employeeDataContainer = response.value;
+            $.each(employeeDataContainer, function(key, value){
+                  $("#fullname").val(value.name);
+                  $("#username").val(value.username)
+                  $("#phone").val(value.phone);
+                  $("#email").val(value.email);
+                  $("#superiorId").val(value.superiorId);
+            })
+
       },
       error: function(response){
             console.log("Error");
       }
       });
 }
-
-//Delete function
-//Dummy data
-//Kyknya masih bug
+//Finished
 function remove(){
       $(".sidebar-delete").on("click", function(){
-            for (var i = 0; i <= 9; i++) { //Change i's limit to amount of data in a page
+            for (var i = 0; i <= 2; i++) { //Change i's limit to amount of data in a page
                   if ($("input:checkbox[id = 'employee["+i+"]checkbox']").is(':checked')) {
                         $.ajax({
                         type: "DELETE",
-                        url: "https://jsonplaceholder.typicode.com/users/" + i, //Dummy data
+                        url: "http://localhost:8080/employee/" + $("input:checkbox[id = 'employee["+i+"]checkbox']").val(), //Dummy data
                         contentType: "application/json",
                         dataType: "json",
                         success: function(){
