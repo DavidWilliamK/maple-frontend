@@ -2,7 +2,6 @@ var selectedUser = [];
 $(document).ready(function(){
       $(".navbar-part").load("../../components/navbar.html",function(){
             $(".sidebar-part").load("../../components/sidebar.html", function(){
-                  $("#employeeSaveChanges").click(save);
                   $(".sidebar-add").click(add);
                   $(".sidebar-edit").click(edit);
                   $(".sidebar-delete").click(remove);
@@ -10,7 +9,6 @@ $(document).ready(function(){
                   $("#idSearch").keyup(searchById);
             });
       });
-     
       load();
 });
 
@@ -88,45 +86,6 @@ function load(){
             }
       });
 }
-//Need to differ between update and add
-function save(){
-      var name = $("#fullname").val();
-      var username = $("#username").val();
-      var phone = $("#phone").val();
-      var superior = $("#superiorId").val();
-      var password = $("#password").val();
-      var email = $("#email").val();
-
-      var newUser = {
-            "employeeId":null,
-            "username": username,
-            "password": password,
-            "superiorId": superior,
-            "name": name,
-            "phone": phone,
-            "email": email
-      }
-
-      $.ajax({
-            type: "POST",
-            url: "http://localhost:8080/employee/",
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            data: JSON.stringify(newUser),
-            success: function(response){
-                  if(response.code != 500){
-                        console.log("Successfully saved");
-                        console.log(newUser);
-                  }
-                  else{
-                        console.log(response.errorMessage);
-                  }
-            },
-            error: function(response){
-                  console.log(response);
-            }
-      });
-}
 //Finished
 function add(){
       $("#fullname").val("");
@@ -136,8 +95,48 @@ function add(){
       $("#superiorId").val("");
       $("#password").val("");
       $("#confirmPassword").val("");
+      //ButtonSave Click
+      $("#employeeSaveChanges").click(function(){
+            var name = $("#fullname").val();
+            var username = $("#username").val();
+            var phone = $("#phone").val();
+            var superior = $("#superiorId").val();
+            var password = $("#password").val();
+            var email = $("#email").val();
+
+            var newUser = {
+                  "employeeId":null,
+                  "username": username,
+                  "password": password,
+                  "superiorId": superior,
+                  "name": name,
+                  "phone": phone,
+                  "email": email
+            }
+
+            $.ajax({
+                  type: "POST",
+                  url: "http://localhost:8080/employee/",
+                  contentType: "application/json; charset=utf-8",
+                  dataType: "json",
+                  data: JSON.stringify(newUser),
+                  success: function(response){
+                        if(response.code != 500){
+                              console.log("Successfully saved");
+                              console.log(newUser);
+                        }
+                        else{
+                              console.log(response.errorMessage);
+                        }
+                  },
+                  error: function(response){
+                        console.log(response);
+                  }
+            });
+      });
 }
-//FaultyAPI(?)
+//FaultyAPI(?) > Can't update name, mail, phone
+//Finished 
 function edit(){
       $("#fullname").val("");
       $("#username").val("")
@@ -173,26 +172,64 @@ function edit(){
             console.log("Error");
       }
       });
+      //ButtonSave Click
+      $("#employeeSaveChanges").click(function(){
+            var name = $("#fullname").val();
+            var username = $("#username").val();
+            var phone = $("#phone").val();
+            var superior = $("#superiorId").val();
+            var password = $("#password").val();
+            var email = $("#email").val();
+
+            var newUser = {
+                  "employeeId":null,
+                  "username": username,
+                  "password": password,
+                  "superiorId": superior,
+                  "name": name,
+                  "phone": phone,
+                  "email": email
+            }
+
+            $.ajax({
+                  type: "POST",
+                  url: "http://localhost:8080/employee/" + check,
+                  contentType: "application/json; charset=utf-8",
+                  dataType: "json",
+                  data: JSON.stringify(newUser),
+                  success: function(response){
+                        if(response.code != 500){
+                              console.log("Successfully saved");
+                              console.log(newUser);
+                        }
+                        else{
+                              console.log(response.errorMessage);
+                        }
+                  },
+                  error: function(response){
+                        console.log(response);
+                  }
+            });
+      });
+      check = "null";
 }
 //Finished
 function remove(){
-      $(".sidebar-delete").on("click", function(){
-            for (var i = 0; i <= 2; i++) { //Change i's limit to amount of data in a page
-                  if ($("input:checkbox[id = 'employee["+i+"]checkbox']").is(':checked')) {
-                        $.ajax({
-                        type: "DELETE",
-                        url: "http://localhost:8080/employee/" + $("input:checkbox[id = 'employee["+i+"]checkbox']").val(), //Dummy data
-                        contentType: "application/json",
-                        dataType: "json",
-                        success: function(){
-                              console.log("Deleted");
-                              console.log(i);
-                        },
-                        error: function(e){
-                              console.log(e);
-                        }
-                        });
+      for (var i = 0; i <= 2; i++) { //Change i's limit to amount of data in a page
+            if ($("input:checkbox[id = 'employee["+i+"]checkbox']").is(':checked')) {
+                  $.ajax({
+                  type: "DELETE",
+                  url: "http://localhost:8080/employee/" + $("input:checkbox[id = 'employee["+i+"]checkbox']").val(), //Dummy data
+                  contentType: "application/json",
+                  dataType: "json",
+                  success: function(){
+                        console.log("Deleted");
+                        console.log(i);
+                  },
+                  error: function(e){
+                        console.log(e);
                   }
+                  });
             }
-      });
+      }
 }
