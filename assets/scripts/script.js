@@ -1,4 +1,3 @@
-var selectedUser = [];
 $(document).ready(function(){
       $(".navbar-part").load("../../components/navbar.html",function(){
             $(".sidebar-part").load("../../components/sidebar.html", function(){
@@ -28,7 +27,7 @@ function searchById(){
                   });
             },
             error: function(response){
-                  console.log("TEST");
+                  console.log(response);
             }
       });
       $("body").click(function(){
@@ -82,7 +81,6 @@ function load(){
             },
             error: function(response){
                   alert(response.errorMessage);
-                  console.log(response);
             }
       });
 }
@@ -122,11 +120,10 @@ function add(){
                   data: JSON.stringify(newUser),
                   success: function(response){
                         if(response.code != 500){
-                              console.log("Successfully saved");
-                              console.log(newUser);
+                              alert("Successfully saved");
                         }
                         else{
-                              console.log(response.errorMessage);
+                              alert(response.errorMessage);
                         }
                   },
                   error: function(response){
@@ -147,7 +144,6 @@ function edit(){
       $("#confirmPassword").val("");
       var check = "null";
       for (var i = 0; i <= 2; i++) { //Change i's limit to amount of data in a page
-            console.log(i);
             if ($("input:checkbox[id = 'employee["+i+"]checkbox']").is(':checked')) {
                   check = $("input:checkbox[id = 'employee["+i+"]checkbox']").val();
             }
@@ -199,11 +195,10 @@ function edit(){
                   data: JSON.stringify(newUser),
                   success: function(response){
                         if(response.code != 500){
-                              console.log("Successfully saved");
-                              console.log(newUser);
+                              alert("Successfully saved");
                         }
                         else{
-                              console.log(response.errorMessage);
+                              alert(response.errorMessage);
                         }
                   },
                   error: function(response){
@@ -223,11 +218,10 @@ function remove(){
                   contentType: "application/json",
                   dataType: "json",
                   success: function(){
-                        console.log("Deleted");
-                        console.log(i);
+                        alert("Deleted");
                   },
-                  error: function(e){
-                        console.log(e);
+                  error: function(response){
+                        console.log(response);
                   }
                   });
             }
