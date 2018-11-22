@@ -1,11 +1,14 @@
 $(document).ready(function(){
       $(".navbar-part").load("../../components/navbar.html",function(){
             $(".sidebar-part").load("../../components/sidebar.html", function(){
+                  $("#employeeLink").css("background-color", "#00D6FF");
                   $(".sidebar-add").click(add);
                   $(".sidebar-edit").click(edit);
                   $(".sidebar-delete").click(remove);
-                  $("#nameSearch").keyup(searchByName);
+                  $("#employeeNameSearch").keyup(searchByName);
                   $("#idSearch").keyup(searchById);
+                  $(".search-item-name").hide();
+                  $(".search-sku").hide();
             });
       });
       load();
@@ -36,8 +39,8 @@ function searchById(){
 }
 //Finished
 function searchByName(){
-      $("#nameResult").html('');
-      var searchField = $("#nameSearch").val();
+      $("#employeeNameResult").html('');
+      var searchField = $("#employeeNameSearch").val();
       var exp = new RegExp(searchField, "i");
       $.ajax({
             type: "GET",
@@ -45,7 +48,7 @@ function searchByName(){
             success: function(response){
                   $.each(response.value, function(key, val){
                         if(val.name.search(exp) != -1){
-                              $("#nameResult").append("<li class='list-group-item'>" + val.id + " <span> | </span>"+ val.name+ "</li>");
+                              $("#employeeNameResult").append("<li class='list-group-item'>" + val.id + " <span> | </span>"+ val.name+ "</li>");
                         }
                   });
             },
@@ -54,7 +57,7 @@ function searchByName(){
             }
       });
       $("body").click(function(){
-            $("#nameResult").html('');
+            $("#employeeNameResult").html('');
       })
 }
 //Finished - pagination
@@ -72,9 +75,8 @@ function load(){
                         employeeData += "<td id = employeeId["+i+"]>"+value.id+"</td>";
                         employeeData += "<td id = employeeName["+i+"]>"+value.name+"</td>";
                         employeeData += "<td id = employeeUsername["+i+"]>"+value.username+"</td>";
-                        employeeData += "<td class = checkbox id = employee["+i+"]selected><input type=checkbox id = employee["+i+"]checkbox value = "+value.username+"></input></td>"
+                        employeeData += "<td class = checkbox id = employee["+i+"]selected><input type=checkbox id = employee["+i+"]checkbox value = "+value.id+"></input></td>"
                         employeeData += "</tr>";
-                        selectedUser.push(value.username);
                         i++;
                   });
                   $("#viewEmployeeTable").append(employeeData);
@@ -86,8 +88,9 @@ function load(){
 }
 //Finished
 function add(){
+      $("#employeeIDlbl").html("");
       $("#fullname").val("");
-      $("#username").val("")
+      $("#username").val("");
       $("#phone").val("");
       $("#email").val("");
       $("#superiorId").val("");
@@ -132,8 +135,7 @@ function add(){
             });
       });
 }
-//FaultyAPI(?) > Can't update name, mail, phone
-//Finished 
+//Finished
 function edit(){
       $("#fullname").val("");
       $("#username").val("")
@@ -143,7 +145,7 @@ function edit(){
       $("#password").val("");
       $("#confirmPassword").val("");
       var check = "null";
-      for (var i = 0; i <= 2; i++) { //Change i's limit to amount of data in a page
+      for (var i = 0; i <= 3; i++) { //Change i's limit to amount of data in a page
             if ($("input:checkbox[id = 'employee["+i+"]checkbox']").is(':checked')) {
                   check = $("input:checkbox[id = 'employee["+i+"]checkbox']").val();
             }
@@ -155,13 +157,13 @@ function edit(){
       dataType: "json",
       success: function(response){
             var employeeDataContainer = response.value;
-            $.each(employeeDataContainer, function(key, value){
-                  $("#fullname").val(value.name);
-                  $("#username").val(value.username)
-                  $("#phone").val(value.phone);
-                  $("#email").val(value.email);
-                  $("#superiorId").val(value.superiorId);
-            })
+            $("#employeeIDlbl").html(employeeDataContainer.id);
+            $("#fullname").val(employeeDataContainer.name);
+            $("#username").val(employeeDataContainer.username)
+            $("#phone").val(employeeDataContainer.phone);
+            $("#email").val(employeeDataContainer.email);
+            $("#superiorId").val(employeeDataContainer.superiorId);
+            console.log(check);
 
       },
       error: function(response){
@@ -178,7 +180,7 @@ function edit(){
             var email = $("#email").val();
 
             var newUser = {
-                  "employeeId":null,
+                  "employeeId": null,
                   "username": username,
                   "password": password,
                   "superiorId": superior,
@@ -205,12 +207,12 @@ function edit(){
                         console.log(response);
                   }
             });
+            check = "null";
       });
-      check = "null";
 }
 //Finished
 function remove(){
-      for (var i = 0; i <= 2; i++) { //Change i's limit to amount of data in a page
+      for (var i = 0; i <= 3; i++) { //Change i's limit to amount of data in a page
             if ($("input:checkbox[id = 'employee["+i+"]checkbox']").is(':checked')) {
                   $.ajax({
                   type: "DELETE",

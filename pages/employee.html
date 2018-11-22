@@ -1,27 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Item</title>
+	<title>Employee</title>
 	<meta charset="utf-8">
 	<meta http-equiv="Cache-control" content="no-cache">
 	<link rel="stylesheet" type="text/css" href="../assets/vendors/bootstrap/css/bootstrap">
 	<link rel="stylesheet" type="text/css" href="../assets/styles/style.css">
 	<link rel="stylesheet" type="text/css" href="../assets/styles/template.css">
-	<link rel="stylesheet" type="text/css" href="../assets/styles/item.css">	
+	<link rel="stylesheet" type="text/css" href="../assets/styles/employee.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script type="text/javascript" src="../assets/scripts/item.js"></script>
+    <script type="text/javascript" src="../assets/scripts/employee.js"></script>
 </head>
 <body>
     <div class="navbar-part"></div>
     <div class="page-body">
 	    <div class="sidebar-part"></div>
 		<div class="content">
-			<table class=" table table-striped table-hover" id="viewItemTable">
+			<table class=" table table-striped table-hover" id="viewEmployeeTable">
 				<tr>
-					<th>SKU</th>
+					<th>ID</th>
 					<th>Name</th>
-					<th>Quantity</th>
-					<th>Price</th>
+					<th>Phone</th>
 					<th>Select</th>
 				</tr>
 			</table>
@@ -44,28 +43,34 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header" id="modal-add-header">
-					SKU: <span id="itemSKUlbl"></span>
+					ID: <span id="employeeIDlbl"></span>
 				</div>
 				<div class="modal-body">
 					<div class="modal-add-container">
 						<img src="../assets/images/placeholder.png" width="40%">
 						<div class="modal-add-credential">
-							Item Name
-							<input type="text" name="itemName" id="itemName">
-							Quantity
-							<input type="text" name="quantity" id="quantity">
-							Price
-							<input type="text" name="price" id="price">
+							Full Name
+							<input type="text" name="fullName" id="fullname">
+							Username
+							<input type="text" name="username" id="username">
+							Phone Number
+							<input type="text" name="phoneNum" id="phone">
+							Email Address
+							<input type="text" name="email" id="email">
+							Superior ID
+							<input type="text" name="searchSuperior" id="superiorId">
 						</div>
 					</div>
-					<div class="modal-add-descs">
-						Description
-						<textarea name="itemDesc" id="itemDesc"></textarea>
+					<div class="modal-add-passwords">
+						Password
+						<input type="password" name="password" id="password">
+						Confirm Password
+						<input type="password" name="confirmPassword" id="confirmPassword">
 					</div>
 				</div>
-				<div class="modal-footer" id="modal-add-item-footer">
-					<button id="itemSaveChanges" type="button">Save</button>
-					<button id="itemCancelChanges" type="button">Cancel</button>
+				<div class="modal-footer" id="modal-add-employee-footer">
+					<button id="employeeSaveChanges" type="button">Save</button>
+					<button id="employeeCancelChanges" type="button">Cancel</button>
 				</div>
 			</div>
 		</div>

@@ -1,6 +1,7 @@
 <meta charset="utf-8">
 <link rel="stylesheet" type="text/css" href="../assets/vendors/bootstrap/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="../assets/stylyes/style.css">
+<link rel="stylesheet" type="text/css" href="../assets/styles/employee.css">
 <script type="text/javascript" src="../assets/vendors/bootstrap/js/bootstrap.min.js"></script>
 <!-- Sidebar -->
 <div class="sidebar-main">
@@ -10,65 +11,39 @@
 				Search
 			</div>
 			<div class="search-parameter">
+				<!-- Search Employee -->
 				<div class="search-id">
 					ID
 					<input type="text" name="id" placeholder="Employee ID" class="form-control" id="idSearch">
 				</div>
 				<ul class="list-group search-result" id="idResult"></ul>
-				<div class="search-name">
+				<div class="search-employee-name">
 					Name
-					<input type="text" name="name" placeholder="Employee Name" class="form-control" id="nameSearch">
+					<input type="text" name="name" placeholder="Employee Name" class="form-control" id="employeeNameSearch">
 				</div>
-				<ul class="list-group search-result" id="nameResult"></ul>
+				<ul class="list-group search-result" id="employeeNameResult"></ul>
+				<!-- Search Item -->
+				<div class="search-sku">
+					ID
+					<input type="text" name="sku" placeholder="Item SKU" class="form-control" id="skuSearch">
+				</div>
+				<ul class="list-group search-result" id="skuResult"></ul>
+				<div class="search-item-name">
+					Name
+					<input type="text" name="name" placeholder="Item Name" class="form-control" id="itemNameSearch">
+				</div>
+				<ul class="list-group search-result" id="itemNameResult"></ul>
 			</div>
 		</div>
 	</div>
-	<div class="sidebar-add" data-toggle="modal" data-target="#modal-add-employee">
+	<div class="sidebar-add" data-toggle="modal" data-target="#modal-add">
 		Add
 	</div>
 
-	<div class="sidebar-edit" data-toggle="modal" data-target="#modal-add-employee">
+	<div class="sidebar-edit" data-toggle="modal" data-target="#modal-add">
 		Edit
 	</div>
 	<div class="sidebar-delete">
 		Delete
-	</div>
-</div>
-
-<!-- Modal Add -->
-<div class="modal fade" id="modal-add-employee">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header" id="modal-add-employee-header">
-				ID: 
-			</div>
-			<div class="modal-body">
-				<div class="modal-add-employee-container">
-					<img src="../assets/images/placeholder.png" width="40%">
-					<div class="modal-add-employee-credential">
-						Full Name
-						<input type="text" name="fullName" id="fullname">
-						Username
-						<input type="text" name="username" id="username">
-						Phone Number
-						<input type="text" name="phoneNum" id="phone">
-						Email
-						<input type="text" name="email" id="email">
-						Superior
-						<input type="text" name="searchSuperior" id="superiorId">
-					</div>
-				</div>
-				<div class="modal-add-employee-passwords">
-					Password
-					<input type="password" name="password" id="password">
-					Confirm Password
-					<input type="password" name="confirmPassword" id="confirmPassword">
-				</div>
-			</div>
-			<div class="modal-footer" id="modal-add-employee-footer">
-				<button id="employeeSaveChanges" type="button">Save</button>
-				<button id="employeeCancelChanges" type="button">Cancel</button>
-			</div>
-		</div>
 	</div>
 </div>
