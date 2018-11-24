@@ -9,20 +9,30 @@
 	<link rel="stylesheet" type="text/css" href="../assets/styles/template.css">
 	<link rel="stylesheet" type="text/css" href="../assets/styles/employee.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script type="text/javascript" src="../assets/scripts/employee.js"></script>
+	<script type="text/javascript" src="../assets/scripts/employee/getEmployees.js"></script>
+	<script type="text/javascript" src="../assets/scripts/employee/addEmployee.js"></script>
+	<script type="text/javascript" src="../assets/scripts/employee/editEmployee.js"></script>
+	<script type="text/javascript" src="../assets/scripts/employee/deleteEmployee.js"></script>
+	<script type="text/javascript" src="../assets/scripts/employee/employee.js"></script>
 </head>
 <body>
-    <div class="navbar-part"></div>
-    <div class="page-body">
+		<div class="navbar-part"></div>
+		<div class="page-header my-3"></div>
+    <div class="page-body mx-4">
 	    <div class="sidebar-part"></div>
 		<div class="content">
-			<table class=" table table-striped table-hover" id="viewEmployeeTable">
-				<tr>
-					<th>ID</th>
-					<th>Name</th>
-					<th>Phone</th>
-					<th>Select</th>
-				</tr>
+			<table class=" table table-hover" id="viewEmployeeTable">
+				<thead class="thead-dark">
+					<tr>
+						<th>ID</th>
+						<th>Name</th>
+						<th>Phone</th>
+						<th>Select</th>
+					</tr>
+				</thead>
+				<tbody>
+					
+				</tbody>
 			</table>
 			<div class="pagination-container">
 				<div class="pagination">
@@ -38,14 +48,17 @@
 			</div>
 		</div>
 	</div>
-	<!-- Modal Add -->
-	<div class="modal fade" id="modal-add">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header" id="modal-add-header">
-					ID: <span id="employeeIDlbl"></span>
-				</div>
-				<div class="modal-body">
+	<!-- Employee Add Modal -->
+	<div class="modal fade" id="modalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-centered" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header" id="modalAddHeader">
+	        <h5 class="modal-title" id="employeeIDlbl"><!--EmployeeID from AJAX!--></h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
 					<div class="modal-add-container">
 						<img src="../assets/images/placeholder.png" width="40%">
 						<div class="modal-add-credential">
@@ -68,12 +81,41 @@
 						<input type="password" name="confirmPassword" id="confirmPassword">
 					</div>
 				</div>
-				<div class="modal-footer" id="modal-add-employee-footer">
-					<button id="employeeSaveChanges" type="button">Save</button>
-					<button id="employeeCancelChanges" type="button">Cancel</button>
-				</div>
-			</div>
-		</div>
+	      <div class="modal-footer" id="modalAddEmployeeFooter">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	        <button type="button" class="btn btn-primary" id="employeeSaveChanges" data-dismiss="modal">Save changes</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	<!-- Employee Detail Modal -->
+	<div class="modal fade" id="modalDetail" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="modalDetailHeader"><!--EmployeeID from AJAX!--></h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          		<span aria-hidden="true">&times;</span>
+	        		</button>
+	      		</div>
+	      		<div class="modal-body">
+	        		<div class="modal-detail-container">
+						<img src="../assets/images/placeholder.png" width="40%">
+						<div class="modal-detail-credential">
+							<span id="spnFullname"></span>
+							<span id="spnUsername"></span>
+							<span id="spnPhone"></span>
+							<span id="spnEmail"></span>
+							<span id="spnSuperiorId"></span>
+						</div>
+					</div>
+	      		</div>
+      			<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	      		</div>
+	    	</div>
+	  	</div>
 	</div>
 </body>
 </html>

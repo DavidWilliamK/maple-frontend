@@ -1,4 +1,4 @@
-/*---------Employee_Content---------*/
+/* ---------Employee_Content---------
 .content{
 	flex-wrap: wrap;
 	float: right;
@@ -30,4 +30,4 @@
 
 .employee-table tr:hover{
 	background-color: #DDDDDD;
-}
+} */

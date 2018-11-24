@@ -9,21 +9,30 @@
 	<link rel="stylesheet" type="text/css" href="../assets/styles/template.css">
 	<link rel="stylesheet" type="text/css" href="../assets/styles/item.css">	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script type="text/javascript" src="../assets/scripts/item.js"></script>
+	<script type="text/javascript" src="../assets/scripts/item/getItems.js"></script>
+	<script type="text/javascript" src="../assets/scripts/item/addItem.js"></script>
+	<script type="text/javascript" src="../assets/scripts/item/editItem.js"></script>
+	<script type="text/javascript" src="../assets/scripts/item/deleteItem.js"></script>
+	<script type="text/javascript" src="../assets/scripts/item/item.js"></script>
 </head>
 <body>
-    <div class="navbar-part"></div>
-    <div class="page-body">
-	    <div class="sidebar-part"></div>
+		<div class="navbar-part"></div>
+		<div class="page-header my-3"></div>
+    <div class="page-body mx-4">
 		<div class="content">
-			<table class=" table table-striped table-hover" id="viewItemTable">
-				<tr>
-					<th>SKU</th>
-					<th>Name</th>
-					<th>Quantity</th>
-					<th>Price</th>
-					<th>Select</th>
-				</tr>
+			<table class=" table table-hover" id="viewItemTable">
+				<thead class="thead-dark">
+						<tr>
+							<th>SKU</th>
+							<th>Name</th>
+							<th>Quantity</th>
+							<th>Price</th>
+							<th>Select</th>
+						</tr>
+				</thead>
+				<tbody>
+
+				</tbody>
 			</table>
 			<div class="pagination-container">
 				<div class="pagination">
@@ -39,36 +48,66 @@
 			</div>
 		</div>
 	</div>
-	<!-- Modal Add -->
-	<div class="modal fade" id="modal-add">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header" id="modal-add-header">
-					SKU: <span id="itemSKUlbl"></span>
-				</div>
-				<div class="modal-body">
-					<div class="modal-add-container">
-						<img src="../assets/images/placeholder.png" width="40%">
-						<div class="modal-add-credential">
-							Item Name
-							<input type="text" name="itemName" id="itemName">
-							Quantity
-							<input type="text" name="quantity" id="quantity">
-							Price
-							<input type="text" name="price" id="price">
-						</div>
-					</div>
-					<div class="modal-add-descs">
-						Description
-						<textarea name="itemDesc" id="itemDesc"></textarea>
+	<!-- Itemm Add Modal -->
+	<div class="modal fade" id="modalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-centered" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header" id="modalAddHeader">
+	        <h5 class="modal-title" id="itemSKUlbl"><!--EmployeeID from AJAX!--></h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+				<div class="modal-add-container">
+					<img src="../assets/images/placeholder.png" width="40%">
+					<div class="modal-add-credential">
+						Item Name
+						<input type="text" name="itemName" id="itemName">
+						Quantity
+						<input type="text" name="quantity" id="quantity">
+						Price
+						<input type="text" name="price" id="price">
 					</div>
 				</div>
-				<div class="modal-footer" id="modal-add-item-footer">
-					<button id="itemSaveChanges" type="button">Save</button>
-					<button id="itemCancelChanges" type="button">Cancel</button>
+				<div class="modal-add-descs">
+					Description
+					<textarea name="itemDesc" id="itemDesc"></textarea>
 				</div>
 			</div>
-		</div>
+	      	<div class="modal-footer" id="modalAddEmployeeFooter">
+	        	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	        	<button type="button" class="btn btn-primary" id="itemSaveChanges" data-dismiss="modal">Save changes</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	<!-- Item Detail Modal -->
+	<div class="modal fade" id="modalDetail" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="modalDetailHeader"><!--EmployeeID from AJAX!--></h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          		<span aria-hidden="true">&times;</span>
+	        		</button>
+	      		</div>
+	      		<div class="modal-body">
+	        		<div class="modal-detail-container">
+						<img src="../assets/images/placeholder.png" width="40%">
+						<div class="modal-detail-credential">
+							<span id="spnName"></span>
+							<span id="spnQuantity"></span>
+							<span id="spnPrice"></span>
+						</div>
+					</div>
+	      		</div>
+      			<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	      		</div>
+	    	</div>
+	  	</div>
 	</div>
 </body>
 </html>
