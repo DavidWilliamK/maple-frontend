@@ -17,37 +17,44 @@
 </head>
 <body>
 		<div class="navbar-part"></div>
-		<div class="page-header my-3"></div>
-    <div class="page-body mx-4">
-	    <div class="sidebar-part"></div>
-		<div class="content">
-			<table class=" table table-hover" id="viewEmployeeTable">
-				<thead class="thead-dark">
-					<tr>
-						<th>ID</th>
-						<th>Name</th>
-						<th>Phone</th>
-						<th>Select</th>
-					</tr>
-				</thead>
-				<tbody>
-					
-				</tbody>
-			</table>
-			<div class="pagination-container">
-				<div class="pagination">
-					<a href="#">&laquo;</a>
-					<a href="#">1</a>
-					<a href="#" class="active">2</a>
-					<a href="#">3</a>
-					<a href="#">4</a>
-					<a href="#">5</a>
-					<a href="#">6</a>
-					<a href="#">&raquo;</a>
-				</div>
+		<div class="row mx-0">
+				<div class="sidebar-part col-2 px-0"></div>
+				<div class="col-10">
+					<div class="row pr-4">
+							<div class="page-header my-3 col-12"></div>
+							<div class="page-body col-12 pl-0">
+								<div class="content">
+									<table class=" table table-hover" id="viewEmployeeTable">
+										<thead class="thead-dark">
+											<tr>
+												<th>ID</th>
+												<th>Name</th>
+												<th>Phone</th>
+												<th>Select</th>
+											</tr>
+										</thead>
+										<tbody>
+											
+										</tbody>
+									</table>
+									<div class="pagination-container">
+										<div class="pagination">
+											<a href="#">&laquo;</a>
+											<a href="#">1</a>
+											<a href="#" class="active">2</a>
+											<a href="#">3</a>
+											<a href="#">4</a>
+											<a href="#">5</a>
+											<a href="#">6</a>
+											<a href="#">&raquo;</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 			</div>
-		</div>
-	</div>
+	
 	<!-- Employee Add Modal -->
 	<div class="modal fade" id="modalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 	  <div class="modal-dialog modal-dialog-centered" role="document">
@@ -60,25 +67,26 @@
 	      </div>
 	      <div class="modal-body">
 					<div class="modal-add-container">
-						<img src="../assets/images/placeholder.png" width="40%">
+						<input type="image" src="../assets/images/placeholder.png" width="40%" id="imagePlaceholder">
+						<input type="file" id="uploadImage" style="display:none;">
 						<div class="modal-add-credential">
 							Full Name
-							<input type="text" name="fullName" id="fullname">
+							<input type="text" name="fullName" id="fullname" class="form-control">
 							Username
-							<input type="text" name="username" id="username">
+							<input type="text" name="username" id="username" class="form-control">
 							Phone Number
-							<input type="text" name="phoneNum" id="phone">
+							<input type="text" name="phoneNum" id="phone" class="form-control">
 							Email Address
-							<input type="text" name="email" id="email">
+							<input type="text" name="email" id="email" class="form-control">
 							Superior ID
-							<input type="text" name="searchSuperior" id="superiorId">
+							<input type="text" name="searchSuperior" id="superiorId" class="form-control">
 						</div>
 					</div>
-					<div class="modal-add-passwords">
+					<div class="modal-add-passwords" class="form-control">
 						Password
-						<input type="password" name="password" id="password">
+						<input type="password" name="password" id="password" class="form-control">
 						Confirm Password
-						<input type="password" name="confirmPassword" id="confirmPassword">
+						<input type="password" name="confirmPassword" id="confirmPassword" class="form-control">
 					</div>
 				</div>
 	      <div class="modal-footer" id="modalAddEmployeeFooter">

@@ -5,6 +5,14 @@
 	padding: 0px;
 }
 
+html{
+	height: 100%;
+}
+
+body{
+	min-height: 100%;
+}
+
 *{
 	table-layout: fixed;
 	/*height: 100%;*/

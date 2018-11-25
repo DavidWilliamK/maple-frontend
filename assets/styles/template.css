@@ -37,12 +37,19 @@ nav a:active > .navbar-item{
 	width: 20em;
 }
 
+/* ---------------Header------------------- */
+.header-button{
+	width: 50px;
+	height: 50px;
+}
+
 /*---------Sidebar---------*/
 .sidebar-main{
 	display: inline-flex;
 	flex-direction: column;
 	width: 12.3em;
 	border-right: 1px solid #E5E9F2;
+	height: 100%;
 }
 
 .search-dropdown, .sidebar-edit, .sidebar-delete, .sidebar-add{

@@ -1,0 +1,40 @@
+<div class="modal fade" id="modalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header" id="modalAddHeader">
+              <h5 class="modal-title" id="employeeIDlbl"><!--EmployeeID from AJAX!--></h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                      <div class="modal-add-container">
+                          <input type="image" src="../assets/images/placeholder.png" width="40%" id="imagePlaceholder">
+                          <input type="file" id="uploadImage" style="display:none;">
+                          <div class="modal-add-credential">
+                              Full Name
+                              <input type="text" name="fullName" id="fullname" class="form-control">
+                              Username
+                              <input type="text" name="username" id="username" class="form-control">
+                              Phone Number
+                              <input type="text" name="phoneNum" id="phone" class="form-control">
+                              Email Address
+                              <input type="text" name="email" id="email" class="form-control">
+                              Superior ID
+                              <input type="text" name="searchSuperior" id="superiorId" class="form-control">
+                          </div>
+                      </div>
+                      <div class="modal-add-passwords" class="form-control">
+                          Password
+                          <input type="password" name="password" id="password" class="form-control">
+                          Confirm Password
+                          <input type="password" name="confirmPassword" id="confirmPassword" class="form-control">
+                      </div>
+                  </div>
+            <div class="modal-footer" id="modalAddEmployeeFooter">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" id="employeeSaveChanges" data-dismiss="modal">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>

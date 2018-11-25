@@ -12,7 +12,7 @@ function load(){
                         employeeData += "<tr id = employeeRow["+i+"]>";
                         employeeData += "<td id = employeeId["+i+"] data-toggle= modal data-target = #modalDetail data-id = "+value.id+">"+value.id+"</td>";
                         employeeData += "<td id = employeeName["+i+"]>"+value.name+"</td>";
-                        employeeData += "<td id = employeeUsername["+i+"]>"+value.username+"</td>";
+                        employeeData += "<td id = employeePhoneNumber["+i+"]>"+value.phone+"</td>";
                         employeeData += "<td class = checkbox id = employee["+i+"]selected><input type=checkbox id = employee["+i+"]checkbox value = "+value.id+"></input></td>"
                         employeeData += "</tr>";
                         i++;
