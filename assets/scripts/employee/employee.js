@@ -2,42 +2,44 @@ $(document).ready(function(){
       $(".navbar-part").load("../../components/navbar.html",function(){
             $(".sidebar-part").load("../../components/sidebar.html", function(){
                   $(".page-header").load("../../components/page-header.html", function(){
+                        load();
                         $("#employeeLink").css("background-color", "#00D6FF");
-                        $("#btnAdd").click(add);
-                        $("#btnEdit").click(edit);
-                        $("#btnDelete").click(remove);
+                        $("#btnAdd").click(function(){
+                              $(".modal-part").load("../../components/modal.html", function(){
+                                    $("#modalTemplate").modal({show:true})
+                                    $("#modalDetail").hide();
+                                    $("#modalDelete").hide();
+                                    add();
+                              });
+                        });
+                        //TOSHOWDETAIL DOESN'T WORK
+                        $("#btnEdit").click(function(){
+                              $(".modal-part").load("../../components/modal.html", function(){
+                                    $("#modalTemplate").modal({show:true})
+                                    $("#modalDetail").hide();
+                                    $("#modalDelete").hide();
+                                    edit();
+                              });
+                        });
+                        //NOTWORKING
+                        $("#btnDelete").click(function(){
+                              $(".modal-part").load("../../components/modal.html", function(){
+                                    $("#modalTemplate").modal({show:true})
+                                    $("#modalAdd").hide();
+                                    $("#modalDetail").hide();
+                                    remove();
+                              });
+                        });
+                        //Search may change according to backend
                         $("#employeeNameSearch").keyup(searchByName);
                         $("#idSearch").keyup(searchById);
                         $(".search-item-name").hide();
                         $(".search-sku").hide();
-                        $("input[id='imagePlaceholder']").click(function(){
-                              $("input[id='uploadImage']").click();
-                        });
-                        $('#modalDetail').on('show.bs.modal', function(event){
-                              var button = $(event.relatedTarget)
-                              var id = button.data('id')
-                              $.ajax({
-                                    type: "GET",
-                                    url: "http://localhost:8080/employee/" + id,
-                                    dataType: "json",
-                                    success: function(response){
-                                          var employeeDataContainer = response.value;
-                                          $("#modalDetailHeader").html(employeeDataContainer.id);
-                                          $("#spnFullname").html(employeeDataContainer.name);
-                                          $("#spnUsername").html(employeeDataContainer.username)
-                                          $("#spnPhone").html(employeeDataContainer.phone);
-                                          $("#spnEmail").html(employeeDataContainer.email);
-                                          $("#spnSuperiorId").html(employeeDataContainer.superiorId);
-                                    },
-                                    error: function(response){
-                                          console.log("Error");
-                                    }
-                              });                        
-                        })
+                        //Search may change according to backend
+                        //Upload image still doesn't work
                   })
             });
       });
-      load();
 });
 
 //Finished

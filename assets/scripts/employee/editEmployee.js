@@ -61,6 +61,7 @@ function edit(){
                 success: function(response){
                       if(response.code != 500){
                             alert("Successfully saved");
+                            window.location.reload();
                       }
                       else{
                             alert(response.errorMessage);

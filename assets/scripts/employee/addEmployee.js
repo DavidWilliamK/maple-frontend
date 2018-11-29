@@ -8,6 +8,9 @@ function add(){
     $("#superiorId").val("");
     $("#password").val("");
     $("#confirmPassword").val("");
+    $("input[id='imagePlaceholder']").click(function(){
+      $("input[id='uploadImage']").click();
+    });
     //ButtonSave Click
     $("#employeeSaveChanges").click(function(){
           var name = $("#fullname").val();

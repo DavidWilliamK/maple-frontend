@@ -9,6 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="../assets/styles/template.css">
 	<link rel="stylesheet" type="text/css" href="../assets/styles/employee.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="http://pagination.js.org/dist/2.1.4/pagination.min.js"></script>
 	<script type="text/javascript" src="../assets/scripts/employee/getEmployees.js"></script>
 	<script type="text/javascript" src="../assets/scripts/employee/addEmployee.js"></script>
 	<script type="text/javascript" src="../assets/scripts/employee/editEmployee.js"></script>
@@ -16,114 +17,47 @@
 	<script type="text/javascript" src="../assets/scripts/employee/employee.js"></script>
 </head>
 <body>
-		<div class="navbar-part"></div>
-		<div class="row mx-0">
-				<div class="sidebar-part col-2 px-0"></div>
-				<div class="col-10">
-					<div class="row pr-4">
-							<div class="page-header my-3 col-12"></div>
-							<div class="page-body col-12 pl-0">
-								<div class="content">
-									<table class=" table table-hover" id="viewEmployeeTable">
-										<thead class="thead-dark">
-											<tr>
-												<th>ID</th>
-												<th>Name</th>
-												<th>Phone</th>
-												<th>Select</th>
-											</tr>
-										</thead>
-										<tbody>
-											
-										</tbody>
-									</table>
-									<div class="pagination-container">
-										<div class="pagination">
-											<a href="#">&laquo;</a>
-											<a href="#">1</a>
-											<a href="#" class="active">2</a>
-											<a href="#">3</a>
-											<a href="#">4</a>
-											<a href="#">5</a>
-											<a href="#">6</a>
-											<a href="#">&raquo;</a>
-										</div>
+	<div class="navbar-part"></div>
+	<div class="row mx-0">
+			<div class="sidebar-part col-2 px-0"></div>
+			<div class="col-10">
+				<div class="row pr-4">
+						<div class="page-header my-3 col-12"></div>
+						<div class="page-body col-12 pl-0">
+							<div class="content">
+								<table class=" table table-hover" id="viewEmployeeTable">
+									<thead class="thead-dark">
+										<tr>
+											<th>ID</th>
+											<th>Name</th>
+											<th>Phone</th>
+											<th>Select</th>
+										</tr>
+									</thead>
+									<tbody>
+										
+									</tbody>
+								</table>
+								<div class="pagination-container">
+									<div class="pagination">
+										<a href="#" id="btnPrev">&laquo;</a>
+										<!-- <a href="#" class="page-btn">1</a>
+										<a href="#" class="active page-btn">2</a>
+										<a href="#" class="page-btn">3</a>
+										<a href="#" class="page-btn">4</a>
+										<a href="#" class="page-btn">5</a>
+										<a href="#" class="page-btn">6</a> -->
+										<a href="#" id="btnNext">&raquo;</a>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-			</div>
-	
-	<!-- Employee Add Modal -->
-	<div class="modal fade" id="modalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-	  <div class="modal-dialog modal-dialog-centered" role="document">
-	    <div class="modal-content">
-	      <div class="modal-header" id="modalAddHeader">
-	        <h5 class="modal-title" id="employeeIDlbl"><!--EmployeeID from AJAX!--></h5>
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	          <span aria-hidden="true">&times;</span>
-	        </button>
-	      </div>
-	      <div class="modal-body">
-					<div class="modal-add-container">
-						<input type="image" src="../assets/images/placeholder.png" width="40%" id="imagePlaceholder">
-						<input type="file" id="uploadImage" style="display:none;">
-						<div class="modal-add-credential">
-							Full Name
-							<input type="text" name="fullName" id="fullname" class="form-control">
-							Username
-							<input type="text" name="username" id="username" class="form-control">
-							Phone Number
-							<input type="text" name="phoneNum" id="phone" class="form-control">
-							Email Address
-							<input type="text" name="email" id="email" class="form-control">
-							Superior ID
-							<input type="text" name="searchSuperior" id="superiorId" class="form-control">
-						</div>
-					</div>
-					<div class="modal-add-passwords" class="form-control">
-						Password
-						<input type="password" name="password" id="password" class="form-control">
-						Confirm Password
-						<input type="password" name="confirmPassword" id="confirmPassword" class="form-control">
-					</div>
 				</div>
-	      <div class="modal-footer" id="modalAddEmployeeFooter">
-	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-	        <button type="button" class="btn btn-primary" id="employeeSaveChanges" data-dismiss="modal">Save changes</button>
-	      </div>
-	    </div>
-	  </div>
-	</div>
+		</div>
 
-	<!-- Employee Detail Modal -->
-	<div class="modal fade" id="modalDetail" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="modalDetailHeader"><!--EmployeeID from AJAX!--></h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	          		<span aria-hidden="true">&times;</span>
-	        		</button>
-	      		</div>
-	      		<div class="modal-body">
-	        		<div class="modal-detail-container">
-						<img src="../assets/images/placeholder.png" width="40%">
-						<div class="modal-detail-credential">
-							<span id="spnFullname"></span>
-							<span id="spnUsername"></span>
-							<span id="spnPhone"></span>
-							<span id="spnEmail"></span>
-							<span id="spnSuperiorId"></span>
-						</div>
-					</div>
-	      		</div>
-      			<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-	      		</div>
-	    	</div>
-	  	</div>
-	</div>
+		<div class="modal-part">
+
+		</div>
 </body>
 </html>

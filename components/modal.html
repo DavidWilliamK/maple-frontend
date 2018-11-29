@@ -1,40 +1,78 @@
-<div class="modal fade" id="modalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header" id="modalAddHeader">
-              <h5 class="modal-title" id="employeeIDlbl"><!--EmployeeID from AJAX!--></h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+<link rel="stylesheet" type="text/css" href="../assets/vendors/bootstrap/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="../assets/styles/style.css">
+<script type="text/javascript" src="../assets/vendors/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../assets/scripts/employee/addEmployee.js"></script>
+<div class="modal fade" id="modalTemplate" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header" id="modalAddHeader">
+        <h5 class="modal-title" id="employeeIDlbl"><!--EmployeeID from AJAX!--></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="modalAdd">
+            <div class="modal-add-container">
+                <input type="image" src="../assets/images/placeholder.png" width="40%" id="imagePlaceholder">
+                <input type="file" id="uploadImage" style="display:none;">
+                <div class="modal-add-credential">
+                    Full Name
+                    <input type="text" name="fullName" id="fullname" class="form-control">
+                    Username
+                    <input type="text" name="username" id="username" class="form-control">
+                    Phone Number
+                    <input type="text" name="phoneNum" id="phone" class="form-control">
+                    Email Address
+                    <input type="text" name="email" id="email" class="form-control">
+                    Superior ID
+                    <input type="text" name="searchSuperior" id="superiorId" class="form-control">
+                    <input type="file" id="uploadImage" style="display:none;">
+                </div>
             </div>
-            <div class="modal-body">
-                      <div class="modal-add-container">
-                          <input type="image" src="../assets/images/placeholder.png" width="40%" id="imagePlaceholder">
-                          <input type="file" id="uploadImage" style="display:none;">
-                          <div class="modal-add-credential">
-                              Full Name
-                              <input type="text" name="fullName" id="fullname" class="form-control">
-                              Username
-                              <input type="text" name="username" id="username" class="form-control">
-                              Phone Number
-                              <input type="text" name="phoneNum" id="phone" class="form-control">
-                              Email Address
-                              <input type="text" name="email" id="email" class="form-control">
-                              Superior ID
-                              <input type="text" name="searchSuperior" id="superiorId" class="form-control">
-                          </div>
-                      </div>
-                      <div class="modal-add-passwords" class="form-control">
-                          Password
-                          <input type="password" name="password" id="password" class="form-control">
-                          Confirm Password
-                          <input type="password" name="confirmPassword" id="confirmPassword" class="form-control">
-                      </div>
-                  </div>
-            <div class="modal-footer" id="modalAddEmployeeFooter">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" id="employeeSaveChanges" data-dismiss="modal">Save changes</button>
+            <div class="modal-add-passwords" class="form-control">
+                Password
+                <input type="password" name="password" id="password" class="form-control">
+                Confirm Password
+                <input type="password" name="confirmPassword" id="confirmPassword" class="form-control">
             </div>
+        </div>
+        <!-- NOTWORKING -->
+        <div id="modalDetail">
+            <div class="modal-detail-container">
+                <img src="../assets/images/placeholder.png" width="40%">
+                <div class="modal-detail-credential">
+                  <span id="spnFullname"></span>
+                  <span id="spnUsername"></span>
+                  <span id="spnPhone"></span>
+                  <span id="spnEmail"></span>
+                  <span id="spnSuperiorId"></span>
+                </div>
+              </div>
+        </div>
+        <!-- NOTWORKING -->
+        <div id="modalDelete">
+          <div class="modal-delete-container">
+            The following data are to be deleted
+            <table class=" table table-hover" id="deleteEmployeeTable">
+                <thead class="thead-dark">
+                  <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Phone</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                </tbody>
+              </table>
           </div>
         </div>
       </div>
+      <div class="modal-footer" id="modalAddEmployeeFooter">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="employeeSaveChanges" data-dismiss="modal">Save changes</button>
+      </div>
+    </div>
+  </div>
+  </div>
