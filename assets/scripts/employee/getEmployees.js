@@ -1,7 +1,7 @@
 //Finished - pagination
 function load(){
 
-      page = 0;
+      var page = 0;
 
       fetchEmployeeData();
 
@@ -13,32 +13,30 @@ function load(){
       })
 
       $("#btnNext").click(function(){
-            page++;
-            fetchEmployeeData();
+            if((page+1)*size < totalRecords){
+                  page++;
+                  fetchEmployeeData();      
+            }
       })
 
       $(".page-btn").click(function(){
-            page = this.html;
+            page = $(this).html() - 1;
             fetchEmployeeData();
       })
 
       function fetchEmployeeData(){
+            $("#page["+page+"]").addClass("active");
             $.ajax({
                   type: "GET",
                   dataType: "json",
                   data: {
                         page: page,
-                        size: 2
+                        size: 10
                   },
                   url: "http://localhost:8080/employee/",
                   success: function(response){
                         $("#viewEmployeeTable>tbody").empty();
                         var employeeDataContainer = response.value;
-                        if(employeeDataContainer.length == 0){
-                              page--;
-                              alert("No more data");
-                              fetchEmployeeData();
-                        }
                         var employeeData = "";
                         var i = 0;
                         $.each(employeeDataContainer, function(key, value){
@@ -57,6 +55,7 @@ function load(){
                                     $("#modalTemplate").modal({show:true})
                                     $("#modalAdd").hide();
                                     $("#modalDelete").hide();
+                                    $("#modalDetailItem").hide();
                                     $.ajax({
                                           type: "GET",
                                           url: "http://localhost:8080/employee/" + id,
@@ -77,6 +76,17 @@ function load(){
                                     });    
                               })
                         });
+                        var pageIndex = 1;
+                        for (let index = 0; index < response.totalPages; index++) {
+                              if(index == 0){
+                                    $("#btnPrev").hide();
+                              }
+                              if(index == response.totalPages-1){
+                                    $("#btnNext").hide();
+                              }
+                              $(".pagination-items").append("<a href = # class = page-btn id = page["+index+"]>"+pageIndex+"</a>");
+                              pageIndex++;
+                        }
                   },
                   error: function(response){
                         alert(response.errorMessage);

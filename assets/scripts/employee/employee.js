@@ -4,32 +4,9 @@ $(document).ready(function(){
                   $(".page-header").load("../../components/page-header.html", function(){
                         load();
                         $("#employeeLink").css("background-color", "#00D6FF");
-                        $("#btnAdd").click(function(){
-                              $(".modal-part").load("../../components/modal.html", function(){
-                                    $("#modalTemplate").modal({show:true})
-                                    $("#modalDetail").hide();
-                                    $("#modalDelete").hide();
-                                    add();
-                              });
-                        });
-                        //TOSHOWDETAIL DOESN'T WORK
-                        $("#btnEdit").click(function(){
-                              $(".modal-part").load("../../components/modal.html", function(){
-                                    $("#modalTemplate").modal({show:true})
-                                    $("#modalDetail").hide();
-                                    $("#modalDelete").hide();
-                                    edit();
-                              });
-                        });
-                        //NOTWORKING
-                        $("#btnDelete").click(function(){
-                              $(".modal-part").load("../../components/modal.html", function(){
-                                    $("#modalTemplate").modal({show:true})
-                                    $("#modalAdd").hide();
-                                    $("#modalDetail").hide();
-                                    remove();
-                              });
-                        });
+                        $("#btnAdd").click(add);
+                        $("#btnEdit").click(edit);
+                        $("#btnDelete").click(remove);
                         //Search may change according to backend
                         $("#employeeNameSearch").keyup(searchByName);
                         $("#idSearch").keyup(searchById);

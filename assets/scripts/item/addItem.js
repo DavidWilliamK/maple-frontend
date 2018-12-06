@@ -1,10 +1,5 @@
 //Finished
 function add(){
-    $("#itemName").val("");
-    $("#quantity").val("");
-    $("#price").val("");
-    $("#itemDesc").val("");
-    $("#itemSKUlbl").html("");
     //ButtonSave Click
     $("#itemSaveChanges").click(function(){
           var name = $("#itemName").val();

@@ -15,7 +15,7 @@
         <div id="modalAdd">
             <div class="modal-add-container">
                 <input type="image" src="../assets/images/placeholder.png" width="40%" id="imagePlaceholder">
-                <input type="file" id="uploadImage" style="display:none;">
+                <input type="file" id="uploadImage" style="display:none;" method="POST", enctype="multipart/form-data">
                 <div class="modal-add-credential">
                     Full Name
                     <input type="text" name="fullName" id="fullname" class="form-control">
@@ -37,8 +37,7 @@
                 <input type="password" name="confirmPassword" id="confirmPassword" class="form-control">
             </div>
         </div>
-        <!-- NOTWORKING -->
-        <div id="modalDetail">
+        <div id="modalDetailEmployee">
             <div class="modal-detail-container">
                 <img src="../assets/images/placeholder.png" width="40%">
                 <div class="modal-detail-credential">
@@ -50,7 +49,17 @@
                 </div>
               </div>
         </div>
-        <!-- NOTWORKING -->
+        <div id="modalDetailItem">
+          <div class="modal-detail-container">
+              <img src="../assets/images/placeholder.png" width="40%">
+              <div class="modal-detail-credential">
+                <span id="spnItemName"></span>
+                <span id="spnItemQuantity"></span>
+                <span id="spnItemPrice"></span>
+                <span id="spnItemDesc"></span>
+              </div>
+            </div>
+      </div>
         <div id="modalDelete">
           <div class="modal-delete-container">
             The following data are to be deleted
@@ -71,7 +80,7 @@
       </div>
       <div class="modal-footer" id="modalAddEmployeeFooter">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" id="employeeSaveChanges" data-dismiss="modal">Save changes</button>
+        <button type="button" class="btn btn-primary" id="modalSaveChanges" data-dismiss="modal">Save changes</button>
       </div>
     </div>
   </div>

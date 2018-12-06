@@ -6,30 +6,12 @@ $(document).ready(function(){
                         $("#itemLink").css("background-color", "#00D6FF");
                         $("#btnAdd").click(add);
                         $("#btnEdit").click(edit);
+                        //NOTWORKING
                         $("#btnDelete").click(remove);
                         // $("#itemNameSearch").keyup(searchByName);
                         // $("#skuSearch").keyup(searchBySku);
                         $(".search-id").hide();
                         $(".search-employee-name").hide();
-                        $('#modalDetail').on('show.bs.modal', function(event){
-                              var button = $(event.relatedTarget)
-                              var sku = button.data('sku')
-                              $.ajax({
-                                    type: "GET",
-                                    url: "http://localhost:8080/item/" + sku,
-                                    dataType: "json",
-                                    success: function(response){
-                                          var itemDataContainer = response.value;
-                                          $("#modalDetailHeader").html(itemDataContainer.itemSku);
-                                          $("#spnName").html(itemDataContainer.name);
-                                          $("#spnQuantity").html(itemDataContainer.quantity)
-                                          $("#spnPrice").html(itemDataContainer.price);
-                                    },
-                                    error: function(response){
-                                          console.log("Error");
-                                    }
-                              });                        
-                        })
                   })
             });
       });

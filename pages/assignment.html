@@ -2,13 +2,63 @@
 <html>
 <head>
 	<title>Assignment</title>
+	<meta charset="utf-8">
+	<meta http-equiv="Cache-control" content="no-cache">
+	<link rel="stylesheet" type="text/css" href="../assets/vendors/bootstrap/css/bootstrap">
+	<link rel="stylesheet" type="text/css" href="../assets/styles/style.css">
+	<link rel="stylesheet" type="text/css" href="../assets/styles/template.css">
+	<link rel="stylesheet" type="text/css" href="../assets/styles/employee.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="../assets/scripts/assignment/getAssignment.js"></script>
+	<script type="text/javascript" src="../assets/scripts/assignment/addAssignment.js"></script>
+	<script type="text/javascript" src="../assets/scripts/assignment/editAssignment.js"></script>
+	<script type="text/javascript" src="../assets/scripts/assignment/deleteAssignment.js"></script>
+	<script type="text/javascript" src="../assets/scripts/assignment/assignment.js"></script>
 </head>
 <body>
-	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	<div class="navbar-part"></div>
+	<div class="row mx-0">
+			<div class="sidebar-part col-2 px-0"></div>
+			<div class="col-10">
+				<div class="row pr-4">
+						<div class="page-header my-3 col-12"></div>
+						<div class="page-body col-12 pl-0">
+							<div class="content">
+								<table class=" table table-hover" id="viewAssignmentTable">
+									<thead class="thead-dark">
+										<tr>
+											<th>ID</th>
+											<th>Employee Name</th>
+											<th>Item Name</th>
+											<th>Quantity</th>
+											<th>Status</th>
+											<th>Action</th>
+										</tr>
+									</thead>
+									<tbody>
+										
+									</tbody>
+								</table>
+								<div class="pagination-container">
+									<div class="pagination">
+										<a href="#" id="btnPrev">&laquo;</a>
+										<a href="#" class="page-btn">1</a>
+										<a href="#" class="active page-btn">2</a>
+										<a href="#" class="page-btn">3</a>
+										<a href="#" class="page-btn">4</a>
+										<a href="#" class="page-btn">5</a>
+										<a href="#" class="page-btn">6</a>
+										<a href="#" id="btnNext">&raquo;</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+		</div>
+
+		<div class="modal-part">
+
+		</div>
 </body>
 </html>
