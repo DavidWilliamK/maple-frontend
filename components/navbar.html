@@ -2,32 +2,30 @@
 <link rel="stylesheet" type="text/css" href="../assets/styles/style.css">
 <script type="text/javascript" src="../assets/vendors/bootstrap/js/bootstrap.min.js"></script>
 <nav class="navbar-main">
-		<a href=""><div class="navbar-item" id="navbar-logo">Logo</div></a>
-		<a href=""><div class="navbar-item" id="dashboardLink">Home</div></a>
+		<div class="navbar-item" id="navbar-logo">Logo</div>
+		<a href="../pages/home.html"><div class="navbar-item" id="homeLink">Home</div></a>
 		<a href="../pages/employee.html"><div class="navbar-item" id="employeeLink">Employee</div></a>
 		<a href="../pages/item.html"><div class="navbar-item" id="itemLink">Items</div></a>
 		<a href="../pages/assignment.html"><div class="navbar-item" id="assignmentLink">Assignments</div></a>
-		<div class="navbar-item" id="navbar-profile" data-toggle="modal" data-target="#modal-profile">ProfileIMG</div>
+		<div class="navbar-item" id="navbar-profile" data-toggle="modal" data-target="#modalProfile">ProfileIMG</div>
 </nav>
 
-<!-- <div class="modal" id="modal-profile">
-	<div class="modal-content" id="modal-profile-content">
-		<img src="">
-		@Username
-		Email.test.com
-		<button>Logout</button>
-	</div>
-</div> -->
-
-<div class="modal fade" id="modal-profile">
-	<div class="modal-dialog">
+<div class="modal" tabindex="-1" role="dialog" id="modalProfile">
+	<div class="modal-dialog" role="document">
 		<div class="modal-content">
-			<div class="modal-body" id="modal-profile-content">
-				<img src="">
-				@Username
-				Email.test.com
-				<button>Logout</button>
-			</div>
+		<div class="modal-header">
+			<h5 class="modal-title">Profile</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<div class="modal-body">
+			<p>Modal body text goes here.</p>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-primary">Save changes</button>
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		</div>
 		</div>
 	</div>
 </div>

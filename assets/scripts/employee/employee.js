@@ -2,11 +2,11 @@ $(document).ready(function(){
       $(".navbar-part").load("../../components/navbar.html",function(){
             $(".sidebar-part").load("../../components/sidebar.html", function(){
                   $(".page-header").load("../../components/page-header.html", function(){
-                        load();
+                        loadEmployee();
                         $("#employeeLink").css("background-color", "#00D6FF");
-                        $("#btnAdd").click(add);
-                        $("#btnEdit").click(edit);
-                        $("#btnDelete").click(remove);
+                        $("#btnAdd").click(addEmployee);
+                        $("#btnEdit").click(editEmployee);
+                        $("#btnDelete").click(removeEmployee);
                         //Search may change according to backend
                         $("#employeeNameSearch").keyup(searchByName);
                         $("#idSearch").keyup(searchById);

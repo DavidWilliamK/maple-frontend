@@ -1,19 +1,60 @@
 //Finished
-function remove(){
-    for (var i = 0; i <= 2; i++) { //Change i's limit to amount of data in a page
+function removeItem(){
+      $("#deleteItemTable>tbody").html("");
+      var check = [];
+      for (var i = 0; i <= 10; i++) { //Change i's limit to amount of data in a page
           if ($("input:checkbox[id = 'item["+i+"]checkbox']").is(':checked')) {
-                $.ajax({
-                type: "DELETE",
-                url: "http://localhost:8080/item/" + $("input:checkbox[id = 'item["+i+"]checkbox']").val(), //Dummy data
-                contentType: "application/json",
-                dataType: "json",
-                success: function(){
-                      alert("Deleted");
-                },
-                error: function(response){
-                      console.log(response);
-                }
-                });
+                check.push($("input:checkbox[id= 'item["+i+"]checkbox']").val());
           }
-    }
+      }
+      if(check.length === 0){
+            alert("ERROR");
+      }
+      else{
+            console.log(check);
+            $(".modal-part").load("../../components/modal.html", function(){
+                  $("#modalTemplate").modal({show:true})
+                  $("#modalDeleteItem").show();
+                  check.forEach(element => {
+                        $.ajax({
+                              type: "GET",
+                              dataType: "json",
+                              url: "http://localhost:8080/item/" + element,
+                              success: function(response){
+                                    var itemDataContainer = response.value;
+                                    var itemData  ="";
+                                    itemData += "<tr>";
+                                    itemData += "<td>"+itemDataContainer.itemSku+"</td>";
+                                    itemData += "<td>"+itemDataContainer.name+"</td>";
+                                    itemData += "<td>"+itemDataContainer.quantity+"</td>";
+                                    itemData += "<td>"+itemDataContainer.price+"</td>";
+                                    itemData += "</tr>";
+                                    $("#deleteItemTable").append(itemData);
+                              },
+                              error: function(response){
+                                    alert(response.errorMessage);
+                              }
+                        });   
+                  });
+                  var data = {
+                        "ids": check
+                  }
+                  $("#modalSaveChanges").click(function(){
+                        $.ajax({
+                              type: "DELETE",
+                              url: "http://localhost:8080/item/",
+                              contentType: "application/json; charset=utf-8",
+                              dataType: "json",
+                              data: JSON.stringify(data),
+                              success: function(){
+                                    window.location.reload();
+                              },
+                              error: function(response){
+                                    console.log(response);
+                              }
+                        });   
+                        // window.location.reload();
+                  })
+            });
+      }
 }

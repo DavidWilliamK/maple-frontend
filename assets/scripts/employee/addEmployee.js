@@ -1,13 +1,28 @@
 //Finished
-function add(){
+function addEmployee(){
     $(".modal-part").load("../../components/modal.html", function(){
       $("#modalTemplate").modal({show:true});
-      $("#modalDetailEmployee").hide();
-      $("#modalDetailItem").hide();
-      $("#modalDelete").hide();
-      $("#imagePlaceholder").click(function(){
-        $("#uploadImage").click();
+      $("#modalAddEmployee").show();
+      $("#employeeImagePlaceholder").click(function(){
+        $("#employeeUploadImage").click();
       });
+
+      //ImagePreview
+      $("#employeeUploadImage").change(function(){
+            readUrl(this);
+      })
+      function readUrl(input){
+            if(input.files && input.files[0]){
+                  var reader = new FileReader();
+
+                  reader.onload = function(e){
+                        $("#employeeImagePlaceholder").attr("src", e.target.result);
+                  }
+                  reader.readAsDataURL(input.files[0]);
+            }
+      }
+
+
       //ButtonSave Click
       $("#modalSaveChanges").click(function(){
             var name = $("#fullname").val();
@@ -16,7 +31,7 @@ function add(){
             var superior = $("#superiorId").val();
             var password = $("#password").val();
             var email = $("#email").val();
-            var image = $("#uploadImage")[0];
+            var image = $("#employeeUploadImage")[0];
             formdata = new FormData();
 
             var newUser = {

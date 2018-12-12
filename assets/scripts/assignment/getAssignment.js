@@ -1,75 +1,73 @@
 //Finished - pagination
-function load(){
+function loadAssignment(){
 
     page = 0;
 
-    fetchEmployeeData();
+    fetchAssignmentData();
 
     $("#btnPrev").click(function(){
           if(page > 0){
                 page--;
-                fetchEmployeeData();
+                fetchAssignmentData();
           }
     })
 
     $("#btnNext").click(function(){
-          page++;
-          fetchEmployeeData();
+      if((page+1)*size < totalRecords){
+            page++;
+            fetchAssignmentData();      
+      }
     })
 
     $(".page-btn").click(function(){
           page = $(this).html() - 1;
-          fetchEmployeeData();
+          fetchAssignmentData();
     })
 
-    function fetchEmployeeData(){
+    function fetchAssignmentData(){
           $.ajax({
                 type: "GET",
+                contentType: "application/octet-stream",
                 dataType: "json",
                 data: {
                       page: page,
                       size: 2
                 },
-                url: "http://localhost:8080/employee/",
+                url: "http://localhost:8080/assignment/",
                 success: function(response){
-                      $("#viewEmployeeTable>tbody").empty();
-                      var employeeDataContainer = response.value;
-                      if(employeeDataContainer.length == 0){
-                            page--;
-                            alert("No more data");
-                            fetchEmployeeData();
-                      }
-                      var employeeData = "";
+                      $("#viewAssignmentTable>tbody").empty();
+                      var assignmentDataContainer = response.value; assignmentData = "";
                       var i = 0;
-                      $.each(employeeDataContainer, function(key, value){
-                            employeeData += "<tr id = employeeRow["+i+"]>";
-                            employeeData += "<td id = employeeId["+i+"] data-id = "+value.id+">"+value.id+"</td>";
-                            employeeData += "<td id = employeeName["+i+"]>"+value.name+"</td>";
-                            employeeData += "<td id = employeePhoneNumber["+i+"]>"+value.phone+"</td>";
-                            employeeData += "<td class = checkbox id = employee["+i+"]selected><input type=checkbox id = employee["+i+"]checkbox value = "+value.id+"></input></td>"
-                            employeeData += "</tr>";
+                      $.each(assignmentDataContainer, function(key, value){
+                            assignmentData += "<tr id = assignmentRow["+i+"]>";
+                            assignmentData += "<td id = assignmentId["+i+"] data-id = "+value.assignmentId+">"+value.assignmentId+"</td>";
+                            assignmentData += "<td id = assignedEmployee["+i+"]>"+value.employeeId+"</td>";
+                            assignmentData += "<td id = assignedItem["+i+"]>"+value.itemSku+"</td>";
+                            assignmentData += "<td id = assignedStatus["+i+"]>"+value.quantity+"</td>";
+                            assignmentData += "<td id = assignedQuantity["+i+"]>"+value.status+"</td>";
+                            assignmentData += "<td id = statusUpdateBtn["+i+"]><button class = 'btn btn-sm btn-danger' id = btnReject>Reject</button><button class = 'btn btn-sm btn-success' id = btnApprove>Approve</button><button class = 'btn btn-lg btn-primary' id = btnHandover>Handover</button><button class = 'btn btn-lg btn-warning' id = btnReturned>Return</button>"
+                            assignmentData += "<td class = checkbox id = assignment["+i+"]selected><input type=checkbox id = assignment["+i+"]checkbox value = "+value.assignmentId+"></input></td>"
+                            assignmentData += "</tr>";
                             i++;
                       });
-                      $("#viewEmployeeTable").append(employeeData);
-                      $("td[id*='employeeId']").click(function(){
+                      $("#viewAssignmentTable").append(assignmentData);
+                      $("td[id*='assignmentId']").click(function(){
                             var id = $(this).html();
                             $(".modal-part").load("../../components/modal.html", function(){
                                   $("#modalTemplate").modal({show:true})
-                                  $("#modalAdd").hide();
-                                  $("#modalDelete").hide();
+                                  $("#modalDetailAssignment").show();
                                   $.ajax({
                                         type: "GET",
-                                        url: "http://localhost:8080/employee/" + id,
+                                        url: "http://localhost:8080/assignment/" + id,
                                         dataType: "json",
                                         success: function(response){
-                                              var employeeDataContainer = response.value;
-                                              $("#modalDetailHeader").html(employeeDataContainer.id);
-                                              $("#spnFullname").html(employeeDataContainer.name);
-                                              $("#spnUsername").html(employeeDataContainer.username)
-                                              $("#spnPhone").html(employeeDataContainer.phone);
-                                              $("#spnEmail").html(employeeDataContainer.email);
-                                              $("#spnSuperiorId").html(employeeDataContainer.superiorId);
-                                              $("#employeeSaveChanges").hide();
+                                              var assignmentDataContainer = response.value;
+                                              $("#modalDetailHeader").html(assignmentDataContainer.assignmentId);
+                                              $("#spnAssignedEmployee").html(assignmentDataContainer.employeeId);
+                                              $("#spnAssignedItem").html(assignmentDataContainer.itemSku)
+                                              $("#spnAssignedQuantity").html(assignmentDataContainer.quantity);
+                                              $("#spnAssignedStatus").html(assignmentDataContainer.status);
+                                              $("#modalSaveChanges").hide();
                                         },
                                         error: function(response){
                                               console.log("Error");

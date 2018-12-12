@@ -1,48 +1,58 @@
 //Finished
-function remove(){
+function removeAssignment(){
     $("#deleteEmployeeTable>tbody").html("");
     var check = [];
-    for (var i = 0; i <= 7; i++) { //Change i's limit to amount of data in a page
-        if ($("input:checkbox[id = 'employee["+i+"]checkbox']").is(':checked')) {
-              check.push($("input:checkbox[id= 'employee["+i+"]checkbox']").val());
+    for (var i = 0; i <= 10; i++) { //Change i's limit to amount of data in a page
+        if ($("input:checkbox[id = 'assignment["+i+"]checkbox']").is(':checked')) {
+              check.push($("input:checkbox[id= 'assignment["+i+"]checkbox']").val());
         }
-    }
-    check.forEach(element => {
-          $.ajax({
-                type: "GET",
-                dataType: "json",
-                url: "http://localhost:8080/employee/" + element,
-                success: function(response){
-                      var employeeDataContainer = response.value;
-                      console.log(check);
-                      var employeeData  ="";
-                      employeeData += "<tr>";
-                      employeeData += "<td>"+employeeDataContainer.id+"</td>";
-                      employeeData += "<td>"+employeeDataContainer.name+"</td>";
-                      employeeData += "<td>"+employeeDataContainer.phone+"</td>";
-                      employeeData += "</tr>";
-                      $("#deleteEmployeeTable").append(employeeData);
-                },
-                error: function(response){
-                      alert(response.errorMessage);
-                }
-          });   
-    });
-    $("#btnDelete").click(function(){
-          check.forEach(element => {
-                $.ajax({
-                      type: "DELETE",
-                      url: "http://localhost:8080/employee/" +element, //Dummy data
-                      contentType: "application/json",
-                      dataType: "json",
-                      success: function(){
-                            alert("Deleted");
-                      },
-                      error: function(response){
-                            console.log(response);
-                      }
-                });   
-          });
-          // window.location.reload();
-    })
+      }
+      if(check.length === 0){
+            alert("ERROR");
+      }
+      else{
+            $(".modal-part").load("../../components/modal.html", function(){
+                  $("#modalTemplate").modal({show:true})
+                  $("#modalDeleteAssignment").show();
+                  check.forEach(element => {
+                        $.ajax({
+                              type: "GET",
+                              dataType: "json",
+                              url: "http://localhost:8080/assignment/" + element,
+                              success: function(response){
+                                    var assignmentDataContainer = response.value;
+                                    var assignmentData  ="";
+                                    assignmentData += "<tr>";
+                                    assignmentData += "<td>"+assignmentDataContainer.assignmentId+"</td>";
+                                    assignmentData += "<td>"+assignmentDataContainer.employeeId+"</td>";
+                                    assignmentData += "<td>"+assignmentDataContainer.itemSku+"</td>";
+                                    assignmentData += "<td>"+assignmentDataContainer.quantity+"</td>";
+                                    assignmentData += "</tr>";
+                                    $("#deleteAssignmentTable").append(assignmentData);
+                              },
+                              error: function(response){
+                                    alert(response.errorMessage);
+                              }
+                        });   
+                  });
+                  var data = {
+                        "ids": check
+                  }
+                  $("#modalSaveChanges").click(function(){
+                        $.ajax({
+                              type: "DELETE",
+                              url: "http://localhost:8080/assignment/",
+                              contentType: "application/json; charset=utf-8",
+                              dataType: "json",
+                              data: JSON.stringify(data),
+                              success: function(){
+                                    window.location.reload();
+                              },
+                              error: function(response){
+                                    console.log(response);
+                              }
+                        });   
+                  })
+            });
+      }
 }

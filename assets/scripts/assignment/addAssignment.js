@@ -1,33 +1,29 @@
 //Finished
-function add(){
-    $("input[id='imagePlaceholder']").click(function(){
-      $("input[id='uploadImage']").click();
-    });
-    //ButtonSave Click
-    $("#employeeSaveChanges").click(function(){
-          var name = $("#fullname").val();
-          var username = $("#username").val();
-          var phone = $("#phone").val();
-          var superior = $("#superiorId").val();
-          var password = $("#password").val();
-          var email = $("#email").val();
+function addAssignment(){
+      $(".modal-part").load("../../components/modal.html", function(){
+            $("#modalTemplate").modal({show:true});
+            $("#modalAddAssignment").show();
 
-          var newUser = {
-                "employeeId":null,
-                "username": username,
-                "password": password,
-                "superiorId": superior,
-                "name": name,
-                "phone": phone,
-                "email": email
+    //ButtonSave Click
+    $("#modalSaveChanges").click(function(){
+          var employeeId = $("#assignedEmployeeId").val();
+          var itemSku = $("#assignedItemSku").val();
+          var quantity = $("#assignedQuantity").val();
+
+          var newAssignment = {
+                "assignmentId":null,
+                "employeeId": employeeId,
+                "itemSku": itemSku,
+                "status": "PENDING",
+                "quantity": quantity,
           }
 
           $.ajax({
                 type: "POST",
-                url: "http://localhost:8080/employee/",
+                url: "http://localhost:8080/assignment/",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                data: JSON.stringify(newUser),
+                data: JSON.stringify(newAssignment),
                 success: function(response){
                       if(response.code != 500){
                             alert("Successfully saved");
@@ -42,4 +38,5 @@ function add(){
                 }
           });
     });
+});
 }

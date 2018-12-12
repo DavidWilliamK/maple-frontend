@@ -1,7 +1,6 @@
 <link rel="stylesheet" type="text/css" href="../assets/vendors/bootstrap/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="../assets/styles/style.css">
 <script type="text/javascript" src="../assets/vendors/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../assets/scripts/employee/addEmployee.js"></script>
 <div class="modal fade" id="modalTemplate" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -12,10 +11,11 @@
         </button>
       </div>
       <div class="modal-body">
-        <div id="modalAdd">
+        <!-- Modal Add -->
+        <div id="modalAddEmployee" style="display:none;">
             <div class="modal-add-container">
-                <input type="image" src="../assets/images/placeholder.png" width="40%" id="imagePlaceholder">
-                <input type="file" id="uploadImage" style="display:none;" method="POST", enctype="multipart/form-data">
+                <input type="image" src="../assets/images/icons/placeholder.png" width="40%" id="employeeImagePlaceholder">
+                <input type="file" id="employeeUploadImage" style="display:none;" method="POST", enctype="multipart/form-data">
                 <div class="modal-add-credential">
                     Full Name
                     <input type="text" name="fullName" id="fullname" class="form-control">
@@ -27,7 +27,6 @@
                     <input type="text" name="email" id="email" class="form-control">
                     Superior ID
                     <input type="text" name="searchSuperior" id="superiorId" class="form-control">
-                    <input type="file" id="uploadImage" style="display:none;">
                 </div>
             </div>
             <div class="modal-add-passwords" class="form-control">
@@ -37,9 +36,44 @@
                 <input type="password" name="confirmPassword" id="confirmPassword" class="form-control">
             </div>
         </div>
-        <div id="modalDetailEmployee">
+        <div id="modalAddItem" style="display:none;">
+          <div class="modal-add-container">
+            <input type="image" src="../assets/images/icons/placeholder.png" width="40%" id="itemImagePlaceholder">
+            <input type="file" id="itemUploadImage" style="display:none;" method="POST", enctype="multipart/form-data">
+            <div class="modal-add-item">
+                Item Name
+                <input type="text" name="itemName" id="itemName" class="form-control">
+                Quantity
+                <input type="text" name="quantity" id="quantity" class="form-control">
+                Price
+                <input type="text" name="price" id="price" class="form-control">
+            </div>
+        </div>
+        <div class="modal-add-desc" class="form-control">
+            Description
+            <input type="textarea" name="itemDesc" id="itemDesc" class="form-control">
+        </div>
+        </div>
+        <div id="modalAddAssignment" style="display:none;">
+          <div class="modal-add-container">
+            <div class="modal-add-assignment">
+                Employee ID
+                <input type="text" name="assignedEmployeeId" id="assignedEmployeeId" class="form-control">
+                Item SKU
+                <input type="text" name="assignedItemSku" id="assignedItemSku" class="form-control">
+                Quantity
+                <input type="text" name="assignedQuantity" id="assignedQuantity" class="form-control">
+            </div>
+        </div>
+        <div class="modal-add-desc" class="form-control">
+            Notes
+            <input type="textarea" name="assignmentNotes" id="assignmentNotes" class="form-control">
+        </div>
+        </div>
+        <!-- Modal Detail -->
+        <div id="modalDetailEmployee" style="display:none;">
             <div class="modal-detail-container">
-                <img src="../assets/images/placeholder.png" width="40%">
+                <img src="../assets/images/icons/placeholder.png" width="40%" id="employeeDetailImage">
                 <div class="modal-detail-credential">
                   <span id="spnFullname"></span>
                   <span id="spnUsername"></span>
@@ -49,9 +83,9 @@
                 </div>
               </div>
         </div>
-        <div id="modalDetailItem">
+        <div id="modalDetailItem" style="display:none;">
           <div class="modal-detail-container">
-              <img src="../assets/images/placeholder.png" width="40%">
+              <img src="../assets/images/icons/placeholder.png" width="40%" id="itemDetailImage">
               <div class="modal-detail-credential">
                 <span id="spnItemName"></span>
                 <span id="spnItemQuantity"></span>
@@ -60,7 +94,18 @@
               </div>
             </div>
       </div>
-        <div id="modalDelete">
+      <div id="modalDetailAssignment" style="display:none;">
+          <div class="modal-detail-container">
+              <div class="modal-detail-credential">
+                <span id="spnAssignedEmployee"></span>
+                <span id="spnAssignedItem"></span>
+                <span id="spnAssignedQuantity"></span>
+                <span id="spnAssignedStatus"></span>
+              </div>
+            </div>
+      </div>
+      <!-- Modal Delete -->
+        <div id="modalDeleteEmployee" style="display:none;">
           <div class="modal-delete-container">
             The following data are to be deleted
             <table class=" table table-hover" id="deleteEmployeeTable">
@@ -69,6 +114,42 @@
                     <th>ID</th>
                     <th>Name</th>
                     <th>Phone</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                </tbody>
+              </table>
+          </div>
+        </div>
+        <div id="modalDeleteItem" style="display:none;">
+          <div class="modal-delete-container">
+            The following data are to be deleted
+            <table class=" table table-hover" id="deleteItemTable">
+                <thead class="thead-dark">
+                  <tr>
+                    <th>SKU</th>
+                    <th>Name</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                </tbody>
+              </table>
+          </div>
+        </div>
+        <div id="modalDeleteAssignment" style="display:none;">
+          <div class="modal-delete-container">
+            The following data are to be deleted
+            <table class=" table table-hover" id="deleteAssignmentTable">
+                <thead class="thead-dark">
+                  <tr>
+                    <th>Assignment ID</th>
+                    <th>Employee Name</th>
+                    <th>Item SKU</th>
+                    <th>Quantity</th>
                   </tr>
                 </thead>
                 <tbody>

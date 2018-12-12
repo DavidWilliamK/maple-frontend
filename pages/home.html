@@ -1,20 +1,101 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<title>Home</title>
+	<meta charset="utf-8">
+	<meta http-equiv="Cache-control" content="no-cache">
+	<link rel="stylesheet" type="text/css" href="../assets/vendors/bootstrap/css/bootstrap">
+	<link rel="stylesheet" type="text/css" href="../assets/styles/style.css">
+	<link rel="stylesheet" type="text/css" href="../assets/styles/template.css">
+	<link rel="stylesheet" type="text/css" href="../assets/styles/employee.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<!-- <script type="text/javascript" src="../assets/scripts/employee/getEmployees.js"></script>
+	<script type="text/javascript" src="../assets/scripts/employee/addEmployee.js"></script>
+	<script type="text/javascript" src="../assets/scripts/employee/editEmployee.js"></script>
+	<script type="text/javascript" src="../assets/scripts/employee/deleteEmployee.js"></script> -->
+	<script type="text/javascript" src="../assets/scripts/home/home.js"></script>
 </head>
 <body>
-<div class="menu">
-	<div class="logo">
-		<img src="">
+	<div class="navbar-part"></div>
+	<div class="row mx-0">
+			<div class="sidebar-part col-2 px-0"></div>
+			<div class="col-10 pr-5 pl-1">
+				<!-- Cards -->
+				<div class="row mt-5">
+					<!-- Pending Card -->
+						<div class="col-4">
+								<div class="card">
+									<div class="card-header">
+									  Pending Items
+									</div>
+									<div class="card-body">
+									  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo dolorem aperiam ab iusto suscipit magnam? Accusantium maiores odit provident ullam ducimus sit. Quasi iusto alias voluptatem rerum est quibusdam amet.
+									</div>
+								  </div>
+							</div>
+					<!-- Accepted Card -->
+							<div class="col-4">
+								<div class="card">
+									<div class="card-header">
+									  Accepted Items
+									</div>
+									<div class="card-body">
+									  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis pariatur adipisci nostrum eius rerum, velit quisquam deleniti nam cupiditate quibusdam consequatur aliquam consequuntur impedit fuga, distinctio, dolorem asperiores facilis odit.
+									</div>
+								  </div>
+							</div>
+					<!-- Received Card -->
+							<div class="col-4">
+								<div class="card">
+									<div class="card-header">
+									  Received Items
+									</div>
+									<div class="card-body">
+									  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo, tenetur eius molestiae quasi fugiat quam labore voluptatem distinctio qui, ipsa nostrum obcaecati harum porro ea quo. Quos perferendis amet ipsum?
+									</div>
+								  </div>
+							</div>
+				</div>
+				<!-- Table -->
+				<div class="row mt-5">
+					<div class="col-10-md-auto">
+							<table class="table" id="tableDashboard">
+									<thead class="thead-dark">
+									  <tr>
+										<th scope="col">Assignment ID</th>
+										<th scope="col">Item Name</th>
+										<th scope="col">Quantity</th>
+										<th scope="col">Last Updated</th>
+									  </tr>
+									</thead>
+									<tbody>
+									  <tr>
+										<th scope="row">1</th>
+										<td>Mark</td>
+										<td>Otto</td>
+										<td>@mdo</td>
+									  </tr>
+									  <tr>
+										<th scope="row">2</th>
+										<td>Jacob</td>
+										<td>Thornton</td>
+										<td>@fat</td>
+									  </tr>
+									  <tr>
+										<th scope="row">3</th>
+										<td>Larry</td>
+										<td>the Bird</td>
+										<td>@twitter</td>
+									  </tr>
+									</tbody>
+								  </table>
+					</div>
+				</div>
+			</div>	
 	</div>
-	<div class="dropdown-menu">
-		<a href="">Test</a>
-	</div>
-	<div class="dropdown-menu">
-		<a href="">Teest2</a>
-	</div>
-</div>
+
+		<div class="modal-part">
+
+		</div>
 </body>
 </html>

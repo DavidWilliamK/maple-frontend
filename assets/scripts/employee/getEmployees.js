@@ -1,5 +1,5 @@
 //Finished - pagination
-function load(){
+function loadEmployee(){
 
       var page = 0;
 
@@ -28,6 +28,7 @@ function load(){
             $("#page["+page+"]").addClass("active");
             $.ajax({
                   type: "GET",
+                  contentType: "application/octet-stream",
                   dataType: "json",
                   data: {
                         page: page,
@@ -53,22 +54,26 @@ function load(){
                               var id = $(this).html();
                               $(".modal-part").load("../../components/modal.html", function(){
                                     $("#modalTemplate").modal({show:true})
-                                    $("#modalAdd").hide();
-                                    $("#modalDelete").hide();
-                                    $("#modalDetailItem").hide();
+                                    $("#modalDetailEmployee").show();
                                     $.ajax({
                                           type: "GET",
                                           url: "http://localhost:8080/employee/" + id,
                                           dataType: "json",
                                           success: function(response){
                                                 var employeeDataContainer = response.value;
+                                                if(employeeDataContainer.imagePath){
+                                                      var image = employeeDataContainer.imagePath;
+                                                      image = image.split("/");
+                                                      image = image.pop();
+                                                      $("#employeeDetailImage").attr("src", "../assets/images/employees/"+image);
+                                                }
                                                 $("#modalDetailHeader").html(employeeDataContainer.id);
                                                 $("#spnFullname").html(employeeDataContainer.name);
                                                 $("#spnUsername").html(employeeDataContainer.username)
                                                 $("#spnPhone").html(employeeDataContainer.phone);
                                                 $("#spnEmail").html(employeeDataContainer.email);
                                                 $("#spnSuperiorId").html(employeeDataContainer.superiorId);
-                                                $("#employeeSaveChanges").hide();
+                                                $("#modalSaveChanges").hide();
                                           },
                                           error: function(response){
                                                 console.log("Error");

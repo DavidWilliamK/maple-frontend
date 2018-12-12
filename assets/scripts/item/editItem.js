@@ -1,6 +1,7 @@
 //Finished
-function edit(){
-    for (var i = 0; i <= 3; i++) { //Change i's limit to amount of data in a page
+function editItem(){
+    var check = null;
+    for (var i = 0; i <= 10; i++) { //Change i's limit to amount of data in a page
           if ($("input:checkbox[id = 'item["+i+"]checkbox']").is(':checked')) {
                 check = $("input:checkbox[id = 'item["+i+"]checkbox']").val();
           }
@@ -11,9 +12,8 @@ function edit(){
     }
     else{
       $(".modal-part").load("../../components/modal.html", function(){
-            $("#modalTemplate").modal({show:true})
-            $("#modalDetail").hide();
-            $("#modalDelete").hide();
+            $("#modalTemplate").modal({show:true});
+            $("#modalAddItem").show();
             $.ajax({
                   type: "GET",
                   url: "http://localhost:8080/item/" + check,
@@ -32,7 +32,7 @@ function edit(){
                   }
                   });
                   //ButtonSave Click
-                  $("#itemSaveChanges").click(function(){
+                  $("#modalSaveChanges").click(function(){
                         var name = $("#itemName").val();
                         var quantity = $("#quantity").val();
                         var price = $("#price").val();

@@ -2,12 +2,12 @@ $(document).ready(function(){
       $(".navbar-part").load("../../components/navbar.html",function(){
             $(".sidebar-part").load("../../components/sidebar.html", function(){
                   $(".page-header").load("../../components/page-header.html", function(){
-                        load();
+                        loadItem();
                         $("#itemLink").css("background-color", "#00D6FF");
-                        $("#btnAdd").click(add);
-                        $("#btnEdit").click(edit);
+                        $("#btnAdd").click(addItem);
+                        $("#btnEdit").click(editItem);
                         //NOTWORKING
-                        $("#btnDelete").click(remove);
+                        $("#btnDelete").click(removeItem);
                         // $("#itemNameSearch").keyup(searchByName);
                         // $("#skuSearch").keyup(searchBySku);
                         $(".search-id").hide();

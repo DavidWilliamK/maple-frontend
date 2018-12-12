@@ -1,5 +1,5 @@
 //Finished - pagination
-function load(){
+function loadItem(){
 
       page = 0;
       totalRecords = 5;
@@ -47,7 +47,7 @@ function load(){
                               itemData += "<td id = itemQuantity["+i+"]>"+value.quantity+"</td>";
                               itemData += "<td id = itemPrice["+i+"]>"+value.price+"</td>";
                               itemData += "<td class = checkbox id = item["+i+"]selected><input type=checkbox id = item["+i+"]checkbox value = "+value.itemSku+"></input></td>"
-                              itemData += "<td id = item["+i+"]pdf>PDF</td>";
+                              itemData += "<td name = "+value.itemSku+" id = item["+i+"]pdf>PDF</td>";
                               itemData += "</tr>";
                               i++;
                         });
@@ -56,15 +56,20 @@ function load(){
                               var sku = $(this).html();
                               $(".modal-part").load("../../components/modal.html", function(){
                                     $("#modalTemplate").modal({show:true})
-                                    $("#modalAdd").hide();
-                                    $("#modalDelete").hide();
-                                    $("#modalDetailEmployee").hide();
+                                    $("#modalDetailItem").show();
                                     $.ajax({
                                           type: "GET",
                                           url: "http://localhost:8080/item/" + sku,
                                           dataType: "json",
                                           success: function(response){
                                                 var itemDataContainer = response.value;
+                                                if(itemDataContainer.imagePath){
+                                                      var image = itemDataContainer.imagePath;
+                                                      image = image.split("/");
+                                                      image = image.pop();
+                                                      console.log(image);
+                                                      $("#itemDetailImage").attr("src", "../assets/images/items/"+image);
+                                                }
                                                 $("#modalDetailHeader").html(itemDataContainer.itemSku);
                                                 $("#spnItemName").html(itemDataContainer.name);
                                                 $("#spnItemQuantity").html(itemDataContainer.quantity);
@@ -78,6 +83,19 @@ function load(){
                                     });    
                               })
                         });
+                        $("td[id*='pdf']").click(function(){
+                              var sku = $(this).attr("name");
+                              $.ajax({
+                                    type: "GET",
+                                    url: "http://localhost:8080/item/"+sku+"/download",
+                                    success: function(response){
+                                          var win = window.open("http://localhost:8080/item/"+sku+"/download", "_blank");
+                                    },
+                                    error: function(response){
+                                          console.log("error");
+                                    }
+                              })
+                        })
                         var paginate = "";
                         var pageIndex = 1;
                         for (let index = 0; index < totalRecords/size; index++) {

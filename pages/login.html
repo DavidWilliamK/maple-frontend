@@ -2,22 +2,44 @@
 <html>
 <head>
 	<title>Login</title>
-	<link rel="stylesheet" type="text/css" href="../assets/styles/style.css">
-	<link rel="stylesheet" type="text/css" href="../assets/styles/login.css">
-	<link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="../assets/vendors/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../assets/styles/base.css">
+	<link rel="stylesheet" href="../assets/styles/login.css">
+	<!-- <script src="../assets/vendors/bootstrap/js/bootstrap.min.js"></script> -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="../assets/scripts/login/login.js"></script>
 </head>
 <body style="background-color: #E5E9F2">
-<div class="login-container">
-	<div class="login-header">
-		Log in
-	</div>
-	<div class="login-form">
-		<input type="text" name="userId" placeholder="ID" id="loginId">
-		<input type="password" name="password" placeholder="Password" id="loginPassword">
-	</div>
-	<div class="login-submit">
-		<a href="pages/employee.html"><button type="submit">Sign In</button></a>
-	</div>
-</div>
+	<section class="login-block">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 login-sec">
+					<h2 class="text-center">Login</h2>
+					<form class="login-form">
+		  				<div class="form-group">
+							<label for="loginEmail">Username</label>
+							<input type="text" class="form-control" placeholder="" id="loginEmail">
+		  				</div>
+		  				<div class="form-group">
+							<label for="loginPassword">Password</label>
+							<input type="password" class="form-control" placeholder="" id="loginPassword">
+		  				</div>
+		  
+		  
+						<div class="form-check">
+							<label class="form-check-label">
+			  				<input type="checkbox" class="form-check-input">
+			  				<small>Remember Me</small>
+							</label>
+							<button type="submit" class="btn btn-login float-right" id="btnLogin">Submit</button>
+		  				</div>
+		  
+					</form>
+				</div>
+				<div class="col-md-8 banner-sec">
+				</div>
+			</div>
+		</div>
+	</section>
 </body>
 </html>

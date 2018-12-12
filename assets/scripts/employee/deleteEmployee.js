@@ -1,5 +1,5 @@
 //Finished
-function remove(){
+function removeEmployee(){
       $("#deleteEmployeeTable>tbody").html("");
       var check = [];
       for (var i = 0; i <= 10; i++) { //Change i's limit to amount of data in a page
@@ -7,16 +7,15 @@ function remove(){
                 check.push($("input:checkbox[id= 'employee["+i+"]checkbox']").val());
           }
       }
-      if(check == null){
+      if(check.length === 0){
             alert("ERROR");
       }
       else{
+            console.log(check);
             $(".modal-part").load("../../components/modal.html", function(){
                   $("#modalTemplate").modal({show:true})
                   $("#modalSaveChanges").html("Delete Employees");
-                  $("#modalAdd").hide();
-                  $("#modalDetailEmployee").hide();
-                  $("#modalDetailItem").hide();
+                  $("#modalDeleteEmployee").show();
                   //INSERT DELETE LOGIC
                   check.forEach(element => {
                         $.ajax({
@@ -38,13 +37,16 @@ function remove(){
                               }
                         });   
                   });
+                  var data = {
+                        "ids": check
+                  }
                   $("#modalSaveChanges").click(function(){
                         $.ajax({
                               type: "DELETE",
                               url: "http://localhost:8080/employee/",
                               contentType: "application/json; charset=utf-8",
                               dataType: "json",
-                              data: JSON.stringify(check),
+                              data: JSON.stringify(data),
                               success: function(){
                                     window.location.reload();
                               },
