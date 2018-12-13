@@ -25,7 +25,8 @@ function loadEmployee(){
       })
 
       function fetchEmployeeData(){
-            $("#page["+page+"]").addClass("active");
+            // Kasih indikator page saat ini
+            // $("#page["+page+"]").addClass("active");
             $.ajax({
                   type: "GET",
                   contentType: "application/octet-stream",
@@ -67,7 +68,7 @@ function loadEmployee(){
                                                       image = image.pop();
                                                       $("#employeeDetailImage").attr("src", "../assets/images/employees/"+image);
                                                 }
-                                                $("#modalDetailHeader").html(employeeDataContainer.id);
+                                                $("#modalTitle").html(employeeDataContainer.id);
                                                 $("#spnFullname").html(employeeDataContainer.name);
                                                 $("#spnUsername").html(employeeDataContainer.username)
                                                 $("#spnPhone").html(employeeDataContainer.phone);

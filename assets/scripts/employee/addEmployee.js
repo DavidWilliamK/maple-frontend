@@ -2,6 +2,7 @@
 function addEmployee(){
     $(".modal-part").load("../../components/modal.html", function(){
       $("#modalTemplate").modal({show:true});
+      $("#modalTitle").html("Add Employee");
       $("#modalAddEmployee").show();
       $("#employeeImagePlaceholder").click(function(){
         $("#employeeUploadImage").click();

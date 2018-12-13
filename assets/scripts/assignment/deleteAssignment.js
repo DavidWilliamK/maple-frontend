@@ -14,6 +14,7 @@ function removeAssignment(){
             $(".modal-part").load("../../components/modal.html", function(){
                   $("#modalTemplate").modal({show:true})
                   $("#modalDeleteAssignment").show();
+                  $("#modalTitle").html("Delete Assignment");
                   check.forEach(element => {
                         $.ajax({
                               type: "GET",

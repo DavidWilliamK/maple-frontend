@@ -19,7 +19,7 @@ function editAssignment(){
                     dataType: "json",
                     success: function(response){
                           var assignmentDataContainer = response.value;
-                          $("#assignmentIDlbl").html(assignmentDataContainer.assignmentId);
+                          $("#modalTitle").html(assignmentDataContainer.assignmentId);
                           $("#assignedEmployeeId").val(assignmentDataContainer.employeeId);
                           $("#assignedItemSku").val(assignmentDataContainer.itemSku);
                           $("#assignedQuantity").val(assignmentDataContainer.quantity);

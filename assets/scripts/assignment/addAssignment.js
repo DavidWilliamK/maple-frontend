@@ -3,6 +3,7 @@ function addAssignment(){
       $(".modal-part").load("../../components/modal.html", function(){
             $("#modalTemplate").modal({show:true});
             $("#modalAddAssignment").show();
+            $("#modalTitle").html("Add Assignment");
 
     //ButtonSave Click
     $("#modalSaveChanges").click(function(){

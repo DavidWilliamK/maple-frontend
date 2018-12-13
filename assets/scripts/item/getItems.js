@@ -1,9 +1,7 @@
 //Finished - pagination
 function loadItem(){
 
-      page = 0;
-      totalRecords = 5;
-      size = 10;
+      var page = 0;
 
       fetchItemData();
 
@@ -27,8 +25,11 @@ function loadItem(){
       })
 
       function fetchItemData(){
+            // Kasih indikator page saat ini
+            // $("#page["+page+"]").addClass("active");
             $.ajax({
                   type: "GET",
+                  contentType: "application/octet-stream",
                   dataType: "json",
                   data: {
                         page: page,
@@ -70,7 +71,7 @@ function loadItem(){
                                                       console.log(image);
                                                       $("#itemDetailImage").attr("src", "../assets/images/items/"+image);
                                                 }
-                                                $("#modalDetailHeader").html(itemDataContainer.itemSku);
+                                                $("#modalTitle").html(itemDataContainer.itemSku);
                                                 $("#spnItemName").html(itemDataContainer.name);
                                                 $("#spnItemQuantity").html(itemDataContainer.quantity);
                                                 $("#spnItemPrice").html(itemDataContainer.price);
@@ -89,20 +90,19 @@ function loadItem(){
                                     type: "GET",
                                     url: "http://localhost:8080/item/"+sku+"/download",
                                     success: function(response){
-                                          var win = window.open("http://localhost:8080/item/"+sku+"/download", "_blank");
+                                          window.open("http://localhost:8080/item/"+sku+"/download", "_blank");
                                     },
                                     error: function(response){
                                           console.log("error");
                                     }
                               })
                         })
-                        var paginate = "";
                         var pageIndex = 1;
-                        for (let index = 0; index < totalRecords/size; index++) {
+                        for (let index = 0; index < response.totalPages; index++) {
                               if(index == 0){
                                     $("#btnPrev").hide();
                               }
-                              else if(index == totalRecords/size){
+                              if(index == response.totalPages-1){
                                     $("#btnNext").hide();
                               }
                               $(".pagination-items").append("<a href = # class = page-btn id = page["+index+"]0>"+pageIndex+"</a>");

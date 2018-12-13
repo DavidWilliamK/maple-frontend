@@ -3,6 +3,7 @@ function addItem(){
     $(".modal-part").load("../../components/modal.html", function(){
           $("#modalTemplate").modal({show:true});
           $("#modalAddItem").show();
+          $("#modalTitle").html("Add Item");
           $("#itemImagePlaceholder").click(function(){
                 $("#itemUploadImage").click();
           })

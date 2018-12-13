@@ -11,9 +11,10 @@ function removeItem(){
             alert("ERROR");
       }
       else{
-            console.log(check);
             $(".modal-part").load("../../components/modal.html", function(){
-                  $("#modalTemplate").modal({show:true})
+                  $("#modalTemplate").modal({show:true});
+                  $("#modalTitle").html("Delete Items");
+                  $("#modalSaveChanges").html("Delete Items");
                   $("#modalDeleteItem").show();
                   check.forEach(element => {
                         $.ajax({

@@ -13,7 +13,8 @@ function removeEmployee(){
       else{
             console.log(check);
             $(".modal-part").load("../../components/modal.html", function(){
-                  $("#modalTemplate").modal({show:true})
+                  $("#modalTemplate").modal({show:true});
+                  $("#modalTitle").html("Delete Employees");
                   $("#modalSaveChanges").html("Delete Employees");
                   $("#modalDeleteEmployee").show();
                   //INSERT DELETE LOGIC

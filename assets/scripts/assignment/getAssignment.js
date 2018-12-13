@@ -62,7 +62,7 @@ function loadAssignment(){
                                         dataType: "json",
                                         success: function(response){
                                               var assignmentDataContainer = response.value;
-                                              $("#modalDetailHeader").html(assignmentDataContainer.assignmentId);
+                                              $("#modalTitle").html(assignmentDataContainer.assignmentId);
                                               $("#spnAssignedEmployee").html(assignmentDataContainer.employeeId);
                                               $("#spnAssignedItem").html(assignmentDataContainer.itemSku)
                                               $("#spnAssignedQuantity").html(assignmentDataContainer.quantity);
