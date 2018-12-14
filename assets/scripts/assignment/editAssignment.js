@@ -18,7 +18,8 @@ function editAssignment(){
                     url: "http://localhost:8080/assignment/" + check,
                     dataType: "json",
                     success: function(response){
-                          var assignmentDataContainer = response.value;
+                          var assignmentDataContainer = response.value.assignment;
+                          console.log(assignmentDataContainer);
                           $("#modalTitle").html(assignmentDataContainer.assignmentId);
                           $("#assignedEmployeeId").val(assignmentDataContainer.employeeId);
                           $("#assignedItemSku").val(assignmentDataContainer.itemSku);

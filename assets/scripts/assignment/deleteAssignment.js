@@ -21,7 +21,7 @@ function removeAssignment(){
                               dataType: "json",
                               url: "http://localhost:8080/assignment/" + element,
                               success: function(response){
-                                    var assignmentDataContainer = response.value;
+                                    var assignmentDataContainer = response.value.assignment;
                                     var assignmentData  ="";
                                     assignmentData += "<tr>";
                                     assignmentData += "<td>"+assignmentDataContainer.assignmentId+"</td>";

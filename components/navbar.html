@@ -27,11 +27,31 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<p>Modal body text goes here.</p>
+				<div class="row">
+					<div class="col-12 d-flex justify-content-center">
+						<img src="../assets/images/icons/placeholder.png" class="rounded-circle" width = "40%" height="100%">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-12 d-flex justify-content-center">
+						John Doe
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-12 d-flex justify-content-center">
+						EMP-99
+					</div>
+				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnLogout">Logout</button>
 			</div>
 		</div>
 	</div>
 </div>
+
+<script>
+$("#btnLogout").click(function(){
+	window.location.replace("../../pages/login.html");
+})
+</script>
