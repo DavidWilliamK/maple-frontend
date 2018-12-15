@@ -13,10 +13,11 @@
 }
 
 #navbar-logo{
-	padding: 2em 5em 2em 5em;
+	padding: 0;
 	border-right: 1px solid #E5E9F2;
 	background: -webkit-linear-gradient(321deg, #9fb8ad, #00D6FF);  /* Chrome 10-25, Safari 5.1-6 */
 	background: linear-gradient(321deg, #9fb8ad, #00D6FF);
+	content: url("../images/icons/MapleBrand.png");
 }
 
 #navbar-profile{
@@ -94,7 +95,7 @@ nav a:active > .navbar-item{
 .pagination>ul>li>a{
 	background-color: #00D6FF;
 	padding: 5px 10px;
-	border: 2px solid black;
+	border: 1px solid black;
 	border-right: 0;
 }
 
@@ -109,7 +110,7 @@ nav a:active > .navbar-item{
 
 .pagination>ul>li:last-child a{
 	border-radius: 0 5px 5px 0;
-    border-right: 2px solid black;
+    border-right: 1px solid black;
 }
 
 .pagination>ul>li a:hover:not(.active) {background-color: #ddd;}

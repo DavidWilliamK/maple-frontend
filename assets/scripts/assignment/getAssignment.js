@@ -122,25 +122,43 @@ function loadAssignment() {
                               assignmentData += "<td id = statusUpdateBtn[" + i + "]>"
                               $.each(buttonLive, function (key, value) {
                                     if (value === "btnReject") {
-                                          assignmentData += "<button style = 'width:50%;' class = 'btn btn-danger' id = " + value + "[" + i + "]>Reject</button>";
+                                          assignmentData += "<button style = 'width:50%;' class = 'btn btn-danger status-btn' id =" + value + "[" + data.assignmentId + "]>Reject</button>";
                                     } else if (value === "btnApprove") {
-                                          assignmentData += "<button style = 'width:50%; padding-right:0px; padding-left:0px;' class = 'btn btn-success' id = " + value + "[" + i + "]>Approve</button>";
+                                          assignmentData += "<button style = 'width:50%; padding-right:0px; padding-left:0px;' class = 'btn btn-success status-btn' id = " + value + "[" + data.assignmentId + "]>Approve</button>";
                                     }
                                     else if (value === "btnHandover") {
-                                          assignmentData += "<button style = 'width:100%;' class = 'btn btn-danger' id = " + value + "[" + i + "]>Handover</button>";
+                                          assignmentData += "<button style = 'width:100%;' class = 'btn btn-primary status-btn' id = " + value + "[" + data.assignmentId + "]>Handover</button>";
                                     }
                                     else if (value === "btnReturn") {
-                                          assignmentData += "<button style = 'width:100%;' class = 'btn btn-danger' id = " + value + "[" + i + "]>Return</button>";
+                                          assignmentData += "<button style = 'width:100%;' class = 'btn btn-warning status-btn' id = " + value + "[" + data.assignmentId + "]>Return</button>";
                                     }
                               })
                               assignmentData += "</td>";
                               assignmentData += "<td class = checkbox id = assignment[" + i + "]selected><input type=checkbox id = assignment[" + i + "]checkbox value = " + data.assignmentId + "></input></td>"
                               assignmentData += "</tr>";
                               i++;
-
-
                         });
+
                         $("#viewAssignmentTable").append(assignmentData);
+
+                        $("button[class*='status-btn']").click(function(){
+                              var action = $(this).attr("id");
+                              action = action.split("[");
+                              var id = action.pop();
+                              id = id.substr(0, id.length-1);
+                              console.log(action, id);
+                              $.ajax({
+                                    type: "POST",
+                                    url: "http://localhost:8080/assignment/"+id+"/status?action="+action,
+                                    success: function(){
+                                          window.location.reload();
+                                    },
+                                    error: function(response){
+                                          console.log(response.errorMessage);
+                                    }
+                              });
+                        })
+
                         $("td[id*='assignmentId']").click(function () {
                               var id = $(this).html();
                               $(".modal-part").load("../../components/modal.html", function () {
@@ -151,7 +169,7 @@ function loadAssignment() {
                                           url: "http://localhost:8080/assignment/" + id,
                                           dataType: "json",
                                           success: function (response) {
-                                                var assignmentDataContainer = response.value;
+                                                var assignmentDataContainer = response.value.assignment;
                                                 $("#modalTitle").html(assignmentDataContainer.assignmentId);
                                                 $("#spnAssignedEmployee").html(assignmentDataContainer.employeeId);
                                                 $("#spnAssignedItem").html(assignmentDataContainer.itemSku)
