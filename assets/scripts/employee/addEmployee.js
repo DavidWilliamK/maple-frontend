@@ -1,6 +1,7 @@
 //Finished
 function addEmployee() {
       $(".modal-part").load("../../components/modal.html", function () {
+            validateForm();
             $("#modalTemplate").modal({ show: true });
             $("#modalTitle").html("Add Employee");
             $("#modalAddEmployee").show();
@@ -23,11 +24,48 @@ function addEmployee() {
                   }
             }
 
+            //Validation
+            function validateForm() {
+                  var emailRegex = "(^[a-z0-9A-Z](\.?[a-zA-Z0-9]){2,}@[a-zA-Z]{2,}\.com$)";
+                  $('#email').prop('pattern', emailRegex);
+
+                  var nameRegex = "([a-zA-Z ]{1,30}$)";
+                  $('#fullname').prop('pattern', nameRegex);
+
+                  var phoneRegex = "(0([0-9]{3,4}-?){2}[0-9]{3,4}$)";
+                  $("#phone").prop('pattern', phoneRegex);
+
+                  var passwordRegex = "(^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]{8,}$)";
+                  $("#password").prop('pattern', passwordRegex);
+
+                  var confirmPasswordRegex = "";
+                  $('#password').on('keyup', function () {
+                        confirmPasswordRegex = ($("#password").val());
+                        console.log(confirmPasswordRegex);
+                        $("#confirmPassword").prop('pattern', "(" + confirmPasswordRegex + "$)");
+                  });
+
+
+                  'use strict';
+                  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                  var forms = document.getElementsByClassName('needs-validation');
+                  // Loop over them and prevent submission
+                  var validation = Array.prototype.filter.call(forms, function (form) {
+                        form.addEventListener('submit', function (event) {
+                              if (form.checkValidity() === false) {
+                                    event.preventDefault();
+                                    event.stopPropagation();
+                              }
+                              form.classList.add('was-validated');
+                        }, false);
+                  });
+            }
 
             //ButtonSave Click
             $("#modalSaveChanges").click(function () {
                   $("#btnAddEmployee").click();
                   let form = $("#formAddEmployee");
+                  console.log(form[0]);
                   if (form[0].checkValidity()) {
                         var name = $("#fullname").val();
                         var username = $("#username").val();
@@ -35,8 +73,9 @@ function addEmployee() {
                         var superior = $("#superiorId").val();
                         var password = $("#password").val();
                         var email = $("#email").val();
+                        email = email.toLowerCase();
                         var image = $("#employeeUploadImage")[0];
-                        formdata = new FormData();
+                        let formdata = new FormData();
 
                         var newUser = {
                               "id": null,
@@ -71,25 +110,6 @@ function addEmployee() {
                                     console.log(response);
                               }
                         });
-                  }
-                  else {
-                        // Example starter JavaScript for disabling form submissions if there are invalid fields
-                        {
-
-                              'use strict';
-                              // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                              var forms = document.getElementsByClassName('needs-validation');
-                              // Loop over them and prevent submission
-                              var validation = Array.prototype.filter.call(forms, function (form) {
-                                    form.addEventListener('submit', function (event) {
-                                          if (form.checkValidity() === false) {
-                                                event.preventDefault();
-                                                event.stopPropagation();
-                                          }
-                                          form.classList.add('was-validated');
-                                    }, false);
-                              });
-                        };
                   }
             });
       });

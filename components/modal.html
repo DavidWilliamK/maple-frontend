@@ -14,20 +14,21 @@
             <div class="modal-body">
                 <!-- Modal Add -->
                 <div id="modalAddEmployee" style="display:none;">
-                    <div class="modal-add-container">
-                        <div class="row">
-                            <div class="col-5 d-flex align-items-center">
-                                <input type="image" src="../assets/images/icons/placeholder.png" width="100%" height="90%"
-                                    id="employeeImagePlaceholder">
-                                <input type="file" id="employeeUploadImage" style="display:none;" method="POST" ,
-                                    enctype="multipart/form-data">
-                            </div>
-                            <div class="col-7">
-                                <div class="modal-add-credential">
-                                    <form class="needs-validation" id="formAddEmployee" novalidate onsubmit="return false">
+                    <form class="needs-validation" id="formAddEmployee" novalidate onsubmit="return false">
+                        <div class="modal-add-container">
+                            <div class="row">
+                                <div class="col-5 d-flex align-items-center">
+                                    <input type="image" src="../assets/images/icons/placeholder.png" width="100%"
+                                        height="90%" id="employeeImagePlaceholder">
+                                    <input type="file" id="employeeUploadImage" style="display:none;" method="POST" ,
+                                        enctype="multipart/form-data">
+                                </div>
+                                <div class="col-7">
+                                    <div class="modal-add-credential">
+
                                         <div class="col-12-md-4 mb-3">
                                             <label for="fullname">Full Name</label>
-                                            <input type="text" name="fullName" id="fullname" class="form-control"
+                                            <input type="text" name="fullName" id="fullname" class="form-control form-control-sm"
                                                 required>
                                             <div class="invalid-feedback">
                                                 Name can't be empty!
@@ -35,7 +36,7 @@
                                         </div>
                                         <div class="col-12-md-4 mb-3">
                                             <label for="username">Username</label>
-                                            <input type="text" name="username" id="username" class="form-control"
+                                            <input type="text" name="username" id="username" class="form-control form-control-sm"
                                                 required>
                                             <div class="invalid-feedback">
                                                 Username can't be empty!
@@ -43,36 +44,48 @@
                                         </div>
                                         <div class="col-12-md-4 mb-3">
                                             <label for="phone">Phone Number</label>
-                                            <input type="text" name="phoneNum" id="phone" class="form-control" required>
+                                            <input type="text" name="phoneNum" id="phone" class="form-control form-control-sm"
+                                                required>
                                             <div class="invalid-feedback">
                                                 Phone number can't be empty!
                                             </div>
                                         </div>
                                         <div class="col-12-md-4 mb-3">
                                             <label for="email">Email Address</label>
-                                            <input type="text" name="email" id="email" class="form-control" required>
+                                            <input type="text" name="email" id="email" class="form-control form-control-sm"
+                                                required>
                                             <div class="invalid-feedback">
                                                 Email can't be empty!
                                             </div>
                                         </div>
                                         <div class="col-12-md-4 mb-3">
                                             <label for="superiorId">Superior ID</label>
-                                            <input type="text" name="searchSuperior" id="superiorId" class="form-control">
+                                            <input type="text" name="searchSuperior" id="superiorId" class="form-control form-control-sm">
                                         </div>
-
-
-                                        <button class="btn btn-primary" type="submit" id="btnAddEmployee" style="display:none;"></button>
-                                    </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="modal-add-passwords" class="form-control">
-                        Password
-                        <input type="password" name="password" id="password" class="form-control">
-                        Confirm Password
-                        <input type="password" name="confirmPassword" id="confirmPassword" class="form-control">
-                    </div>
+                        <div class="modal-add-passwords" class="form-control">
+                            <div class="col-12-md-4 mb-3">
+                                <label for="password">Password</label>
+                                <input type="password" name="password" id="password" class="form-control form-control-sm"
+                                    required>
+                                <div class="invalid-feedback">
+                                    Password Invalid!
+                                </div>
+                            </div>
+                            <div class="col-12-md-4 mb-3">
+                                <label for="confirmPassword">Confirm Password</label>
+                                <input type="password" name="confirmPassword" id="confirmPassword" class="form-control form-control-sm"
+                                    required>
+                                <div class="invalid-feedback">
+                                    Password doesn't match!
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" type="submit" id="btnAddEmployee" style="display:none;"></button>
+                    </form>
                 </div>
                 <div id="modalAddItem" style="display:none;">
                     <div class="modal-add-container">
@@ -84,12 +97,43 @@
                             </div>
                             <div class="col-7">
                                 <div class="modal-add-item">
-                                    Item Name
-                                    <input type="text" name="itemName" id="itemName" class="form-control">
-                                    Quantity
-                                    <input type="text" name="quantity" id="quantity" class="form-control">
-                                    Price
-                                    <input type="text" name="price" id="price" class="form-control">
+                                    <form class="needs-validation" id="formAddItem" novalidate onsubmit="return false">
+                                        <div class="col-12-md-4 mb-3">
+                                            <label for="itemName">Item Name</label>
+                                            <input type="text" name="itemName" id="itemName" class="form-control"
+                                                required>
+                                            <div class="invalid-feedback">
+                                                Name can't be empty!
+                                            </div>
+                                        </div>
+                                        <div class="col-12-md-4 mb-3">
+                                            <label for="quantity">Quantity</label>
+                                            <input type="text" name="quantity" id="quantity" class="form-control"
+                                                required>
+                                            <div class="invalid-feedback">
+                                                Invalid Quantity!
+                                            </div>
+                                        </div>
+                                        <div class="col-12-md-4 mb-3">
+                                            <div class="col-12-sm">
+                                                <label for="price">Price</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">Rp</div>
+                                                    </div>
+                                                    <input type="text" name="price" id="price" class="form-control"
+                                                        required>
+                                                    <div class="invalid-feedback">
+                                                        Invalid Price!
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+                                        </div>
+                                        <button class="btn btn-primary" type="submit" id="btnAddItem" style="display:none;"></button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -102,12 +146,38 @@
                 <div id="modalAddAssignment" style="display:none;">
                     <div class="modal-add-container">
                         <div class="modal-add-assignment">
-                            Employee ID
-                            <input type="text" name="assignedEmployeeId" id="assignedEmployeeId" class="form-control">
-                            Item SKU
-                            <input type="text" name="assignedItemSku" id="assignedItemSku" class="form-control">
-                            Quantity
-                            <input type="text" name="assignedQuantity" id="assignedQuantity" class="form-control">
+                            <form class="needs-validation" id="formAddAssignment" novalidate onsubmit="return false">
+                                <div class="col-12-md-4 mb-3">
+                                    <label for="assignedEmployeeID">Employee ID</label>
+                                    <input type="text" name="assignedEmployeeId" id="assignedEmployeeId" class="form-control form-control-sm"
+                                        required>
+                                    <div class="invalid-feedback">
+                                        Employee ID Invalid!
+                                    </div>
+                                </div>
+                                <div class="col-12-md-4 mb-3">
+                                    <label for="assignedItemSku">Item SKU</label>
+                                    <input type="text" name="assignedItemSku" id="assignedItemSku" class="form-control form-control-sm"
+                                        required>
+                                    <div class="invalid-feedback">
+                                        Item SKU Invalid!
+                                    </div>
+                                </div>
+                                <div class="col-12-md-4 mb-3">
+                                    <label for="assignedQuantity">Quantity</label>
+                                    <input type="text" name="assignedQuantity" id="assignedQuantity" class="form-control form-control-sm"
+                                        required>
+                                    <div class="invalid-feedback">
+                                        Quantity Invalid!
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary" type="submit" id="btnAddAssignment" style="display:none;"></button>
+                            </form>
+
+
+
+
+
                         </div>
                     </div>
                     <div class="modal-add-desc" class="form-control">
