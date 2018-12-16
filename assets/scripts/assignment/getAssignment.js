@@ -5,6 +5,34 @@ function loadAssignment() {
 
       fetchAssignmentData();
 
+      function getEmployeeName(employeeId){
+            employeeName = "";
+            $.ajax({
+                  type: "GET",
+                  dataType: "json",
+                  async: false,
+                  url: "http://localhost:8080/employee/"+employeeId,
+                  success: function(response){
+                        employeeName = response.value.name;
+                  }
+            })
+            return employeeName;
+      };
+
+      function getItemName(itemSku){
+            var itemName;
+            $.ajax({
+                  type: "GET",
+                  dataType: "json",
+                  async: false,
+                  url: "http://localhost:8080/item/"+itemSku,
+                  success: function(response){
+                        itemName = response.value.name;
+                  }
+            })
+            return itemName;
+      };
+
       function createPagination(pages, page) {
             page = page + 1;
             let str = "<ul>";
@@ -112,25 +140,26 @@ function loadAssignment() {
                         var i = 0;
                         $.each(assignmentDataContainer, function (key, value) {
                               data = value.assignment;
+                              console.log(getEmployeeName(data.employeeId));
                               buttonLive = value.button;
                               assignmentData += "<tr id = assignmentRow[" + i + "]>";
                               assignmentData += "<td id = assignmentId[" + i + "] data-id = " + data.assignmentId + ">" + data.assignmentId + "</td>";
-                              assignmentData += "<td id = assignedEmployee[" + i + "]>" + data.employeeId + "</td>";
-                              assignmentData += "<td id = assignedItem[" + i + "]>" + data.itemSku + "</td>";
+                              assignmentData += "<td id = assignedEmployee[" + i + "]>" + getEmployeeName(data.employeeId) + "</td>";
+                              assignmentData += "<td id = assignedItem[" + i + "]>" + getItemName(data.itemSku) + "</td>";
                               assignmentData += "<td id = assignedStatus[" + i + "]>" + data.quantity + "</td>";
                               assignmentData += "<td id = assignedQuantity[" + i + "]>" + data.status + "</td>";
                               assignmentData += "<td id = statusUpdateBtn[" + i + "]>"
                               $.each(buttonLive, function (key, value) {
                                     if (value === "btnReject") {
-                                          assignmentData += "<button style = 'width:50%;' class = 'btn btn-danger status-btn' id =" + value + "[" + data.assignmentId + "]>Reject</button>";
+                                          assignmentData += "<button style = 'width:50%;' class = 'btn btn-danger decrease-btn' id =" + value + "[" + data.assignmentId + "]>Reject</button>";
                                     } else if (value === "btnApprove") {
-                                          assignmentData += "<button style = 'width:50%; padding-right:0px; padding-left:0px;' class = 'btn btn-success status-btn' id = " + value + "[" + data.assignmentId + "]>Approve</button>";
+                                          assignmentData += "<button style = 'width:50%; padding-right:0px; padding-left:0px;' class = 'btn btn-success increase-btn' id = " + value + "[" + data.assignmentId + "]>Approve</button>";
                                     }
                                     else if (value === "btnHandover") {
-                                          assignmentData += "<button style = 'width:100%;' class = 'btn btn-primary status-btn' id = " + value + "[" + data.assignmentId + "]>Handover</button>";
+                                          assignmentData += "<button style = 'width:100%;' class = 'btn btn-primary increase-btn' id = " + value + "[" + data.assignmentId + "]>Handover</button>";
                                     }
                                     else if (value === "btnReturn") {
-                                          assignmentData += "<button style = 'width:100%;' class = 'btn btn-warning status-btn' id = " + value + "[" + data.assignmentId + "]>Return</button>";
+                                          assignmentData += "<button style = 'width:100%;' class = 'btn btn-warning decrease-btn' id = " + value + "[" + data.assignmentId + "]>Return</button>";
                                     }
                               })
                               assignmentData += "</td>";
@@ -141,7 +170,7 @@ function loadAssignment() {
 
                         $("#viewAssignmentTable").append(assignmentData);
 
-                        $("button[class*='status-btn']").click(function(){
+                        $("button[class*='increase-btn']").click(function(){
                               var action = $(this).attr("id");
                               action = action.split("[");
                               var id = action.pop();
@@ -149,7 +178,25 @@ function loadAssignment() {
                               console.log(action, id);
                               $.ajax({
                                     type: "POST",
-                                    url: "http://localhost:8080/assignment/"+id+"/status?action="+action,
+                                    url: "http://localhost:8080/assignment/"+id+"/status?action=UP",
+                                    success: function(){
+                                          window.location.reload();
+                                    },
+                                    error: function(response){
+                                          console.log(response.errorMessage);
+                                    }
+                              });
+                        })
+
+                        $("button[class*='decrease-btn']").click(function(){
+                              var action = $(this).attr("id");
+                              action = action.split("[");
+                              var id = action.pop();
+                              id = id.substr(0, id.length-1);
+                              console.log(action, id);
+                              $.ajax({
+                                    type: "POST",
+                                    url: "http://localhost:8080/assignment/"+id+"/status?action=DOWN",
                                     success: function(){
                                           window.location.reload();
                                     },
@@ -205,3 +252,4 @@ function loadAssignment() {
             });
       }
 }
+

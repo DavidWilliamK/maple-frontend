@@ -56,7 +56,7 @@ function editAssignment(){
                     $("#modalSaveChanges").click(function(){
                           $("#btnAddAssignment").click();
                           let form = $("#formAddAssignment");
-                          if(form[0].checkValidity){
+                          if(form[0].checkValidity()){
                               var employeeId = $("#assignedEmployeeId").val();
                               var itemSku = $("#assignedItemSku").val();
                               var quantity = $("#assignedQuantity").val();

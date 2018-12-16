@@ -90,7 +90,7 @@ function editItem() {
                               var price = $("#price").val();
                               var desc = $("#itemDesc").val();
                               var image = $("#itemUploadImage")[0];
-                              formdata = new FormData();
+                              let formdata = new FormData();
 
                               var newItem = {
                                     "name": name,
@@ -122,7 +122,6 @@ function editItem() {
                                           console.log(response);
                                     }
                               });
-                              check = null;
                         }
                         
                   });
