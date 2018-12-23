@@ -29,7 +29,7 @@ function addEmployee() {
                   var emailRegex = "(^[a-z0-9A-Z](\.?[a-zA-Z0-9]){2,}@[a-zA-Z]{2,}\.com$)";
                   $('#email').prop('pattern', emailRegex);
 
-                  var nameRegex = "([a-zA-Z ]{1,30}$)";
+                  var nameRegex = "([a-zA-Z ]{1,}$)";
                   $('#fullname').prop('pattern', nameRegex);
 
                   var phoneRegex = "(0([0-9]{3,4}-?){2}[0-9]{3,4}$)";

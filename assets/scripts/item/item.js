@@ -9,9 +9,11 @@ $(document).ready(function () {
             $(".search-employee-name").hide();
       });
       $(".page-header").load("../../components/page-header.html", function () {
+            $("#btnRequest").show();
             $("#btnAdd").click(addItem);
             $("#btnEdit").click(editItem);
             $("#btnDelete").click(removeItem);
+            $("#btnRequest").click(requestItem);
       });
       loadItem();
 });

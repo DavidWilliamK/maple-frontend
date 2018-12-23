@@ -5,33 +5,33 @@ function loadAssignment() {
 
       fetchAssignmentData();
 
-      function getEmployeeName(employeeId){
-            employeeName = "";
-            $.ajax({
-                  type: "GET",
-                  dataType: "json",
-                  async: false,
-                  url: "http://localhost:8080/employee/"+employeeId,
-                  success: function(response){
-                        employeeName = response.value.name;
-                  }
-            })
-            return employeeName;
-      };
+      // function getEmployeeName(employeeId){
+      //       employeeName = "";
+      //       $.ajax({
+      //             type: "GET",
+      //             dataType: "json",
+      //             async: false,
+      //             url: "http://localhost:8080/employee/"+employeeId,
+      //             success: function(response){
+      //                   employeeName = response.value.name;
+      //             }
+      //       })
+      //       return employeeName;
+      // };
 
-      function getItemName(itemSku){
-            var itemName;
-            $.ajax({
-                  type: "GET",
-                  dataType: "json",
-                  async: false,
-                  url: "http://localhost:8080/item/"+itemSku,
-                  success: function(response){
-                        itemName = response.value.name;
-                  }
-            })
-            return itemName;
-      };
+      // function getItemName(itemSku){
+      //       var itemName;
+      //       $.ajax({
+      //             type: "GET",
+      //             dataType: "json",
+      //             async: false,
+      //             url: "http://localhost:8080/item/"+itemSku,
+      //             success: function(response){
+      //                   itemName = response.value.name;
+      //             }
+      //       })
+      //       return itemName;
+      // };
 
       function createPagination(pages, page) {
             page = page + 1;
@@ -138,14 +138,13 @@ function loadAssignment() {
                         var assignmentDataContainer = response.value;
                         assignmentData = "";
                         var i = 0;
-                        $.each(assignmentDataContainer, function (key, value) {
-                              data = value.assignment;
-                              console.log(getEmployeeName(data.employeeId));
-                              buttonLive = value.button;
+                        $.each(assignmentDataContainer, function (key, data) {
+                              // data = value.assignment;
+                              buttonLive = data.button;
                               assignmentData += "<tr id = assignmentRow[" + i + "]>";
-                              assignmentData += "<td id = assignmentId[" + i + "] data-id = " + data.assignmentId + ">" + data.assignmentId + "</td>";
-                              assignmentData += "<td id = assignedEmployee[" + i + "]>" + getEmployeeName(data.employeeId) + "</td>";
-                              assignmentData += "<td id = assignedItem[" + i + "]>" + getItemName(data.itemSku) + "</td>";
+                              assignmentData += "<td id = assignmentId[" + i + "]>" + data.assignmentId + "</td>";
+                              assignmentData += "<td id = assignedEmployee[" + i + "]>" + data.employeeUsername + "</td>";
+                              assignmentData += "<td id = assignedItem[" + i + "]>" + data.itemName + "</td>";
                               assignmentData += "<td id = assignedStatus[" + i + "]>" + data.quantity + "</td>";
                               assignmentData += "<td id = assignedQuantity[" + i + "]>" + data.status + "</td>";
                               assignmentData += "<td id = statusUpdateBtn[" + i + "]>"
@@ -163,7 +162,6 @@ function loadAssignment() {
                                     }
                               })
                               assignmentData += "</td>";
-                              assignmentData += "<td class = checkbox id = assignment[" + i + "]selected><input type=checkbox id = assignment[" + i + "]checkbox value = " + data.assignmentId + "></input></td>"
                               assignmentData += "</tr>";
                               i++;
                         });
@@ -172,6 +170,7 @@ function loadAssignment() {
 
                         $("button[class*='increase-btn']").click(function(){
                               var action = $(this).attr("id");
+                              console.log(action);
                               action = action.split("[");
                               var id = action.pop();
                               id = id.substr(0, id.length-1);

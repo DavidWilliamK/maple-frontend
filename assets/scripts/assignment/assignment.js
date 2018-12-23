@@ -8,11 +8,6 @@ $(document).ready(function () {
             $(".search-item-name").hide();
             $(".search-sku").hide();
       });
-      $(".page-header").load("../../components/page-header.html", function(){
-            $("#btnAdd").click(addAssignment);
-            $("#btnEdit").click(editAssignment);
-            $("#btnDelete").click(removeAssignment);
-      });
       loadAssignment();
 
       //Search may change according to backend
