@@ -63,7 +63,7 @@ function requestItem() {
                     assignments.push(assignmentData);
                 });
                 let data = {
-                    "username": "davidwk",
+                    "username": "davidwk",  //Change to logged in user
                     "value": assignments
                 }
                 $.ajax({

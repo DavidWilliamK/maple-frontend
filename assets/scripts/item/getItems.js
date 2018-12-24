@@ -1,9 +1,132 @@
 //Finished - pagination
-function loadItem() {
+function loadItem(search) {
 
       var page = 0;
 
       fetchItemData();
+
+      function loadData(response){
+            $("#viewItemTable>tbody").empty();
+            var itemDataContainer = response.value;
+            var itemData = "";
+            var i = 0;
+            if (itemDataContainer.length) {
+                  $.each(itemDataContainer, function (key, value) {
+                        itemData += "<tr id = itemRow[" + i + "]>";
+                        itemData += "<td id = itemSku[" + i + "] data-id = " + value.itemSku + ">" + value.itemSku + "</td>";
+                        itemData += "<td id = itemName[" + i + "]>" + value.name + "</td>";
+                        itemData += "<td id = itemQuantity[" + i + "]>" + value.quantity + "</td>";
+                        itemData += "<td id = itemPrice[" + i + "]>" + value.price + "</td>";
+                        itemData += "<td class = checkbox id = item[" + i + "]selected><input type=checkbox id = item[" + i + "]checkbox value = " + value.itemSku + "></input></td>"
+                        itemData += "<td name = " + value.itemSku + " id = item[" + i + "]pdf>PDF</td>";
+                        itemData += "</tr>";
+                        i++;
+                  });
+            } else {
+                  $("#viewItemTable").removeClass("table-hover")
+                  itemData+= "<tr><td colspan='6' class='text-center p-4'><h3>No Data Available</h3><br>";
+                  itemData+= "<button class='btn btn-dark' id='reloadBtn'>Reload</button></td></tr>";
+            }
+            
+            $("#viewItemTable").append(itemData);
+            $("td[id*='itemSku']").click(function () {
+                  var sku = $(this).html();
+                  $(".modal-part").load("../../components/modal.html", function () {
+                        $("#modalTemplate").modal({ show: true })
+                        $("#modalDetailItem").show();
+                        $.ajax({
+                              type: "GET",
+                              url: "http://localhost:8080/item/" + sku,
+                              dataType: "json",
+                              success: function (response) {
+                                    var itemDataContainer = response.value;
+                                    if (itemDataContainer.imagePath) {
+                                          var image = itemDataContainer.imagePath;
+                                          image = image.split("/");
+                                          image = image.pop();
+                                          console.log(image);
+                                          $("#itemDetailImage").attr("src", "../assets/images/items/" + image);
+                                    }
+                                    $("#modalTitle").html(itemDataContainer.itemSku);
+                                    $("#spnItemName").html(itemDataContainer.name);
+                                    $("#spnItemQuantity").html(itemDataContainer.quantity);
+                                    $("#spnItemPrice").html(itemDataContainer.price);
+                                    $("#spnItemDesc").html(itemDataContainer.description);
+                                    $("#modalSaveChanges").hide();
+                              },
+                              error: function (response) {
+                                    console.log("Error");
+                              }
+                        });
+                  })
+            });
+            $("td[id*='pdf']").click(function () {
+                  var sku = $(this).attr("name");
+                  $.ajax({
+                        type: "GET",
+                        url: "http://localhost:8080/item/" + sku + "/download",
+                        success: function (response) {
+                              window.open("http://localhost:8080/item/" + sku + "/download", "_blank");
+                        },
+                        error: function (response) {
+                              console.log("error");
+                        }
+                  })
+            })
+            createPagination(response.totalPages, page);
+            $(".previous").click(function () {
+                  page--;
+                  fetchItemData();
+            });
+
+            $(".next").click(function () {
+                  page++;
+                  fetchItemData();
+            });
+            $(".page-number").click(function () {
+                  console.log($(this).text());
+                  page = $(this).text() - 1;
+                  fetchItemData();
+            });
+      }
+
+      function loadAllItems(){
+            $.ajax({
+                  type: "GET",
+                  contentType: "application/octet-stream",
+                  dataType: "json",
+                  data: {
+                        page: page,
+                        size: 5
+                  },
+                  url: "http://localhost:8080/item/",
+                  success: function (response) {
+                        loadData(response);
+                  },
+                  error: function (response) {
+                        alert(response.errorMessage);
+                  }
+            });
+      }
+
+      function loadSearchedItems(search){
+            $.ajax({
+                  type: "GET",
+                  contentType: "application/octet-stream",
+                  dataType: "json",
+                  data: {
+                        page: page,
+                        size: 5
+                  },
+                  url: "http://localhost:8080/item?search="+search,
+                  success: function (response) {
+                        loadData(response);
+                  },
+                  error: function (response) {
+                        alert(response.errorMessage);
+                  }
+            });
+      }
 
       function createPagination(pages, page) {
             page = page + 1;
@@ -94,97 +217,13 @@ function loadItem() {
             return str;
       }
 
-
       function fetchItemData() {
-            $.ajax({
-                  type: "GET",
-                  contentType: "application/octet-stream",
-                  dataType: "json",
-                  data: {
-                        page: page,
-                        size: 5
-                  },
-                  url: "http://localhost:8080/item/",
-                  success: function (response) {
-                        $("#viewItemTable>tbody").empty();
-                        var itemDataContainer = response.value;
-                        var itemData = "";
-                        var i = 0;
-                        $.each(itemDataContainer, function (key, value) {
-                              itemData += "<tr id = itemRow[" + i + "]>";
-                              itemData += "<td id = itemSku[" + i + "] data-id = " + value.itemSku + ">" + value.itemSku + "</td>";
-                              itemData += "<td id = itemName[" + i + "]>" + value.name + "</td>";
-                              itemData += "<td id = itemQuantity[" + i + "]>" + value.quantity + "</td>";
-                              itemData += "<td id = itemPrice[" + i + "]>" + value.price + "</td>";
-                              itemData += "<td class = checkbox id = item[" + i + "]selected><input type=checkbox id = item[" + i + "]checkbox value = " + value.itemSku + "></input></td>"
-                              itemData += "<td name = " + value.itemSku + " id = item[" + i + "]pdf>PDF</td>";
-                              itemData += "</tr>";
-                              i++;
-                        });
-                        $("#viewItemTable").append(itemData);
-                        $("td[id*='itemSku']").click(function () {
-                              var sku = $(this).html();
-                              $(".modal-part").load("../../components/modal.html", function () {
-                                    $("#modalTemplate").modal({ show: true })
-                                    $("#modalDetailItem").show();
-                                    $.ajax({
-                                          type: "GET",
-                                          url: "http://localhost:8080/item/" + sku,
-                                          dataType: "json",
-                                          success: function (response) {
-                                                var itemDataContainer = response.value;
-                                                if (itemDataContainer.imagePath) {
-                                                      var image = itemDataContainer.imagePath;
-                                                      image = image.split("/");
-                                                      image = image.pop();
-                                                      console.log(image);
-                                                      $("#itemDetailImage").attr("src", "../assets/images/items/" + image);
-                                                }
-                                                $("#modalTitle").html(itemDataContainer.itemSku);
-                                                $("#spnItemName").html(itemDataContainer.name);
-                                                $("#spnItemQuantity").html(itemDataContainer.quantity);
-                                                $("#spnItemPrice").html(itemDataContainer.price);
-                                                $("#spnItemDesc").html(itemDataContainer.description);
-                                                $("#modalSaveChanges").hide();
-                                          },
-                                          error: function (response) {
-                                                console.log("Error");
-                                          }
-                                    });
-                              })
-                        });
-                        $("td[id*='pdf']").click(function () {
-                              var sku = $(this).attr("name");
-                              $.ajax({
-                                    type: "GET",
-                                    url: "http://localhost:8080/item/" + sku + "/download",
-                                    success: function (response) {
-                                          window.open("http://localhost:8080/item/" + sku + "/download", "_blank");
-                                    },
-                                    error: function (response) {
-                                          console.log("error");
-                                    }
-                              })
-                        })
-                        createPagination(response.totalPages, page);
-                        $(".previous").click(function () {
-                              page--;
-                              fetchItemData();
-                        });
-
-                        $(".next").click(function () {
-                              page++;
-                              fetchItemData();
-                        });
-                        $(".page-number").click(function () {
-                              console.log($(this).text());
-                              page = $(this).text() - 1;
-                              fetchItemData();
-                        });
-                  },
-                  error: function (response) {
-                        alert(response.errorMessage);
-                  }
-            });
+            if(!search){
+                  loadAllItems();
+            }
+            else{
+                  loadSearchedItems(search);
+            }
+            
       }
 }

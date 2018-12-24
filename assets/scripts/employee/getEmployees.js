@@ -1,9 +1,117 @@
 //Finished - pagination
-function loadEmployee() {
+function loadEmployee(search) {
 
       page = 0;
 
       fetchEmployeeData();
+
+      function loadData(response) {
+            $("#viewEmployeeTable>tbody").empty();
+            var employeeDataContainer = response.value;
+            var employeeData = "";
+            var i = 0;
+            if(employeeDataContainer.length){
+                  $.each(employeeDataContainer, function (key, value) {
+                        employeeData += "<tr id = employeeRow[" + i + "]>";
+                        employeeData += "<td id = employeeId[" + i + "] data-id = " + value.id + ">" + value.id + "</td>";
+                        employeeData += "<td id = employeeName[" + i + "]>" + value.name + "</td>";
+                        employeeData += "<td id = employeePhoneNumber[" + i + "]>" + value.phone + "</td>";
+                        employeeData += "<td class = checkbox id = employee[" + i + "]selected><input type=checkbox id = employee[" + i + "]checkbox value = " + value.id + "></input></td>"
+                        employeeData += "</tr>";
+                        i++;
+                  });
+            }
+            else{
+                  $("#viewEmployeeTable").removeClass("table-hover")
+                  employeeData+= "<tr><td colspan='4' class='text-center p-4'><h3>No Data Available</h3><br>";
+                  employeeData+= "<button class='btn btn-dark' id='reloadBtn'>Reload</button></td></tr>";
+            }
+            $("#viewEmployeeTable").append(employeeData);
+            $("td[id*='employeeId']").click(function () {
+                  var id = $(this).html();
+                  $(".modal-part").load("../../components/modal.html", function () {
+                        $("#modalTemplate").modal({ show: true })
+                        $("#modalDetailEmployee").show();
+                        $.ajax({
+                              type: "GET",
+                              url: "http://localhost:8080/employee/" + id,
+                              dataType: "json",
+                              success: function (response) {
+                                    var employeeDataContainer = response.value;
+                                    if (employeeDataContainer.imagePath) {
+                                          var image = employeeDataContainer.imagePath;
+                                          image = image.split("/");
+                                          image = image.pop();
+                                          $("#employeeDetailImage").attr("src", "../assets/images/employees/" + image);
+                                    }
+                                    $("#modalTitle").html(employeeDataContainer.id);
+                                    $("#spnFullname").html(employeeDataContainer.name);
+                                    $("#spnUsername").html(employeeDataContainer.username)
+                                    $("#spnPhone").html(employeeDataContainer.phone);
+                                    $("#spnEmail").html(employeeDataContainer.email);
+                                    $("#spnSuperiorId").html(employeeDataContainer.superiorId);
+                                    $("#modalSaveChanges").hide();
+                              },
+                              error: function (response) {
+                                    console.log("Error");
+                              }
+                        });
+                  })
+            });
+            createPagination(response.totalPages, page);
+            $(".previous").click(function () {
+                  page--;
+                  fetchEmployeeData();
+            });
+
+            $(".next").click(function () {
+                  page++;
+                  fetchEmployeeData();
+            });
+            $(".page-number").click(function () {
+                  console.log($(this).text());
+                  page = $(this).text() - 1;
+                  fetchEmployeeData();
+            });
+      }
+
+      function loadAllEmployees() {
+            $.ajax({
+                  type: "GET",
+                  contentType: "application/octet-stream",
+                  dataType: "json",
+                  data: {
+                        page: page,
+                        size: 5
+                  },
+                  url: "http://localhost:8080/employee/",
+                  success: function (response) {
+                        loadData(response);
+                  },
+                  error: function (response) {
+                        alert(response.errorMessage);
+                  }
+            });
+      }
+
+      function loadSearchedEmployees(search) {
+            $.ajax({
+                  type: "GET",
+                  contentType: "application/octet-stream",
+                  dataType: "json",
+                  data: {
+                        page: page,
+                        size: 5
+                  },
+                  url: "http://localhost:8080/employee?search=" + search,
+                  success: function (response) {
+                        loadData(response);
+                  },
+                  error: function (response) {
+                        alert(response.errorMessage);
+                  }
+            });
+      }
 
       function createPagination(pages, page) {
             page = page + 1;
@@ -94,82 +202,12 @@ function loadEmployee() {
             return str;
       }
 
-
       function fetchEmployeeData() {
-            $.ajax({
-                  type: "GET",
-                  contentType: "application/octet-stream",
-                  dataType: "json",
-                  data: {
-                        page: page,
-                        size: 5
-                  },
-                  url: "http://localhost:8080/employee/",
-                  success: function (response) {
-                        $("#viewEmployeeTable>tbody").empty();
-                        var employeeDataContainer = response.value;
-                        var employeeData = "";
-                        var i = 0;
-                        $.each(employeeDataContainer, function (key, value) {
-                              employeeData += "<tr id = employeeRow[" + i + "]>";
-                              employeeData += "<td id = employeeId[" + i + "] data-id = " + value.id + ">" + value.id + "</td>";
-                              employeeData += "<td id = employeeName[" + i + "]>" + value.name + "</td>";
-                              employeeData += "<td id = employeePhoneNumber[" + i + "]>" + value.phone + "</td>";
-                              employeeData += "<td class = checkbox id = employee[" + i + "]selected><input type=checkbox id = employee[" + i + "]checkbox value = " + value.id + "></input></td>"
-                              employeeData += "</tr>";
-                              i++;
-                        });
-                        $("#viewEmployeeTable").append(employeeData);
-                        $("td[id*='employeeId']").click(function () {
-                              var id = $(this).html();
-                              $(".modal-part").load("../../components/modal.html", function () {
-                                    $("#modalTemplate").modal({ show: true })
-                                    $("#modalDetailEmployee").show();
-                                    $.ajax({
-                                          type: "GET",
-                                          url: "http://localhost:8080/employee/" + id,
-                                          dataType: "json",
-                                          success: function (response) {
-                                                var employeeDataContainer = response.value;
-                                                if (employeeDataContainer.imagePath) {
-                                                      var image = employeeDataContainer.imagePath;
-                                                      image = image.split("/");
-                                                      image = image.pop();
-                                                      $("#employeeDetailImage").attr("src", "../assets/images/employees/" + image);
-                                                }
-                                                $("#modalTitle").html(employeeDataContainer.id);
-                                                $("#spnFullname").html(employeeDataContainer.name);
-                                                $("#spnUsername").html(employeeDataContainer.username)
-                                                $("#spnPhone").html(employeeDataContainer.phone);
-                                                $("#spnEmail").html(employeeDataContainer.email);
-                                                $("#spnSuperiorId").html(employeeDataContainer.superiorId);
-                                                $("#modalSaveChanges").hide();
-                                          },
-                                          error: function (response) {
-                                                console.log("Error");
-                                          }
-                                    });
-                              })
-                        });
-                        createPagination(response.totalPages, page);
-                        $(".previous").click(function () {
-                              page--;
-                              fetchEmployeeData();
-                        });
-
-                        $(".next").click(function () {
-                              page++;
-                              fetchEmployeeData();
-                        });
-                        $(".page-number").click(function () {
-                              console.log($(this).text());
-                              page = $(this).text() - 1;
-                              fetchEmployeeData();
-                        });
-                  },
-                  error: function (response) {
-                        alert(response.errorMessage);
-                  }
-            });
+            if (!search) {
+                  loadAllEmployees();
+            }
+            else {
+                  loadSearchedEmployees(search);
+            }
       }
 }
