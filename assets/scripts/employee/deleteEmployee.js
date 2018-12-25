@@ -2,7 +2,7 @@
 function removeEmployee(){
       $("#deleteEmployeeTable>tbody").html("");
       var check = [];
-      for (var i = 0; i <= 10; i++) { //Change i's limit to amount of data in a page
+      for (var i = 0; i <= 5; i++) { //Change i's limit to amount of data in a page
           if ($("input:checkbox[id = 'employee["+i+"]checkbox']").is(':checked')) {
                 check.push($("input:checkbox[id= 'employee["+i+"]checkbox']").val());
           }

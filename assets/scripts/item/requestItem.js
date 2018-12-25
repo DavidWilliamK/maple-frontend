@@ -45,7 +45,7 @@ function requestItem() {
                     }
                 });
             });
-            $(document).on("click", '#modalSaveChanges', function (e) {
+            $("#modalSaveChanges").on("click", function (e) {
                 e.stopPropagation();
                 
                 let assignments = [];

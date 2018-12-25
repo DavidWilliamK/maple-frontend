@@ -1,14 +1,17 @@
 //Finished
 function editItem() {
-      var check = null;
-      for (var i = 0; i <= 10; i++) { //Change i's limit to amount of data in a page
+      var check = [];
+      for (var i = 0; i <= 5; i++) { //Change i's limit to amount of data in a page
             if ($("input:checkbox[id = 'item[" + i + "]checkbox']").is(':checked')) {
-                  check = $("input:checkbox[id = 'item[" + i + "]checkbox']").val();
+                  check.push($("input:checkbox[id = 'item[" + i + "]checkbox']").val());
             }
       }
 
-      if (check == null) {
-            alert("ERROR");
+      if (check.length === 0) {
+            alert("Please select 1 item");
+      }
+      else if(check.length > 1){
+            alert("Please select only 1 data");
       }
       else {
             $(".modal-part").load("../../components/modal.html", function () {
@@ -17,7 +20,7 @@ function editItem() {
                   $("#modalAddItem").show();
                   $("#itemImagePlaceholder").click(function () {
                         $("#itemUploadImage").click();
-                  })
+                  });
                   $.ajax({
                         type: "GET",
                         url: "http://localhost:8080/item/" + check,

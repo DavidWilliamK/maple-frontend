@@ -1,13 +1,17 @@
 //Finished
 function editEmployee() {
-      var check = null;
-      for (var i = 0; i <= 10; i++) { //Change i's limit to amount of data in a page
+      var check = [];
+      for (var i = 0; i <= 5; i++) { //Change i's limit to amount of data in a page
             if ($("input:checkbox[id = 'employee[" + i + "]checkbox']").is(':checked')) {
-                  check = $("input:checkbox[id = 'employee[" + i + "]checkbox']").val();
+                  check.push($("input:checkbox[id = 'employee[" + i + "]checkbox']").val());
             }
       }
-      if (check == null) {
-            alert("ERROR");
+
+      if (check.length === 0) {
+            alert("Please select 1 employee");
+      }
+      else if(check.length > 1){
+            alert("Please select only 1 employee");
       }
       else {
             $(".modal-part").load("../../components/modal.html", function () {
@@ -139,7 +143,6 @@ function editEmployee() {
                                           console.log(response);
                                     }
                               });
-                              check = null;
                         }
 
                   });

@@ -26,7 +26,7 @@ function addEmployee() {
 
             //Validation
             function validateForm() {
-                  var emailRegex = "(^[a-z0-9A-Z](\.?[a-zA-Z0-9]){2,}@[a-zA-Z]{2,}\.com$)";
+                  var emailRegex = "(^[a-z0-9A-Z](\.?[a-zA-Z0-9]){2,}@[a-zA-Z]{2,}\.[a-zA-Z]{2,}$)";
                   $('#email').prop('pattern', emailRegex);
 
                   var nameRegex = "([a-zA-Z ]{1,}$)";

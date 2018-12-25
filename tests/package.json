@@ -1,0 +1,24 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "Maple's Unit Tests",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DavidWilliamK/maple-frontend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DavidWilliamK/maple-frontend/issues"
+  },
+  "homepage": "https://github.com/DavidWilliamK/maple-frontend#readme",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "karma": "^3.1.4",
+    "request": "^2.88.0"
+  }
+}

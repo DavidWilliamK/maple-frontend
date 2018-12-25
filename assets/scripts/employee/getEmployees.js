@@ -24,7 +24,7 @@ function loadEmployee(search) {
             else{
                   $("#viewEmployeeTable").removeClass("table-hover")
                   employeeData+= "<tr><td colspan='4' class='text-center p-4'><h3>No Data Available</h3><br>";
-                  employeeData+= "<button class='btn btn-dark' id='reloadBtn'>Reload</button></td></tr>";
+                  employeeData+= "<button class='btn btn-dark' onclick='window.location.reload()'>Reload</button></td></tr>";
             }
             $("#viewEmployeeTable").append(employeeData);
             $("td[id*='employeeId']").click(function () {

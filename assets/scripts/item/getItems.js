@@ -5,6 +5,50 @@ function loadItem(search) {
 
       fetchItemData();
 
+      function loadPdf(sku){
+            $.ajax({
+                  type: "GET",
+                  url: "http://localhost:8080/item/" + sku + "/download",
+                  success: function (response) {
+                        window.open("http://localhost:8080/item/" + sku + "/download", "_blank");
+                  },
+                  error: function (response) {
+                        console.log("error");
+                  }
+            })
+      }
+
+      function loadDetail(sku){
+            $(".modal-part").load("../../components/modal.html", function () {
+                  $("#modalTemplate").modal({ show: true })
+                  $("#modalDetailItem").show();
+                  $.ajax({
+                        type: "GET",
+                        url: "http://localhost:8080/item/" + sku,
+                        dataType: "json",
+                        success: function (response) {
+                              var itemDataContainer = response.value;
+                              if (itemDataContainer.imagePath) {
+                                    var image = itemDataContainer.imagePath;
+                                    image = image.split("/");
+                                    image = image.pop();
+                                    console.log(image);
+                                    $("#itemDetailImage").attr("src", "../assets/images/items/" + image);
+                              }
+                              $("#modalTitle").html(itemDataContainer.itemSku);
+                              $("#spnItemName").html(itemDataContainer.name);
+                              $("#spnItemQuantity").html(itemDataContainer.quantity);
+                              $("#spnItemPrice").html(itemDataContainer.price);
+                              $("#spnItemDesc").html(itemDataContainer.description);
+                              $("#modalSaveChanges").hide();
+                        },
+                        error: function (response) {
+                              console.log("Error");
+                        }
+                  });
+            })
+      }
+
       function loadData(response){
             $("#viewItemTable>tbody").empty();
             var itemDataContainer = response.value;
@@ -25,53 +69,17 @@ function loadItem(search) {
             } else {
                   $("#viewItemTable").removeClass("table-hover")
                   itemData+= "<tr><td colspan='6' class='text-center p-4'><h3>No Data Available</h3><br>";
-                  itemData+= "<button class='btn btn-dark' id='reloadBtn'>Reload</button></td></tr>";
+                  itemData+= "<button class='btn btn-dark' onclick='window.location.reload()'>Reload</button></td></tr>";
             }
             
             $("#viewItemTable").append(itemData);
             $("td[id*='itemSku']").click(function () {
                   var sku = $(this).html();
-                  $(".modal-part").load("../../components/modal.html", function () {
-                        $("#modalTemplate").modal({ show: true })
-                        $("#modalDetailItem").show();
-                        $.ajax({
-                              type: "GET",
-                              url: "http://localhost:8080/item/" + sku,
-                              dataType: "json",
-                              success: function (response) {
-                                    var itemDataContainer = response.value;
-                                    if (itemDataContainer.imagePath) {
-                                          var image = itemDataContainer.imagePath;
-                                          image = image.split("/");
-                                          image = image.pop();
-                                          console.log(image);
-                                          $("#itemDetailImage").attr("src", "../assets/images/items/" + image);
-                                    }
-                                    $("#modalTitle").html(itemDataContainer.itemSku);
-                                    $("#spnItemName").html(itemDataContainer.name);
-                                    $("#spnItemQuantity").html(itemDataContainer.quantity);
-                                    $("#spnItemPrice").html(itemDataContainer.price);
-                                    $("#spnItemDesc").html(itemDataContainer.description);
-                                    $("#modalSaveChanges").hide();
-                              },
-                              error: function (response) {
-                                    console.log("Error");
-                              }
-                        });
-                  })
+                  loadDetail(sku);
             });
             $("td[id*='pdf']").click(function () {
                   var sku = $(this).attr("name");
-                  $.ajax({
-                        type: "GET",
-                        url: "http://localhost:8080/item/" + sku + "/download",
-                        success: function (response) {
-                              window.open("http://localhost:8080/item/" + sku + "/download", "_blank");
-                        },
-                        error: function (response) {
-                              console.log("error");
-                        }
-                  })
+                  loadPdf(sku);
             })
             createPagination(response.totalPages, page);
             $(".previous").click(function () {
