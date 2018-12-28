@@ -9,7 +9,11 @@ function loadItem(search) {
             $.ajax({
                   type: "GET",
                   url: "http://localhost:8080/item/" + sku + "/download",
+                  beforeSend: function(request) {
+                        request.setRequestHeader("Authorization-key", getCookie("token"));
+                      },
                   success: function (response) {
+                        console.log(sku);
                         window.open("http://localhost:8080/item/" + sku + "/download", "_blank");
                   },
                   error: function (response) {
@@ -26,6 +30,9 @@ function loadItem(search) {
                         type: "GET",
                         url: "http://localhost:8080/item/" + sku,
                         dataType: "json",
+                        beforeSend: function(request) {
+                              request.setRequestHeader("Authorization-key", getCookie("token"));
+                        },
                         success: function (response) {
                               var itemDataContainer = response.value;
                               if (itemDataContainer.imagePath) {
@@ -108,6 +115,9 @@ function loadItem(search) {
                         size: 5
                   },
                   url: "http://localhost:8080/item/",
+                  beforeSend: function(request) {
+                        request.setRequestHeader("Authorization-key", getCookie("token"));
+                      },
                   success: function (response) {
                         loadData(response);
                   },
@@ -127,6 +137,9 @@ function loadItem(search) {
                         size: 5
                   },
                   url: "http://localhost:8080/item?search="+search,
+                  beforeSend: function(request) {
+                        request.setRequestHeader("Authorization-key", getCookie("token"));
+                      },
                   success: function (response) {
                         loadData(response);
                   },

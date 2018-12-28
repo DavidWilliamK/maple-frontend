@@ -21,6 +21,9 @@ function removeItem(){
                               type: "GET",
                               dataType: "json",
                               url: "http://localhost:8080/item/" + element,
+                              beforeSend: function(request) {
+                                    request.setRequestHeader("Authorization-key", getCookie("token"));
+                              },
                               success: function(response){
                                     var itemDataContainer = response.value;
                                     var itemData  ="";
@@ -47,8 +50,18 @@ function removeItem(){
                               contentType: "application/json; charset=utf-8",
                               dataType: "json",
                               data: JSON.stringify(data),
-                              success: function(){
-                                    window.location.reload();
+                              beforeSend: function(request) {
+                                    request.setRequestHeader("Authorization-key", getCookie("token"));
+                              },
+                              success: function(response){
+                                    if(response.code === "OK"){
+                                          console.log(response);
+                                          window.location.reload();
+                                    }
+                                    else if(response.code === "BAD_REQUEST"){
+                                          console.log(response);
+                                          alert("You are not allowed to delete this data");
+                                    }
                               },
                               error: function(response){
                                     console.log(response);

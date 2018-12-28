@@ -1,4 +1,28 @@
 function requestItem() {
+
+    let userId;
+    let username;
+    
+    function getUserDetail(){
+        $.ajax({
+            type:"GET",
+            dataType: "json",
+            async: false,
+            url:"http://localhost:8080/user",
+            beforeSend: function(request) {
+                request.setRequestHeader("Authorization-key", getCookie("token"));
+          },
+          success: function(response){
+              console.log(response);
+              userId = response.id;
+              username = response.username;
+          },
+          error: function(){
+              alert("Error API User");
+          }
+        });
+    }
+
     var check = [];
     for (var i = 0; i <= 10; i++) { //Change i's limit to amount of data in a page
         if ($("input:checkbox[id = 'item[" + i + "]checkbox']").is(':checked')) {
@@ -19,6 +43,9 @@ function requestItem() {
                     type: "GET",
                     dataType: "json",
                     url: "http://localhost:8080/item/" + element,
+                    beforeSend: function(request) {
+                        request.setRequestHeader("Authorization-key", getCookie("token"));
+                  },
                     success: function (response) {
                         var itemDataContainer = response.value;
                         var itemData = "";
@@ -48,13 +75,14 @@ function requestItem() {
             $("#modalSaveChanges").on("click", function (e) {
                 e.stopPropagation();
                 
+                getUserDetail();
                 let assignments = [];
 
                 check.forEach(element => {
                     requestedQuantity = $(".requestQuantityData>input").val();
                     requestedNote = $(".requestNotesData>input").val();
                      let assignmentData = {
-                        "employeeId": "EMP-55", //Change to logged in user
+                        "employeeId": userId,
                         "itemSku": element,
                         "status": "PENDING",
                         "quantity": requestedQuantity,
@@ -63,7 +91,7 @@ function requestItem() {
                     assignments.push(assignmentData);
                 });
                 let data = {
-                    "username": "davidwk",  //Change to logged in user
+                    "username": username,
                     "value": assignments
                 }
                 $.ajax({
@@ -72,6 +100,9 @@ function requestItem() {
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     url: "http://localhost:8080/assignment",
+                    beforeSend: function(request) {
+                        request.setRequestHeader("Authorization-key", getCookie("token"));
+                  },
                     success: function(response){
                         alert("Request Completed");
                         window.location.reload();

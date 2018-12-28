@@ -2,7 +2,7 @@
 <script type="text/javascript" src="../assets/vendors/bootstrap/js/bootstrap.min.js"></script>
 <nav class="navbar-main">
 	<div class="navbar-item" id="navbar-logo">
-		
+
 	</div>
 	<a href="../pages/home.html">
 		<div class="navbar-item" id="homeLink">Home</div>
@@ -31,7 +31,7 @@
 			<div class="modal-body">
 				<div class="row">
 					<div class="col-12 d-flex justify-content-center">
-						<img src="../assets/images/icons/placeholder.png" class="rounded-circle" width = "40%" height="100%">
+						<img src="../assets/images/icons/placeholder.png" class="rounded-circle" width="40%" height="100%">
 					</div>
 				</div>
 				<div class="row">
@@ -53,7 +53,26 @@
 </div>
 
 <script>
-$("#btnLogout").click(function(){
-	window.location.replace("../../pages/login.html");
-})
+	$("#btnLogout").click(function () {
+		$.ajax({
+			type: "POST",
+			url: "http://localhost:8080/logout",
+			beforeSend: function (request) {
+				request.setRequestHeader("Authorization-key", getCookie("token"));
+			},
+			success: function (response) {
+				if (response.code === "OK") {
+					document.cookie = 'token=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+
+					alert("Logged Out");
+					window.location.replace("../../pages/login.html");
+				}
+			},
+			error: function (response) {
+				console.log(response);
+				alert("Cuurently can't logout");
+			}
+		})
+		return false;
+	})
 </script>

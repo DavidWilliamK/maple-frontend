@@ -5,6 +5,9 @@ function loadEmployee(search) {
 
       fetchEmployeeData();
 
+      
+          
+
       function loadData(response) {
             $("#viewEmployeeTable>tbody").empty();
             var employeeDataContainer = response.value;
@@ -36,6 +39,10 @@ function loadEmployee(search) {
                               type: "GET",
                               url: "http://localhost:8080/employee/" + id,
                               dataType: "json",
+                              beforeSend: function(request) {
+                                    request.setRequestHeader("Authorization-key", getCookie("token"));
+                                    console.log(request.getAllResponseHeaders());
+                                  },
                               success: function (response) {
                                     var employeeDataContainer = response.value;
                                     if (employeeDataContainer.imagePath) {
@@ -84,8 +91,12 @@ function loadEmployee(search) {
                         page: page,
                         size: 5
                   },
-                  url: "http://localhost:8080/employee/",
-                  success: function (response) {
+                  url: "http://localhost:8080/employee",
+                  beforeSend: function(request) {
+                        request.setRequestHeader("Authorization-key", getCookie("token"));
+                      },
+                  success: function (response, textStatus, jqXHR) {
+                        console.log(jqXHR);
                         loadData(response);
                   },
                   error: function (response) {
@@ -104,6 +115,9 @@ function loadEmployee(search) {
                         size: 5
                   },
                   url: "http://localhost:8080/employee?search=" + search,
+                  beforeSend: function(request) {
+                        request.setRequestHeader("Authorization-key", getCookie("token"));
+                      },
                   success: function (response) {
                         loadData(response);
                   },

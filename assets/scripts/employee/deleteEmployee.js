@@ -23,6 +23,9 @@ function removeEmployee(){
                               type: "GET",
                               dataType: "json",
                               url: "http://localhost:8080/employee/" + element,
+                              beforeSend: function(request) {
+                                    request.setRequestHeader("Authorization-key", getCookie("token"));
+                                  },
                               success: function(response){
                                     var employeeDataContainer = response.value;
                                     var employeeData  ="";
@@ -48,8 +51,16 @@ function removeEmployee(){
                               contentType: "application/json; charset=utf-8",
                               dataType: "json",
                               data: JSON.stringify(data),
-                              success: function(){
-                                    window.location.reload();
+                              beforeSend: function(request) {
+                                    request.setRequestHeader("Authorization-key", getCookie("token"));
+                                  },
+                              success: function(response){
+                                    if(response.code === "OK"){
+                                          window.location.reload();
+                                    }
+                                    else if(response.code === "BAD_REQUEST"){
+                                          alert("You are not allowed to delete this data");
+                                    }
                               },
                               error: function(response){
                                     console.log(response);

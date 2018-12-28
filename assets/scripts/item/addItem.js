@@ -75,6 +75,9 @@ function addItem() {
                               data: formdata,
                               contentType: false,
                               processData: false,
+                              beforeSend: function(request) {
+                                    request.setRequestHeader("Authorization-key", getCookie("token"));
+                                  },
                               success: function (response) {
                                     if (response.code == "OK") {
                                           alert("Successfully saved");

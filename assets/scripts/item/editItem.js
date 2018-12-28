@@ -25,6 +25,9 @@ function editItem() {
                         type: "GET",
                         url: "http://localhost:8080/item/" + check,
                         dataType: "json",
+                        beforeSend: function(request) {
+                              request.setRequestHeader("Authorization-key", getCookie("token"));
+                        },
                         success: function (response) {
                               var itemDataContainer = response.value;
                               if (itemDataContainer.imagePath) {
@@ -112,6 +115,9 @@ function editItem() {
                                     contentType: false,
                                     enctype: "multipart/form-data",
                                     data: formdata,
+                                    beforeSend: function(request) {
+                                          request.setRequestHeader("Authorization-key", getCookie("token"));
+                                    },
                                     success: function (response) {
                                           if (response.code == "OK") {
                                                 alert("Successfully saved");

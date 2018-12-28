@@ -25,6 +25,9 @@ function editEmployee() {
                         type: "GET",
                         url: "http://localhost:8080/employee/" + check,
                         dataType: "json",
+                        beforeSend: function(request) {
+                              request.setRequestHeader("Authorization-key", getCookie("token"));
+                            },
                         success: function (response) {
                               var employeeDataContainer = response.value;
                               if (employeeDataContainer.imagePath) {
@@ -130,6 +133,9 @@ function editEmployee() {
                                     contentType: false,
                                     enctype: "multipart/form-data",
                                     data: formdata,
+                                    beforeSend: function(request) {
+                                          request.setRequestHeader("Authorization-key", getCookie("token"));
+                                        },
                                     success: function (response) {
                                           if (response.code == "OK") {
                                                 alert("Successfully saved");

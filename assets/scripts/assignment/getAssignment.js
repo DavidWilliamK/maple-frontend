@@ -5,33 +5,6 @@ function loadAssignment() {
 
       fetchAssignmentData();
 
-      // function getEmployeeName(employeeId){
-      //       employeeName = "";
-      //       $.ajax({
-      //             type: "GET",
-      //             dataType: "json",
-      //             async: false,
-      //             url: "http://localhost:8080/employee/"+employeeId,
-      //             success: function(response){
-      //                   employeeName = response.value.name;
-      //             }
-      //       })
-      //       return employeeName;
-      // };
-
-      // function getItemName(itemSku){
-      //       var itemName;
-      //       $.ajax({
-      //             type: "GET",
-      //             dataType: "json",
-      //             async: false,
-      //             url: "http://localhost:8080/item/"+itemSku,
-      //             success: function(response){
-      //                   itemName = response.value.name;
-      //             }
-      //       })
-      //       return itemName;
-      // };
 
       function createPagination(pages, page) {
             page = page + 1;
@@ -133,6 +106,9 @@ function loadAssignment() {
                         size: 5
                   },
                   url: "http://localhost:8080/assignment/",
+                  beforeSend: function(request) {
+                        request.setRequestHeader("Authorization-key", getCookie("token"));
+                      },
                   success: function (response) {
                         $("#viewAssignmentTable>tbody").empty();
                         var assignmentDataContainer = response.value;
@@ -178,6 +154,9 @@ function loadAssignment() {
                               $.ajax({
                                     type: "POST",
                                     url: "http://localhost:8080/assignment/"+id+"/status?action=UP",
+                                    beforeSend: function(request) {
+                                          request.setRequestHeader("Authorization-key", getCookie("token"));
+                                        },
                                     success: function(){
                                           window.location.reload();
                                     },
@@ -196,6 +175,9 @@ function loadAssignment() {
                               $.ajax({
                                     type: "POST",
                                     url: "http://localhost:8080/assignment/"+id+"/status?action=DOWN",
+                                    beforeSend: function(request) {
+                                          request.setRequestHeader("Authorization-key", getCookie("token"));
+                                        },
                                     success: function(){
                                           window.location.reload();
                                     },
@@ -208,20 +190,29 @@ function loadAssignment() {
                         $("td[id*='assignmentId']").click(function () {
                               var id = $(this).html();
                               $(".modal-part").load("../../components/modal.html", function () {
-                                    $("#modalTemplate").modal({ show: true })
-                                    $("#modalDetailAssignment").show();
                                     $.ajax({
                                           type: "GET",
                                           url: "http://localhost:8080/assignment/" + id,
                                           dataType: "json",
+                                          beforeSend: function(request) {
+                                                request.setRequestHeader("Authorization-key", getCookie("token"));
+                                              },
                                           success: function (response) {
-                                                var assignmentDataContainer = response.value.assignment;
-                                                $("#modalTitle").html(assignmentDataContainer.assignmentId);
-                                                $("#spnAssignedEmployee").html(assignmentDataContainer.employeeId);
-                                                $("#spnAssignedItem").html(assignmentDataContainer.itemSku)
-                                                $("#spnAssignedQuantity").html(assignmentDataContainer.quantity);
-                                                $("#spnAssignedStatus").html(assignmentDataContainer.status);
-                                                $("#modalSaveChanges").hide();
+                                                console.log(response);
+                                                if(response.code === "OK"){
+                                                      $("#modalTemplate").modal({ show: true })
+                                                      $("#modalDetailAssignment").show();
+                                                      var assignmentDataContainer = response.value.assignment;
+                                                      $("#modalTitle").html(assignmentDataContainer.assignmentId);
+                                                      $("#spnAssignedEmployee").html(assignmentDataContainer.employeeId);
+                                                      $("#spnAssignedItem").html(assignmentDataContainer.itemSku)
+                                                      $("#spnAssignedQuantity").html(assignmentDataContainer.quantity);
+                                                      $("#spnAssignedStatus").html(assignmentDataContainer.status);
+                                                      $("#modalSaveChanges").hide();
+                                                }
+                                                else{
+                                                      alert("Something went wrong");
+                                                }
                                           },
                                           error: function (response) {
                                                 console.log("Error");
