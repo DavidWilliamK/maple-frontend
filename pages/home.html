@@ -10,6 +10,10 @@
 	<link rel="stylesheet" type="text/css" href="../assets/styles/base.css">
 	<link rel="stylesheet" type="text/css" href="../assets/styles/template.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="../assets/scripts/home/itemCount.js"></script>
+	<script type="text/javascript" src="../assets/scripts/home/pendingTable.js"></script>
+	<script type="text/javascript" src="../assets/scripts/home/approvedTable.js"></script>
+	<script type="text/javascript" src="../assets/scripts/home/receivedTable.js"></script>
 	<script type="text/javascript" src="../assets/scripts/home/home.js"></script>
 </head>
 
@@ -31,9 +35,9 @@
 								<div class="card" id="cardPending">
 									<div class="card-body bg-dark" style="color:white;">
 										<h3>Pending Items</h3>
-										<h1>10</h1>
+										<h1 id="pendingCount">10</h1>
 									</div>
-									<div class="card-footer" data-target="#collapsablePendingTable" data-toggle="collapse" aria-expanded="false" aria-controls="collapsablePendingTable collapsableApprovedTable">
+									<div class="card-footer" id="pendingFooter" data-target="#collapsablePendingTable" data-toggle="collapse" aria-expanded="false" aria-controls="collapsablePendingTable collapsableApprovedTable">
 										<a>View</a>
 									</div>
 								</div>
@@ -41,9 +45,9 @@
 								<div class="card" id="cardApproved">
 									<div class="card-body bg-dark" style="color:white;">
 										<h3>Approved Items</h3>
-										<h1>10</h1>
+										<h1 id="approvedCount">10</h1>
 									</div>
-									<div class="card-footer"  href="#collapsableApprovedTable" data-toggle="collapse" aria-expanded="false" aria-controls="collapsablePendingTable collapsableApprovedTable">
+									<div class="card-footer" id="approvedFooter" href="#collapsableApprovedTable" data-toggle="collapse" aria-expanded="false" aria-controls="collapsablePendingTable collapsableApprovedTable">
 										<a>View</a>
 									</div>
 								</div>
@@ -51,9 +55,9 @@
 								<div class="card" id="cardReceived">
 									<div class="card-body bg-dark" style="color:white;">
 										<h3>Received Items</h3>
-										<h1>10</h1>
+										<h1 id="receivedCount">10</h1>
 									</div>
-									<div class="card-footer"  href="#collapsableReceivedTable" data-toggle="collapse" aria-expanded="false" aria-controls="collapsablePendingTable collapsableReceivedTable">
+									<div class="card-footer" id="receivedFooter" href="#collapsableReceivedTable" data-toggle="collapse" aria-expanded="false" aria-controls="collapsablePendingTable collapsableReceivedTable">
 										<a>View</a>
 									</div>
 								</div>
@@ -66,103 +70,97 @@
 						<div id="accordion">
 							<div class="collapse" id="collapsablePendingTable" data-parent="#accordion">
 								<div class="col-10-md-auto">
-									<table class="table" id="tableDashboard">
+									<table class="table" id="tablePending">
 										<thead class="thead-dark">
 											<tr>
 												<th scope="col">Assignment ID</th>
+												<th scope="col" class="employeeName" style="display:none;">Employee Name</th>
 												<th scope="col">Item Name</th>
 												<th scope="col">Quantity</th>
 												<th scope="col">Last Updated</th>
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<th scope="row">1</th>
-												<td>Mark</td>
-												<td>Otto</td>
-												<td>@mdo</td>
-											</tr>
-											<tr>
-												<th scope="row">2</th>
-												<td>Jacob</td>
-												<td>Thornton</td>
-												<td>@fat</td>
-											</tr>
-											<tr>
-												<th scope="row">3</th>
-												<td>Larry</td>
-												<td>the Bird</td>
-												<td>@twitter</td>
-											</tr>
+											
 										</tbody>
+										<tfoot>
+											<tr>
+												<td id="pendingPagination" colspan="4">
+													<div class="pagination-part">
+														<div class="pagination-container">
+															<div class="pagination">
+																<!-- <a href="#" id="btnPrev">&laquo;</a> -->
+																<!-- <a href="#" id="btnNext">&raquo;</a> -->
+															</div>
+														</div>
+													</div>
+												</td>
+											</tr>
+										</tfoot>
 									</table>
 								</div>
 							</div>
 							<div class="collapse" id="collapsableApprovedTable" data-parent="#accordion">
 								<div class="col-10-md-auto">
-									<table class="table" id="tableDashboard">
+									<table class="table" id="tableApproved">
 										<thead class="thead-dark">
 											<tr>
 												<th scope="col">Assignment ID</th>
+												<th scope="col" class="employeeName" style="display:none;">Employee Name</th>
 												<th scope="col">Item Name</th>
 												<th scope="col">Quantity</th>
 												<th scope="col">Last Updated</th>
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<th scope="row">1</th>
-												<td>Mark</td>
-												<td>Otto</td>
-												<td>@mdo</td>
-											</tr>
-											<tr>
-												<th scope="row">2</th>
-												<td>Jacob</td>
-												<td>Thornton</td>
-												<td>@fat</td>
-											</tr>
-											<tr>
-												<th scope="row">3</th>
-												<td>Larry</td>
-												<td>the Bird</td>
-												<td>@twitter</td>
-											</tr>
+											
 										</tbody>
+										<tfoot>
+											<tr>
+												<td id="approvedPagination" colspan="4">
+													<div class="pagination-part">
+														<div class="pagination-container">
+															<div class="pagination">
+																<!-- <a href="#" id="btnPrev">&laquo;</a> -->
+																<!-- <a href="#" id="btnNext">&raquo;</a> -->
+															</div>
+														</div>
+													</div>
+												</td>
+											</tr>
+										</tfoot>
 									</table>
 								</div>
 							</div>
 							<div class="collapse" id="collapsableReceivedTable" data-parent="#accordion">
 								<div class="col-10-md-auto">
-									<table class="table" id="tableDashboard">
+									<table class="table" id="tableReceived">
 										<thead class="thead-dark">
 											<tr>
 												<th scope="col">Assignment ID</th>
+												<th scope="col" class="employeeName" style="display:none;">Employee Name</th>
 												<th scope="col">Item Name</th>
 												<th scope="col">Quantity</th>
 												<th scope="col">Last Updated</th>
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<th scope="row">1</th>
-												<td>Mark</td>
-												<td>Otto</td>
-												<td>@mdo</td>
-											</tr>
-											<tr>
-												<th scope="row">2</th>
-												<td>Jacob</td>
-												<td>Thornton</td>
-												<td>@fat</td>
-											</tr>
-											<tr>
-												<th scope="row">3</th>
-												<td>Larry</td>
-												<td>the Bird</td>
-												<td>@twitter</td>
-											</tr>
+											
 										</tbody>
+										<tfoot>
+											<tr>
+												<td id="receivedPagination" colspan="4">
+													<div class="pagination-part">
+														<div class="pagination-container">
+															<div class="pagination">
+																<!-- <a href="#" id="btnPrev">&laquo;</a> -->
+																<!-- <a href="#" id="btnNext">&raquo;</a> -->
+															</div>
+														</div>
+													</div>
+												</td>
+											</tr>
+										</tfoot>
 									</table>
 								</div>
 							</div>

@@ -1,18 +1,42 @@
 $(document).ready(function(){
     $(".navbar-part").load("../../components/navbar.html",function(){
           $(".sidebar-part").load("../../components/sidebar.html", function(){
-                    //   loadAssignment();
                       $("#homeLink").css("background-color", "#00D6FF");
-                    //   $("#btnAdd").click(addAssignment);
-                    //   $("#btnEdit").click(editAssignment);
-                    //   $("#btnDelete").click(removeAssignment);
-                      //Search may change according to backend
-                    //   $("#employeeNameSearch").keyup(searchByName);
-                    //   $("#idSearch").keyup(searchById);
                       $(".search-employee-name").hide();
                       $(".search-id").hide();
-                      //Search may change according to backend
-                      //Upload image still doesn't work
+                      
+                      //GetItemCount
+                      getItemCount();
+
+                      //GetPendingTable
+                      $("#pendingFooter").on("click", function(){
+                        getPendingTable();
+                      })
+                      //GetApprovedTable
+                      $("#approvedFooter").on("click", function(){
+                        getApprovedTable();
+                      })
+                      //GetReceivedTable
+                      $("#receivedFooter").on("click", function(){
+                        getReceivedTable();
+                      })
+                      
           });
     });
 });
+
+function getCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+              c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+              return c.substring(name.length, c.length);
+        }
+  }
+  return "";
+}

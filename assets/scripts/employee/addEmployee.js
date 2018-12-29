@@ -77,15 +77,31 @@ function addEmployee() {
                         var image = $("#employeeUploadImage")[0];
                         let formdata = new FormData();
 
-                        var newUser = {
-                              "id": null,
-                              "username": username,
-                              "password": password,
-                              "superiorId": superior,
-                              "name": name,
-                              "phone": phone,
-                              "email": email
+                        if(superior){
+                              alert("ASD");
+                              var newUser = {
+                                    "id": null,
+                                    "username": username,
+                                    "password": password,
+                                    "superiorId": superior,
+                                    "name": name,
+                                    "phone": phone,
+                                    "email": email
+                              }
                         }
+                        else{
+                              alert("TEST");
+                              var newUser = {
+                                    "id": null,
+                                    "username": username,
+                                    "password": password,
+                                    "superiorId": null,
+                                    "name": name,
+                                    "phone": phone,
+                                    "email": email
+                              }
+                        }
+
                         formdata.append("file", image.files[0]);
                         formdata.append("data", JSON.stringify(newUser));
 

@@ -161,7 +161,7 @@ function loadAssignment() {
                                           window.location.reload();
                                     },
                                     error: function(response){
-                                          console.log(response.errorMessage);
+                                          console.log(response);
                                     }
                               });
                         })
@@ -202,10 +202,10 @@ function loadAssignment() {
                                                 if(response.code === "OK"){
                                                       $("#modalTemplate").modal({ show: true })
                                                       $("#modalDetailAssignment").show();
-                                                      var assignmentDataContainer = response.value.assignment;
+                                                      var assignmentDataContainer = response.value;
                                                       $("#modalTitle").html(assignmentDataContainer.assignmentId);
-                                                      $("#spnAssignedEmployee").html(assignmentDataContainer.employeeId);
-                                                      $("#spnAssignedItem").html(assignmentDataContainer.itemSku)
+                                                      $("#spnAssignedEmployee").html(assignmentDataContainer.employeeUsername);
+                                                      $("#spnAssignedItem").html(assignmentDataContainer.itemName)
                                                       $("#spnAssignedQuantity").html(assignmentDataContainer.quantity);
                                                       $("#spnAssignedStatus").html(assignmentDataContainer.status);
                                                       $("#modalSaveChanges").hide();

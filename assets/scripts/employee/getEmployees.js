@@ -95,8 +95,7 @@ function loadEmployee(search) {
                   beforeSend: function(request) {
                         request.setRequestHeader("Authorization-key", getCookie("token"));
                       },
-                  success: function (response, textStatus, jqXHR) {
-                        console.log(jqXHR);
+                  success: function (response) {
                         loadData(response);
                   },
                   error: function (response) {

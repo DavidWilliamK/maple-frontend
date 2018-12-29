@@ -17,9 +17,8 @@ $(document).ready(function(){
                     alert("Wrong credentials");
                 } else if(response.code === "OK"){
                     alert("Login Success");
-                    alert(jqXHR.getResponseHeader("token"));
                     document.cookie = "token="+response.value;
-                    window.location.replace("../../pages/employee.html");   
+                    window.location.replace("../../pages/home.html");   
                 }
                 else{
                     alert("ASD");
