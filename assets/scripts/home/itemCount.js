@@ -11,6 +11,7 @@ function getItemCount(){
           $("#pendingCount").html(response.value.pending);
           $("#approvedCount").html(response.value.approved);
           $("#receivedCount").html(response.value.received);
+          $("#allItemsCount").html(response.value.all);
         },
         error: function(response){
           console.log(response);

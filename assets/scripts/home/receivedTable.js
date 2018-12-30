@@ -155,8 +155,16 @@ function getReceivedTable() {
     }
     else {
       $("#tableReceived").removeClass("table-hover");
-      receivedItemData += "<tr><td colspan='4' class='text-center p-4'><h3>No Data Available</h3><br>";
-      receivedItemData += "<button class='btn btn-dark' onclick='window.location.reload()'>Reload</button></td></tr>";
+      if(role === "ADMIN"){
+        $(".employeeName").show();
+        receivedItemData += "<tr><td colspan='5' class='text-center p-4'><h3>No Data Available</h3><br>";
+        receivedItemData += "<button class='btn btn-dark' onclick='window.location.reload()'>Reload</button></td></tr>";
+      }
+      else{
+        receivedItemData += "<tr><td colspan='4' class='text-center p-4'><h3>No Data Available</h3><br>";
+        receivedItemData += "<button class='btn btn-dark' onclick='window.location.reload()'>Reload</button></td></tr>";
+      }
+      
       $("#receivedPagination").hide();
     }
     $("#tableReceived").append(receivedItemData);

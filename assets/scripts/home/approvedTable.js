@@ -154,8 +154,17 @@ function getApprovedTable() {
     }
     else {
       $("#tableApproved").removeClass("table-hover");
-      approvedItemData += "<tr><td colspan='4' class='text-center p-4'><h3>No Data Available</h3><br>";
-      approvedItemData += "<button class='btn btn-dark' onclick='window.location.reload()'>Reload</button></td></tr>";
+      if(role === "ADMIN"){
+        $(".employeeName").show();
+        approvedItemData += "<tr><td colspan='5' class='text-center p-4'><h3>No Data Available</h3><br>";
+        approvedItemData += "<button class='btn btn-dark' onclick='window.location.reload()'>Reload</button></td></tr>";
+      }
+      else{
+        approvedItemData += "<tr><td colspan='4' class='text-center p-4'><h3>No Data Available</h3><br>";
+        approvedItemData += "<button class='btn btn-dark' onclick='window.location.reload()'>Reload</button></td></tr>";
+      }
+      
+      $("#approvedPagination").hide();
     }
     $("#tableApproved").append(approvedItemData);
   }
