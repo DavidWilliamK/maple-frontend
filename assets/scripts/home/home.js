@@ -20,6 +20,10 @@ $(document).ready(function(){
                       $("#receivedFooter").on("click", function(){
                         getReceivedTable();
                       })
+                      //GetAllItemsTable
+                      $("#allItemsFooter").on("click", function(){
+                        getAllItemsTable();
+                      })
                       
           });
     });
