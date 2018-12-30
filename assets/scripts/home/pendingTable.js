@@ -155,8 +155,16 @@ function getPendingTable() {
             }
             else {
                   $("#tablePending").removeClass("table-hover")
-                  pendingItemData += "<tr><td colspan='4' class='text-center p-4'><h3>No Data Available</h3><br>";
-                  pendingItemData += "<button class='btn btn-dark' onclick='window.location.reload()'>Reload</button></td></tr>";
+                  if(role === "ADMIN"){
+                        $(".employeeName").show();
+                        pendingItemData += "<tr><td colspan='5' class='text-center p-4'><h3>No Data Available</h3><br>";
+                        pendingItemData += "<button class='btn btn-dark' onclick='window.location.reload()'>Reload</button></td></tr>";
+                  }
+                  else{
+                        pendingItemData += "<tr><td colspan='4' class='text-center p-4'><h3>No Data Available</h3><br>";
+                        pendingItemData += "<button class='btn btn-dark' onclick='window.location.reload()'>Reload</button></td></tr>";
+                  }
+                  
                   $("#pendingPagination").hide();
             }
             $("#tablePending").append(pendingItemData);
@@ -167,7 +175,7 @@ function getPendingTable() {
                   type: "GET",
                   dataType: "json",
                   data: {
-                        page: page, //Change to current page after adding pagination
+                        page: page,
                         size: 2
                   },
                   url: "http://localhost:8080/the-assignments?status=PENDING",

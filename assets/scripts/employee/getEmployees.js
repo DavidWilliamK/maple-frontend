@@ -5,15 +5,12 @@ function loadEmployee(search) {
 
       fetchEmployeeData();
 
-      
-          
-
       function loadData(response) {
             $("#viewEmployeeTable>tbody").empty();
             var employeeDataContainer = response.value;
             var employeeData = "";
             var i = 0;
-            if(employeeDataContainer.length){
+            if (employeeDataContainer.length) {
                   $.each(employeeDataContainer, function (key, value) {
                         employeeData += "<tr id = employeeRow[" + i + "]>";
                         employeeData += "<td id = employeeId[" + i + "] data-id = " + value.id + ">" + value.id + "</td>";
@@ -24,10 +21,10 @@ function loadEmployee(search) {
                         i++;
                   });
             }
-            else{
+            else {
                   $("#viewEmployeeTable").removeClass("table-hover")
-                  employeeData+= "<tr><td colspan='4' class='text-center p-4'><h3>No Data Available</h3><br>";
-                  employeeData+= "<button class='btn btn-dark' onclick='window.location.reload()'>Reload</button></td></tr>";
+                  employeeData += "<tr><td colspan='4' class='text-center p-4'><h3>No Data Available</h3><br>";
+                  employeeData += "<button class='btn btn-dark' onclick='window.location.reload()'>Reload</button></td></tr>";
             }
             $("#viewEmployeeTable").append(employeeData);
             $("td[id*='employeeId']").click(function () {
@@ -39,10 +36,10 @@ function loadEmployee(search) {
                               type: "GET",
                               url: "http://localhost:8080/employee/" + id,
                               dataType: "json",
-                              beforeSend: function(request) {
+                              beforeSend: function (request) {
                                     request.setRequestHeader("Authorization-key", getCookie("token"));
                                     console.log(request.getAllResponseHeaders());
-                                  },
+                              },
                               success: function (response) {
                                     var employeeDataContainer = response.value;
                                     if (employeeDataContainer.imagePath) {
@@ -92,10 +89,11 @@ function loadEmployee(search) {
                         size: 5
                   },
                   url: "http://localhost:8080/employee",
-                  beforeSend: function(request) {
+                  beforeSend: function (request) {
                         request.setRequestHeader("Authorization-key", getCookie("token"));
-                      },
+                  },
                   success: function (response) {
+                        console.log(response);
                         loadData(response);
                   },
                   error: function (response) {
@@ -114,9 +112,9 @@ function loadEmployee(search) {
                         size: 5
                   },
                   url: "http://localhost:8080/employee?search=" + search,
-                  beforeSend: function(request) {
+                  beforeSend: function (request) {
                         request.setRequestHeader("Authorization-key", getCookie("token"));
-                      },
+                  },
                   success: function (response) {
                         loadData(response);
                   },

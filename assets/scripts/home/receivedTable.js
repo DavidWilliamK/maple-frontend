@@ -167,7 +167,7 @@ function getReceivedTable() {
       type: "GET",
       dataType: "json",
       data: {
-        page: 0, //Change to current page after adding pagination
+        page: page,
         size: 2
       },
       url: "http://localhost:8080/the-assignments?status=RECEIVED",
@@ -177,6 +177,7 @@ function getReceivedTable() {
       success: function (response) {
         //Obtain Role
         role = getRole();
+        console.log(response);
         loadData(response);
       },
       error: function (response) {

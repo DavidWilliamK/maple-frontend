@@ -166,7 +166,7 @@ function getApprovedTable() {
       type: "GET",
       dataType: "json",
       data: {
-        page: 0, //Change to current page after adding pagination
+        page: page,
         size: 2
       },
       url: "http://localhost:8080/the-assignments?status=APPROVED",

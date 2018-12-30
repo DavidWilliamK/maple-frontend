@@ -95,53 +95,45 @@ function loadAssignment() {
             return str;
       }
 
-
-      function fetchAssignmentData() {
-            $.ajax({
-                  type: "GET",
-                  contentType: "application/octet-stream",
-                  dataType: "json",
-                  data: {
-                        page: page,
-                        size: 5
-                  },
-                  url: "http://localhost:8080/assignment/",
-                  beforeSend: function(request) {
-                        request.setRequestHeader("Authorization-key", getCookie("token"));
-                      },
-                  success: function (response) {
-                        $("#viewAssignmentTable>tbody").empty();
+      function loadData(response){
+            $("#viewAssignmentTable>tbody").empty();
                         var assignmentDataContainer = response.value;
                         assignmentData = "";
                         var i = 0;
-                        $.each(assignmentDataContainer, function (key, data) {
-                              // data = value.assignment;
-                              buttonLive = data.button;
-                              assignmentData += "<tr id = assignmentRow[" + i + "]>";
-                              assignmentData += "<td id = assignmentId[" + i + "]>" + data.assignmentId + "</td>";
-                              assignmentData += "<td id = assignedEmployee[" + i + "]>" + data.employeeUsername + "</td>";
-                              assignmentData += "<td id = assignedItem[" + i + "]>" + data.itemName + "</td>";
-                              assignmentData += "<td id = assignedStatus[" + i + "]>" + data.quantity + "</td>";
-                              assignmentData += "<td id = assignedQuantity[" + i + "]>" + data.status + "</td>";
-                              assignmentData += "<td id = statusUpdateBtn[" + i + "]>"
-                              $.each(buttonLive, function (key, value) {
-                                    if (value === "btnReject") {
-                                          assignmentData += "<button style = 'width:50%;' class = 'btn btn-danger decrease-btn' id =" + value + "[" + data.assignmentId + "]>Reject</button>";
-                                    } else if (value === "btnApprove") {
-                                          assignmentData += "<button style = 'width:50%; padding-right:0px; padding-left:0px;' class = 'btn btn-success increase-btn' id = " + value + "[" + data.assignmentId + "]>Approve</button>";
-                                    }
-                                    else if (value === "btnHandover") {
-                                          assignmentData += "<button style = 'width:100%;' class = 'btn btn-primary increase-btn' id = " + value + "[" + data.assignmentId + "]>Handover</button>";
-                                    }
-                                    else if (value === "btnReturn") {
-                                          assignmentData += "<button style = 'width:100%;' class = 'btn btn-warning decrease-btn' id = " + value + "[" + data.assignmentId + "]>Return</button>";
-                                    }
-                              })
-                              assignmentData += "</td>";
-                              assignmentData += "</tr>";
-                              i++;
-                        });
-
+                        if(assignmentDataContainer.length){
+                              $.each(assignmentDataContainer, function (key, data) {
+                                    // data = value.assignment;
+                                    buttonLive = data.button;
+                                    assignmentData += "<tr id = assignmentRow[" + i + "]>";
+                                    assignmentData += "<td id = assignmentId[" + i + "]>" + data.assignmentId + "</td>";
+                                    assignmentData += "<td id = assignedEmployee[" + i + "]>" + data.employeeUsername + "</td>";
+                                    assignmentData += "<td id = assignedItem[" + i + "]>" + data.itemName + "</td>";
+                                    assignmentData += "<td id = assignedStatus[" + i + "]>" + data.quantity + "</td>";
+                                    assignmentData += "<td id = assignedQuantity[" + i + "]>" + data.status + "</td>";
+                                    assignmentData += "<td id = statusUpdateBtn[" + i + "]>"
+                                    $.each(buttonLive, function (key, value) {
+                                          if (value === "btnReject") {
+                                                assignmentData += "<button style = 'width:50%;' class = 'btn btn-danger decrease-btn' id =" + value + "[" + data.assignmentId + "]>Reject</button>";
+                                          } else if (value === "btnApprove") {
+                                                assignmentData += "<button style = 'width:50%; padding-right:0px; padding-left:0px;' class = 'btn btn-success increase-btn' id = " + value + "[" + data.assignmentId + "]>Approve</button>";
+                                          }
+                                          else if (value === "btnHandover") {
+                                                assignmentData += "<button style = 'width:100%;' class = 'btn btn-primary increase-btn' id = " + value + "[" + data.assignmentId + "]>Handover</button>";
+                                          }
+                                          else if (value === "btnReturn") {
+                                                assignmentData += "<button style = 'width:100%;' class = 'btn btn-warning decrease-btn' id = " + value + "[" + data.assignmentId + "]>Return</button>";
+                                          }
+                                    })
+                                    assignmentData += "</td>";
+                                    assignmentData += "</tr>";
+                                    i++;
+                              });
+                        }
+                        else{
+                              $("#viewAssignmentTable").removeClass("table-hover")
+                              assignmentData += "<tr><td colspan='6' class='text-center p-4'><h3>No Request to be handled</h3><br>";
+                              assignmentData += "<button class='btn btn-dark' onclick='window.location.reload()'>Reload</button></td></tr>";
+                        }
                         $("#viewAssignmentTable").append(assignmentData);
 
                         $("button[class*='increase-btn']").click(function(){
@@ -235,6 +227,23 @@ function loadAssignment() {
                               page = $(this).text() - 1;
                               fetchAssignmentData();
                         });
+      }
+
+      function fetchAssignmentData() {
+            $.ajax({
+                  type: "GET",
+                  contentType: "application/octet-stream",
+                  dataType: "json",
+                  data: {
+                        page: page,
+                        size: 5
+                  },
+                  url: "http://localhost:8080/assignment/",
+                  beforeSend: function(request) {
+                        request.setRequestHeader("Authorization-key", getCookie("token"));
+                      },
+                  success: function (response) {
+                        loadData(response);
                   },
                   error: function (response) {
                         alert(response.errorMessage);

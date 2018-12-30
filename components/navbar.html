@@ -31,17 +31,17 @@
 			<div class="modal-body">
 				<div class="row">
 					<div class="col-12 d-flex justify-content-center">
-						<img src="../assets/images/icons/placeholder.png" class="rounded-circle" width="40%" height="100%">
+						<img id="employeeImage" src="../assets/images/icons/placeholder.png" class="rounded-circle" width="40%" height="100%">
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-12 d-flex justify-content-center">
-						John Doe
+					<div class="col-12 d-flex justify-content-center" id="employeeName">
+
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-12 d-flex justify-content-center">
-						EMP-99
+					<div class="col-12 d-flex justify-content-center" id="employeeId">
+
 					</div>
 				</div>
 			</div>
@@ -53,9 +53,35 @@
 </div>
 
 <script>
+	$("#navbar-profile").on("click", function () {
+		$.ajax({
+			type: "GET",
+			async: false,
+			url: "http://localhost:8080/user",
+			beforeSend: function (request) {
+				request.setRequestHeader("Authorization-key", getCookie("token"));
+			},
+			success: function (response) {
+				console.log("TEST");
+				if (response.imagePath) {
+					var image = response.imagePath;
+					image = image.split("/");
+					image = image.pop();
+					$("#employeeImage").attr("src", "../assets/images/employees/" + image);
+				}
+				$("#employeeName").html(response.name);
+				$("#employeeId").html(response.id);
+			},
+			error: function () {
+
+			}
+		})
+	})
+
 	$("#btnLogout").click(function () {
 		$.ajax({
 			type: "POST",
+			async: false,
 			url: "http://localhost:8080/logout",
 			beforeSend: function (request) {
 				request.setRequestHeader("Authorization-key", getCookie("token"));
