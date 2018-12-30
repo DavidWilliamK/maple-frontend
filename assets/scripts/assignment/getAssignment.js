@@ -200,6 +200,7 @@ function loadAssignment() {
                                                       $("#spnAssignedItem").html(assignmentDataContainer.itemName)
                                                       $("#spnAssignedQuantity").html(assignmentDataContainer.quantity);
                                                       $("#spnAssignedStatus").html(assignmentDataContainer.status);
+                                                      $("#spnAssignedNote").html(assignmentDataContainer.note);
                                                       $("#modalSaveChanges").hide();
                                                 }
                                                 else{

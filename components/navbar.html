@@ -16,7 +16,7 @@
 	<a href="../pages/assignment.html">
 		<div class="navbar-item" id="assignmentLink">Assignments</div>
 	</a>
-	<div class="navbar-item" id="navbar-profile" data-toggle="modal" data-target="#modalProfile">ProfileIMG</div>
+	<div class="navbar-item" id="navbar-profile" data-toggle="modal" data-target="#modalProfile"></div>
 </nav>
 
 <div class="modal fade" tabindex="-1" role="dialog" id="modalProfile">
@@ -53,6 +53,29 @@
 </div>
 
 <script>
+	$(document).ready(function(){
+		$.ajax({
+			type: "GET",
+			async: false,
+			url: "http://localhost:8080/user",
+			beforeSend: function (request) {
+				request.setRequestHeader("Authorization-key", getCookie("token"));
+			},
+			success: function (response) {
+				var role = getCookie("token");
+				if(role.includes("ADMIN")){
+					$("#navbar-profile").html("Welcome, Admin");
+				}
+				else{
+					$("#navbar-profile").html("Welcome, "+response.name);
+				}
+			},
+			error: function () {
+
+			}
+		})
+	})
+
 	$("#navbar-profile").on("click", function () {
 		$.ajax({
 			type: "GET",
@@ -62,7 +85,6 @@
 				request.setRequestHeader("Authorization-key", getCookie("token"));
 			},
 			success: function (response) {
-				console.log("TEST");
 				if (response.imagePath) {
 					var image = response.imagePath;
 					image = image.split("/");

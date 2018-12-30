@@ -58,7 +58,7 @@ function requestItem() {
                             itemData += "<td><img width='100%' src = '../assets/images/items/" + image + "' style='display:block;'></td>";
                         }
                         else {
-                            itemData += "Image not found";
+                            itemData += "<td><img width='100%' height='2%' src = '../assets/images/icons/placeholder.png' style='display:block;'></td>";
                         }
                         itemData += "<td>" + itemDataContainer.itemSku + "</td>";
                         itemData += "<td>" + itemDataContainer.name + "</td>";
