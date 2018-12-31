@@ -10,13 +10,13 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['mocha'],
+    frameworks: ['mocha', 'chai'],
 
 
     // list of files / patterns to load in the browser
     files: [
-      'assets/scripts/**/*.js',
-      'test/**/*.js'
+      // 'assets/scripts/**/*.js',
+      'test/assets/scripts/**/*.js'
     ],
 
 
@@ -65,6 +65,13 @@ module.exports = function(config) {
 
     // Concurrency level
     // how many browser should be started simultaneous
-    concurrency: Infinity
+    concurrency: Infinity,
+
+    plugins: [
+      'karma-chai',
+      'karma-mocha',
+      'karma-chrome-launcher',
+  ]
+
   })
 }
