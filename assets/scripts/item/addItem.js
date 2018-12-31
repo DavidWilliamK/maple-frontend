@@ -83,6 +83,9 @@ function addItem() {
                                           alert("Successfully saved");
                                           window.location.reload();
                                     }
+                                    else if(response.code === "BAD_REQUEST"){
+                                          alert("You are not allowed to add items!");
+                                    }
                                     else {
                                           alert(response.errorMessage);
                                     }

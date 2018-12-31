@@ -123,6 +123,9 @@ function editItem() {
                                                 alert("Successfully saved");
                                                 window.location.reload();
                                           }
+                                          else if(response.code === "BAD_REQUEST"){
+                                                alert("You are not allowed to edit items!");
+                                          }
                                           else {
                                                 console.log(response);
                                           }

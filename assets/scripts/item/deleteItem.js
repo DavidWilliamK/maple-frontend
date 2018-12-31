@@ -55,12 +55,12 @@ function removeItem(){
                               },
                               success: function(response){
                                     if(response.code === "OK"){
-                                          console.log(response);
+                                          alert("Item Removed");
                                           window.location.reload();
                                     }
                                     else if(response.code === "BAD_REQUEST"){
                                           console.log(response);
-                                          alert("You are not allowed to delete this data");
+                                          alert("You are not allowed to remove items");
                                     }
                               },
                               error: function(response){

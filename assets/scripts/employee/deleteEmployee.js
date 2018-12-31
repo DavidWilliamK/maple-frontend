@@ -56,10 +56,11 @@ function removeEmployee(){
                                   },
                               success: function(response){
                                     if(response.code === "OK"){
+                                          alert("Employee Removed");
                                           window.location.reload();
                                     }
                                     else if(response.code === "BAD_REQUEST"){
-                                          alert("You are not allowed to delete this data");
+                                          alert("You are not allowed to remove employee");
                                     }
                               },
                               error: function(response){

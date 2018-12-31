@@ -155,6 +155,9 @@ function editEmployee() {
                                                 alert("Successfully saved");
                                                 window.location.reload();
                                           }
+                                          else if(response.code === "BAD_REQUEST"){
+                                                alert("You are not allowed to edit employee!");
+                                          }
                                           else {
                                                 console.log(response);
                                           }

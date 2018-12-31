@@ -90,7 +90,6 @@ function addEmployee() {
                               }
                         }
                         else{
-                              alert("TEST");
                               var newUser = {
                                     "id": null,
                                     "username": username,
@@ -121,7 +120,10 @@ function addEmployee() {
                                           alert("Successfully saved");
                                           window.location.reload();
                                     }
-                                    else {
+                                    else if(response.code === "BAD_REQUEST"){
+                                          alert("You are not allowed to add employee!");
+                                    }
+                                    else{
                                           console.log(response);
                                     }
                               },
