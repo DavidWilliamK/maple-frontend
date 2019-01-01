@@ -1,5 +1,5 @@
 // Karma configuration
-// Generated on Mon Dec 31 2018 02:37:46 GMT+0700 (Western Indonesia Time)
+// Generated on Tue Jan 01 2019 23:13:56 GMT+0700 (Western Indonesia Time)
 
 module.exports = function(config) {
   config.set({
@@ -10,13 +10,15 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['mocha', 'chai'],
+    frameworks: ['mocha', 'requirejs', 'sinon', 'chai-jquery', 'chai', 'jquery-3.3.1'],
 
 
     // list of files / patterns to load in the browser
     files: [
-      // 'assets/scripts/**/*.js',
-      'test/assets/scripts/**/*.js'
+      'test-main.js',
+      { pattern: 'assets/scripts/**/*.js', included: false },
+      { pattern: 'test/assets/scripts/**/*.js', included: false },
+      { pattern: 'node_modules/chai-jquery/chai-jquery.js', included: false }
     ],
 
 
@@ -28,14 +30,19 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+      'assets/scripts/**/*.js': 'coverage'
     },
 
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+    reporters: ['progress', 'coverage'],
 
+    coverageReporter: {
+      type: 'html',
+      dir: 'coverage/'
+    },
 
     // web server port
     port: 9876,
@@ -65,13 +72,6 @@ module.exports = function(config) {
 
     // Concurrency level
     // how many browser should be started simultaneous
-    concurrency: Infinity,
-
-    plugins: [
-      'karma-chai',
-      'karma-mocha',
-      'karma-chrome-launcher',
-  ]
-
+    concurrency: Infinity
   })
 }

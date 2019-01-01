@@ -1,0 +1,647 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for home\allItemsTable.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">home/</a> allItemsTable.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">4.9% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>5/102</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/40</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/12</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">4.9% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>5/102</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="fstat-no" title="function not covered" >function getAllItemsTable() {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    page = 0;</span>
+<span class="cstat-no" title="statement not covered" >    fetchAllItemsData();</span>
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function createPagination(pages, page) {</span>
+<span class="cstat-no" title="statement not covered" >          page = page + 1;</span>
+<span class="cstat-no" title="statement not covered" >          let str = "&lt;ul&gt;";</span>
+<span class="cstat-no" title="statement not covered" >          let active;</span>
+<span class="cstat-no" title="statement not covered" >          let pageCutLow = page - 1;</span>
+<span class="cstat-no" title="statement not covered" >          let pageCutHigh = page + 1;</span>
+          // Show the Previous button only if you are on a page other than the first
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          if (page &gt; 1) {</span>
+<span class="cstat-no" title="statement not covered" >                str +=</span>
+                      '&lt;li class="page-item previous no"&gt;&lt;a&gt;&amp;laquo;&lt;/a&gt;&lt;/li&gt;';
+          }
+          // Show all the pagination elements if there are less than 6 pages total
+<span class="cstat-no" title="statement not covered" >          if (pages &lt; 6) {</span>
+<span class="cstat-no" title="statement not covered" >                for (let p = 1; p &lt;= pages; p++) {</span>
+<span class="cstat-no" title="statement not covered" >                      active = page == p ? "active" : "no";</span>
+<span class="cstat-no" title="statement not covered" >                      str +=</span>
+                            '&lt;li class="page-number ' +
+                            active +
+                            '"&gt;&lt;a&gt;' +
+                            p +
+                            "&lt;/a&gt;&lt;/li&gt;";
+                }
+          } else {
+                // Use "..." to collapse pages outside of a certain range
+                // Show the very first page followed by a "..." at the beginning of the
+                // pagination section (after the Previous button)
+<span class="cstat-no" title="statement not covered" >                if (page &gt; 2) {</span>
+<span class="cstat-no" title="statement not covered" >                      str +=</span>
+                            '&lt;li class="no page-item page-number"&gt;&lt;a&gt;1&lt;/a&gt;&lt;/li&gt;';
+<span class="cstat-no" title="statement not covered" >                      if (page &gt; 3) {</span>
+<span class="cstat-no" title="statement not covered" >                            str +=</span>
+                                  '&lt;li class="out-of-range"&gt;&lt;a&gt;...&lt;/a&gt;&lt;/li&gt;';
+                      }
+                }
+                // Determine how many pages to show after the current page index
+<span class="cstat-no" title="statement not covered" >                if (page === 1) {</span>
+<span class="cstat-no" title="statement not covered" >                      pageCutHigh += 2;</span>
+                } else <span class="cstat-no" title="statement not covered" >if (page === 2) {</span>
+<span class="cstat-no" title="statement not covered" >                      pageCutHigh += 1;</span>
+                }
+                // Determine how many pages to show before the current page index
+<span class="cstat-no" title="statement not covered" >                if (page === pages) {</span>
+<span class="cstat-no" title="statement not covered" >                      pageCutLow -= 2;</span>
+                } else <span class="cstat-no" title="statement not covered" >if (page === pages) {</span>
+<span class="cstat-no" title="statement not covered" >                      pageCutLow -= 1;</span>
+                }
+<span class="cstat-no" title="statement not covered" >                console.log(page, pageCutLow, pageCutHigh);</span>
+                // Output the indexes for pages that fall inside the range of pageCutLow
+                // and pageCutHigh
+<span class="cstat-no" title="statement not covered" >                for (let p = pageCutLow; p &lt;= pageCutHigh; p++) {</span>
+<span class="cstat-no" title="statement not covered" >                      if (p === 0) {</span>
+<span class="cstat-no" title="statement not covered" >                            p += 1;</span>
+                      }
+<span class="cstat-no" title="statement not covered" >                      if (p &gt; pages) {</span>
+<span class="cstat-no" title="statement not covered" >                            continue;</span>
+                      }
+<span class="cstat-no" title="statement not covered" >                      active = page == p ? "active" : "no";</span>
+<span class="cstat-no" title="statement not covered" >                      str +=</span>
+                            '&lt;li class="page-item page-number ' +
+                            active +
+                            '"&gt;&lt;a&gt;' +
+                            p +
+                            "&lt;/a&gt;&lt;/li&gt;";
+                }
+                // Show the very last page preceded by a "..." at the end of the pagination
+                // section (before the Next button)
+<span class="cstat-no" title="statement not covered" >                if (page &lt; pages - 1) {</span>
+<span class="cstat-no" title="statement not covered" >                      if (page &lt; pages - 2) {</span>
+<span class="cstat-no" title="statement not covered" >                            str +=</span>
+                                  '&lt;li class="out-of-range"&gt;&lt;a&gt;...&lt;/a&gt;&lt;/li&gt;';
+                      }
+<span class="cstat-no" title="statement not covered" >                      str +=</span>
+                            '&lt;li class="page-item no page-number"&gt;&lt;a&gt;' +
+                            pages +
+                            "&lt;/a&gt;&lt;/li&gt;";
+                }
+          }
+          // Show the Next button only if you are on a page other than the last
+<span class="cstat-no" title="statement not covered" >          if (page &lt; pages) {</span>
+<span class="cstat-no" title="statement not covered" >                str +=</span>
+                      '&lt;li class="page-item next no"&gt;&lt;a&gt;&amp;raquo;&lt;/a&gt;&lt;/li&gt;';
+          }
+<span class="cstat-no" title="statement not covered" >          str += "&lt;/ul&gt;";</span>
+          // Return the pagination string to be outputted in the pug templates
+<span class="cstat-no" title="statement not covered" >          $(".pagination").html(str);</span>
+<span class="cstat-no" title="statement not covered" >          return str;</span>
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function getRole() {</span>
+          //Obtain Role
+<span class="cstat-no" title="statement not covered" >          var role = getCookie("token");</span>
+<span class="cstat-no" title="statement not covered" >          if (role.split("-")) {</span>
+<span class="cstat-no" title="statement not covered" >                role = role.split("-");</span>
+<span class="cstat-no" title="statement not covered" >                role = role.pop();</span>
+          }
+          else {
+<span class="cstat-no" title="statement not covered" >                role = "EMPLOYEE";</span>
+          }
+<span class="cstat-no" title="statement not covered" >          return role;</span>
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function loadData(response) {</span>
+<span class="cstat-no" title="statement not covered" >          $("#tableAllItems&gt;tbody").empty();</span>
+<span class="cstat-no" title="statement not covered" >          var allItemDataContainer = response.value;</span>
+<span class="cstat-no" title="statement not covered" >          var allItemData = "";</span>
+<span class="cstat-no" title="statement not covered" >          var i = 0;</span>
+<span class="cstat-no" title="statement not covered" >          if (allItemDataContainer.length) {</span>
+<span class="cstat-no" title="statement not covered" >                $.each(allItemDataContainer, <span class="fstat-no" title="function not covered" >function (key, value) {</span></span>
+                      //Obtain Date
+<span class="cstat-no" title="statement not covered" >                      let date;</span>
+<span class="cstat-no" title="statement not covered" >                      if (value.updatedDate) {</span>
+<span class="cstat-no" title="statement not covered" >                            date = value.updatedDate;</span>
+                      }
+                      else {
+<span class="cstat-no" title="statement not covered" >                            date = value.createdDate;</span>
+                      }
+<span class="cstat-no" title="statement not covered" >                      date = date.split("T");</span>
+<span class="cstat-no" title="statement not covered" >                      date.pop();</span>
+&nbsp;
+                      //Insert Data
+<span class="cstat-no" title="statement not covered" >                      allItemData += "&lt;tr id = allItemRow[" + i + "]&gt;";</span>
+<span class="cstat-no" title="statement not covered" >                      allItemData += "&lt;td id = allItemId[" + i + "] data-id = " + value.assignmentId + "&gt;" + value.assignmentId + "&lt;/td&gt;";</span>
+<span class="cstat-no" title="statement not covered" >                      if (role === "ADMIN") {</span>
+<span class="cstat-no" title="statement not covered" >                            $(".employeeName").show();</span>
+<span class="cstat-no" title="statement not covered" >                            allItemData += "&lt;td id = allItemEmployee[" + i + "]&gt;" + value.employeeUsername + "&lt;/td&gt;";</span>
+<span class="cstat-no" title="statement not covered" >                            $("#allItemsPagination").attr("colspan", 6);</span>
+                      }
+<span class="cstat-no" title="statement not covered" >                      allItemData += "&lt;td id = allItemName[" + i + "]&gt;" + value.itemName + "&lt;/td&gt;";</span>
+<span class="cstat-no" title="statement not covered" >                      allItemData += "&lt;td id = allItemQuantity[" + i + "]&gt;" + value.quantity + "&lt;/td&gt;";</span>
+<span class="cstat-no" title="statement not covered" >                      allItemData += "&lt;td id = allItemUpdated[" + i + "]&gt;" + date + "&lt;/td&gt;";</span>
+<span class="cstat-no" title="statement not covered" >                      allItemData += "&lt;td id = allItemStatus[" + i + "]&gt;" + value.status + "&lt;/td&gt;";</span>
+<span class="cstat-no" title="statement not covered" >                      allItemData += "&lt;/tr&gt;";</span>
+<span class="cstat-no" title="statement not covered" >                      i++;</span>
+                });
+<span class="cstat-no" title="statement not covered" >                createPagination(response.totalPages, page);</span>
+<span class="cstat-no" title="statement not covered" >                $(".previous").click(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                      page--;</span>
+<span class="cstat-no" title="statement not covered" >                      fetchAllItemsData();</span>
+                });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                $(".next").click(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                      page++;</span>
+<span class="cstat-no" title="statement not covered" >                      fetchAllItemsData();</span>
+                });
+<span class="cstat-no" title="statement not covered" >                $(".page-number").click(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                      page = $(this).text() - 1;</span>
+<span class="cstat-no" title="statement not covered" >                      fetchAllItemsData();</span>
+                });
+          }
+          else {
+<span class="cstat-no" title="statement not covered" >                $("#tableAllItems").removeClass("table-hover")</span>
+<span class="cstat-no" title="statement not covered" >                if(role === "ADMIN"){</span>
+<span class="cstat-no" title="statement not covered" >                      $(".employeeName").show();</span>
+<span class="cstat-no" title="statement not covered" >                      allItemData += "&lt;tr&gt;&lt;td colspan='6' class='text-center p-4'&gt;&lt;h3&gt;No Data Available&lt;/h3&gt;&lt;br&gt;";</span>
+<span class="cstat-no" title="statement not covered" >                      allItemData += "&lt;button class='btn btn-dark' onclick='window.location.reload()'&gt;Reload&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;";</span>
+                }
+                else{
+<span class="cstat-no" title="statement not covered" >                    allItemData += "&lt;tr&gt;&lt;td colspan='5' class='text-center p-4'&gt;&lt;h3&gt;No Data Available&lt;/h3&gt;&lt;br&gt;";</span>
+<span class="cstat-no" title="statement not covered" >                    allItemData += "&lt;button class='btn btn-dark' onclick='window.location.reload()'&gt;Reload&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;";</span>
+                }
+                
+<span class="cstat-no" title="statement not covered" >                $("#pendingPagination").hide();</span>
+          }
+<span class="cstat-no" title="statement not covered" >          $("#tableAllItems").append(allItemData);</span>
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function fetchAllItemsData() {</span>
+<span class="cstat-no" title="statement not covered" >          $.ajax({</span>
+                type: "GET",
+                dataType: "json",
+                data: {
+                      page: page,
+                      size: 2
+                },
+                url: "http://localhost:8080/the-assignments?status=all",
+                beforeSend: <span class="fstat-no" title="function not covered" >function (request) {</span>
+<span class="cstat-no" title="statement not covered" >                      request.setRequestHeader("Authorization-key", getCookie("token"));</span>
+                },
+                success: <span class="fstat-no" title="function not covered" >function (response) {</span>
+<span class="cstat-no" title="statement not covered" >                      role = getRole();</span>
+<span class="cstat-no" title="statement not covered" >                      loadData(response);</span>
+                },
+                error: <span class="fstat-no" title="function not covered" >function (response) {</span>
+<span class="cstat-no" title="statement not covered" >                      console.log(response);</span>
+<span class="cstat-no" title="statement not covered" >                      alert("Error");</span>
+                }
+          });
+    }
+}</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jan 02 2019 03:38:45 GMT+0700 (Western Indonesia Time)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>
