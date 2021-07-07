@@ -1,0 +1,80 @@
+$(document).ready(function () {
+      $(".navbar-part").load("../../components/navbar.html", function(){
+            $("#assignmentLink").css("background-color", "#00D6FF");
+      });
+      $(".sidebar-part").load("../../components/sidebar.html", function(){
+            $("#employeeNameSearch").keyup(searchByName);
+            $("#idSearch").keyup(searchById);
+            $(".search-item-name").hide();
+            $(".search-sku").hide();
+      });
+      loadAssignment();
+
+      //Search may change according to backend
+
+      //Search may change according to backend
+      //Upload image still doesn't work
+});
+
+//Finished
+function searchById() {
+      $("#idResult").html('');
+      var searchField = $("#idSearch").val();
+      var exp = new RegExp(searchField, "i");
+      $.ajax({
+            type: "GET",
+            url: "http://localhost:8080/employee",
+            success: function (response) {
+                  $.each(response.value, function (key, val) {
+                        if (val.id.search(exp) != -1) {
+                              $("#idResult").append("<li class=list-group-item data-toggle = modal data-target = #modalDetail data-id = " + val.id + ">" + val.id + " <span> | </span>" + val.name + "</li>");
+                        }
+                  });
+            },
+            error: function (response) {
+                  console.log(response);
+            }
+      });
+      $("body").click(function () {
+            $("#idResult").html('');
+      })
+}
+//Finished
+function searchByName() {
+      $("#employeeNameResult").html('');
+      var searchField = $("#employeeNameSearch").val();
+      var exp = new RegExp(searchField, "i");
+      $.ajax({
+            type: "GET",
+            url: "http://localhost:8080/employee/",
+            success: function (response) {
+                  $.each(response.value, function (key, val) {
+                        if (val.name.search(exp) != -1) {
+                              $("#employeeNameResult").append("<li class = list-group-item data-toggle = modal data-target = #modalDetail data-id = " + val.id + ">" + val.id + " <span> | </span>" + val.name + "</li>");
+                        }
+                  });
+            },
+            error: function (response) {
+                  console.log(response);
+            }
+      });
+      $("body").click(function () {
+            $("#employeeNameResult").html('');
+      })
+}
+
+function getCookie(cname) {
+      var name = cname + "=";
+      var decodedCookie = decodeURIComponent(document.cookie);
+      var ca = decodedCookie.split(';');
+      for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                  c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                  return c.substring(name.length, c.length);
+            }
+      }
+      return "";
+}

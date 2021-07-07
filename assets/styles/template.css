@@ -1,0 +1,145 @@
+/*----------Navbar----------*/
+.navbar-main{
+	display: flex;
+	align-items: center;
+	border-bottom: 1px solid #E5E9F2;
+	/* color: #FFFFFF; */
+	background-color: #495057;
+}
+
+.navbar-item{
+	padding: 2em;
+	color: #FFFFFF;
+}
+
+#navbar-logo{
+	padding: 0;
+	border-right: 1px solid #E5E9F2;
+	background: -webkit-linear-gradient(321deg, #9fb8ad, #00D6FF);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(321deg, #9fb8ad, #00D6FF);
+	content: url("../images/icons/MapleBrand.png");
+}
+
+#navbar-profile{
+	margin-left: auto;
+	cursor: pointer;
+	background-color: #343a40;
+}
+
+nav a:hover {
+	text-decoration: none;
+}
+
+nav a:active > .navbar-item{
+	background-color: var(--primary-color);
+	color: white;
+}
+/* ---------------Header------------------- */
+.header-button{
+	width: 50px;
+	height: 50px;
+}
+
+/*---------Sidebar---------*/
+.sidebar-main{
+	display: inline-flex;
+	flex-direction: column;
+	width: 12.3em;
+	border-right: 1px solid #E5E9F2;
+	height: 88vh;
+	color: #000000;
+}
+
+.search-dropdown, .sidebar-edit, .sidebar-delete, .sidebar-add{
+	display: flex;
+	border-bottom: 1px solid #E5E9F2;
+	align-items: center;
+	padding: 0.6em 0em 0.6em 0em;
+	cursor: pointer;
+}
+
+.search-parameter{
+	/* background-color: #F9FAFC; */
+	border-bottom: 1px solid #E5E9F2;
+}
+
+.search-id, .search-employee-name, .search-sku, .search-item-name{
+	padding: 0.6em 0em 0.6em 0.6em;
+}
+
+.search-id > input, .search-employee-name > input, .search-sku > input, .search-item-name > input{
+	width: 95%;
+}
+
+/*-----------Pagination---------------*/
+.pagination-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.pagination>ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: flex;
+}
+
+.pagination>ul>li{
+	color: #FFFFFF;
+	display: flex;
+	cursor: pointer;
+}
+
+.pagination>ul>li>a{
+	background-color: #00D6FF;
+	padding: 5px 10px;
+	border: 1px solid black;
+	border-right: 0;
+}
+
+.pagination>ul>li.active a{
+    background-color: #FFFFFF;
+    color: #00D6FF;
+}
+
+.pagination>ul>li:first-child a{
+	border-radius: 5px 0 0 5px;
+}
+
+.pagination>ul>li:last-child a{
+	border-radius: 0 5px 5px 0;
+    border-right: 1px solid black;
+}
+
+.pagination>ul>li a:hover:not(.active) {background-color: #ddd;}
+
+/*---------ModalAdd----------*/
+.modal-body{
+	width: 100%;
+	height: 50%;
+}
+
+
+
+#modalAddHeader, #modalAddFooter{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.modal-add-credential, .modal-add-passwords, .modal-add-descs{
+	display: flex;
+	flex-direction: column;
+}
+
+/*----------------------SEARCH-------------------*/
+.search-result{
+	z-index: 1;
+	position: absolute;
+}
+
+.list-group{
+	flex: 0 0 12em;
+}

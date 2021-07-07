@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for item\requestItem.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">item/</a> requestItem.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">3.64% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>2/55</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/6</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/13</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">3.64% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>2/55</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="fstat-no" title="function not covered" >function requestItem() {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    let userId;</span>
+<span class="cstat-no" title="statement not covered" >    let username;</span>
+    
+<span class="fstat-no" title="function not covered" >    function getUserDetail(){</span>
+<span class="cstat-no" title="statement not covered" >        $.ajax({</span>
+            type:"GET",
+            dataType: "json",
+            async: false,
+            url:"http://localhost:8080/user",
+            beforeSend: <span class="fstat-no" title="function not covered" >function(request) {</span>
+<span class="cstat-no" title="statement not covered" >                request.setRequestHeader("Authorization-key", getCookie("token"));</span>
+          },
+          success: <span class="fstat-no" title="function not covered" >function(response){</span>
+<span class="cstat-no" title="statement not covered" >              console.log(response);</span>
+<span class="cstat-no" title="statement not covered" >              userId = response.id;</span>
+<span class="cstat-no" title="statement not covered" >              username = response.username;</span>
+          },
+          error: <span class="fstat-no" title="function not covered" >function(){</span>
+<span class="cstat-no" title="statement not covered" >              alert("Error API User");</span>
+          }
+        });
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var check = [];</span>
+<span class="cstat-no" title="statement not covered" >    for (var i = 0; i &lt;= 10; i++) { //Change i's limit to amount of data in a page</span>
+<span class="cstat-no" title="statement not covered" >        if ($("input:checkbox[id = 'item[" + i + "]checkbox']").is(':checked')) {</span>
+<span class="cstat-no" title="statement not covered" >            check.push($("input:checkbox[id= 'item[" + i + "]checkbox']").val());</span>
+        }
+    }
+<span class="cstat-no" title="statement not covered" >    if (check.length === 0) {</span>
+<span class="cstat-no" title="statement not covered" >        alert("ERROR");</span>
+    }
+    else {
+<span class="cstat-no" title="statement not covered" >       $(".modal-part").load("../../components/modal.html", <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            $("#modalTemplate").modal({ show: true });</span>
+<span class="cstat-no" title="statement not covered" >            $("#modalTitle").html("Request Items");</span>
+<span class="cstat-no" title="statement not covered" >            $("#modalSaveChanges").html("Request Items");</span>
+<span class="cstat-no" title="statement not covered" >            $("#modalRequest").show();</span>
+<span class="cstat-no" title="statement not covered" >            check.forEach(element =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >                $.ajax({</span>
+                    type: "GET",
+                    dataType: "json",
+                    url: "http://localhost:8080/item/" + element,
+                    beforeSend: <span class="fstat-no" title="function not covered" >function(request) {</span>
+<span class="cstat-no" title="statement not covered" >                        request.setRequestHeader("Authorization-key", getCookie("token"));</span>
+                  },
+                    success: <span class="fstat-no" title="function not covered" >function (response) {</span>
+<span class="cstat-no" title="statement not covered" >                        var itemDataContainer = response.value;</span>
+<span class="cstat-no" title="statement not covered" >                        var itemData = "";</span>
+<span class="cstat-no" title="statement not covered" >                        itemData += "&lt;tr class='requestItemRow'&gt;";</span>
+<span class="cstat-no" title="statement not covered" >                        if (itemDataContainer.imagePath) {</span>
+<span class="cstat-no" title="statement not covered" >                            var image = itemDataContainer.imagePath;</span>
+<span class="cstat-no" title="statement not covered" >                            image = image.split("/");</span>
+<span class="cstat-no" title="statement not covered" >                            image = image.pop();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                            itemData += "&lt;td&gt;&lt;img width='100%' src = '../assets/images/items/" + image + "' style='display:block;'&gt;&lt;/td&gt;";</span>
+                        }
+                        else {
+<span class="cstat-no" title="statement not covered" >                            itemData += "&lt;td&gt;&lt;img width='100%' height='2%' src = '../assets/images/icons/placeholder.png' style='display:block;'&gt;&lt;/td&gt;";</span>
+                        }
+<span class="cstat-no" title="statement not covered" >                        itemData += "&lt;td&gt;" + itemDataContainer.itemSku + "&lt;/td&gt;";</span>
+<span class="cstat-no" title="statement not covered" >                        itemData += "&lt;td&gt;" + itemDataContainer.name + "&lt;/td&gt;";</span>
+<span class="cstat-no" title="statement not covered" >                        itemData += "&lt;td class = 'requestQuantityData'&gt;&lt;input type= 'number' name='requestQuantity' id='requestQuantity[" + itemDataContainer.itemSku + "]' class='form-control form-control-sm'&gt;&lt;/td&gt;";</span>
+<span class="cstat-no" title="statement not covered" >                        itemData += "&lt;td class = 'requestNotesData'&gt;&lt;input type= 'text' name='requestNotes' id='requestNotes[" + itemDataContainer.itemSku + "]' class='form-control form-control-sm'&gt;&lt;/td&gt;";</span>
+<span class="cstat-no" title="statement not covered" >                        itemData += "&lt;/tr&gt;";</span>
+<span class="cstat-no" title="statement not covered" >                        $("#requestItemTable&gt;tbody").append(itemData);</span>
+                    },
+                    error: <span class="fstat-no" title="function not covered" >function (response) {</span>
+<span class="cstat-no" title="statement not covered" >                        alert(response.errorMessage);</span>
+                    }
+                });
+            });
+<span class="cstat-no" title="statement not covered" >            $("#modalSaveChanges").on("click", <span class="fstat-no" title="function not covered" >function (e) {</span></span>
+<span class="cstat-no" title="statement not covered" >                e.stopPropagation();</span>
+                
+<span class="cstat-no" title="statement not covered" >                getUserDetail();</span>
+<span class="cstat-no" title="statement not covered" >                let assignments = [];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                check.forEach(element =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >                    requestedQuantity = $(".requestQuantityData&gt;input").val();</span>
+<span class="cstat-no" title="statement not covered" >                    requestedNote = $(".requestNotesData&gt;input").val();</span>
+<span class="cstat-no" title="statement not covered" >                     let assignmentData = {</span>
+                        "employeeId": userId,
+                        "itemSku": element,
+                        "status": "PENDING",
+                        "quantity": requestedQuantity,
+                        "note": requestedNote
+                    }
+<span class="cstat-no" title="statement not covered" >                    assignments.push(assignmentData);</span>
+                });
+<span class="cstat-no" title="statement not covered" >                let data = {</span>
+                    "username": username,
+                    "value": assignments
+                }
+<span class="cstat-no" title="statement not covered" >                $.ajax({</span>
+                    type: "POST",
+                    data: JSON.stringify(data),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    url: "http://localhost:8080/assignment",
+                    beforeSend: <span class="fstat-no" title="function not covered" >function(request) {</span>
+<span class="cstat-no" title="statement not covered" >                        request.setRequestHeader("Authorization-key", getCookie("token"));</span>
+                  },
+                    success: <span class="fstat-no" title="function not covered" >function(response){</span>
+<span class="cstat-no" title="statement not covered" >                        alert("Request Completed");</span>
+<span class="cstat-no" title="statement not covered" >                        window.location.reload();</span>
+                    },
+                    error: <span class="fstat-no" title="function not covered" >function(response){</span>
+<span class="cstat-no" title="statement not covered" >                        console.log(response);</span>
+                    }
+                })
+            })
+        })
+    }
+}</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jan 02 2019 03:38:45 GMT+0700 (Western Indonesia Time)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

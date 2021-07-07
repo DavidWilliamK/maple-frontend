@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for item\editItem.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">item/</a> editItem.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">4.11% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>3/73</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/20</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/16</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">4.11% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>3/73</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">//Finished
+<span class="fstat-no" title="function not covered" >function editItem() {</span>
+<span class="cstat-no" title="statement not covered" >      var check = [];</span>
+<span class="cstat-no" title="statement not covered" >      for (var i = 0; i &lt;= 5; i++) { //Change i's limit to amount of data in a page</span>
+<span class="cstat-no" title="statement not covered" >            if ($("input:checkbox[id = 'item[" + i + "]checkbox']").is(':checked')) {</span>
+<span class="cstat-no" title="statement not covered" >                  check.push($("input:checkbox[id = 'item[" + i + "]checkbox']").val());</span>
+            }
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (check.length === 0) {</span>
+<span class="cstat-no" title="statement not covered" >            alert("Please select 1 item");</span>
+      }
+      else <span class="cstat-no" title="statement not covered" >if(check.length &gt; 1){</span>
+<span class="cstat-no" title="statement not covered" >            alert("Please select only 1 data");</span>
+      }
+      else {
+<span class="cstat-no" title="statement not covered" >            $(".modal-part").load("../../components/modal.html", <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                  validateForm();</span>
+<span class="cstat-no" title="statement not covered" >                  $("#modalTemplate").modal({ show: true });</span>
+<span class="cstat-no" title="statement not covered" >                  $("#modalAddItem").show();</span>
+<span class="cstat-no" title="statement not covered" >                  $("#itemImagePlaceholder").click(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                        $("#itemUploadImage").click();</span>
+                  });
+<span class="cstat-no" title="statement not covered" >                  $.ajax({</span>
+                        type: "GET",
+                        url: "http://localhost:8080/item/" + check,
+                        dataType: "json",
+                        beforeSend: <span class="fstat-no" title="function not covered" >function(request) {</span>
+<span class="cstat-no" title="statement not covered" >                              request.setRequestHeader("Authorization-key", getCookie("token"));</span>
+                        },
+                        success: <span class="fstat-no" title="function not covered" >function (response) {</span>
+<span class="cstat-no" title="statement not covered" >                              var itemDataContainer = response.value;</span>
+<span class="cstat-no" title="statement not covered" >                              if (itemDataContainer.imagePath) {</span>
+<span class="cstat-no" title="statement not covered" >                                    var image = itemDataContainer.imagePath;</span>
+<span class="cstat-no" title="statement not covered" >                                    image = image.split("/");</span>
+<span class="cstat-no" title="statement not covered" >                                    image = image.pop();</span>
+<span class="cstat-no" title="statement not covered" >                                    $("#itemImagePlaceholder").attr("src", "../assets/images/items/" + image);</span>
+                              }
+<span class="cstat-no" title="statement not covered" >                              $("#modalTitle").html(itemDataContainer.itemSku);</span>
+<span class="cstat-no" title="statement not covered" >                              $("#itemName").val(itemDataContainer.name);</span>
+<span class="cstat-no" title="statement not covered" >                              $("#quantity").val(itemDataContainer.quantity)</span>
+<span class="cstat-no" title="statement not covered" >                              $("#price").val(itemDataContainer.price);</span>
+<span class="cstat-no" title="statement not covered" >                              $("#itemDesc").val(itemDataContainer.description);</span>
+&nbsp;
+                        },
+                        error: <span class="fstat-no" title="function not covered" >function (response) {</span>
+<span class="cstat-no" title="statement not covered" >                              console.log("Error");</span>
+                        }
+                  });
+                  //Image Preview
+<span class="cstat-no" title="statement not covered" >                  $("#itemUploadImage").change(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                        readUrl(this);</span>
+                  })
+<span class="fstat-no" title="function not covered" >                  function readUrl(input) {</span>
+<span class="cstat-no" title="statement not covered" >                        if (input.files &amp;&amp; input.files[0]) {</span>
+<span class="cstat-no" title="statement not covered" >                              var reader = new FileReader();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                              reader.onload = <span class="fstat-no" title="function not covered" >function (e) {</span></span>
+<span class="cstat-no" title="statement not covered" >                                    $("#itemImagePlaceholder").attr("src", e.target.result);</span>
+                              }
+<span class="cstat-no" title="statement not covered" >                              reader.readAsDataURL(input.files[0]);</span>
+                        }
+                  }
+&nbsp;
+                  //Validate
+<span class="fstat-no" title="function not covered" >                  function validateForm() {</span>
+<span class="cstat-no" title="statement not covered" >                        var quantityRegex = "([1-9][0-9]*$)";</span>
+<span class="cstat-no" title="statement not covered" >                        $("#quantity").prop('pattern', quantityRegex);</span>
+                  
+<span class="cstat-no" title="statement not covered" >                        var priceRegex = "([1-9][0-9]*$)";</span>
+<span class="cstat-no" title="statement not covered" >                        $("#price").prop('pattern', priceRegex);</span>
+                  
+<span class="cstat-no" title="statement not covered" >                        'use strict';</span>
+                        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+<span class="cstat-no" title="statement not covered" >                        var forms = document.getElementsByClassName('needs-validation');</span>
+                        // Loop over them and prevent submission
+<span class="cstat-no" title="statement not covered" >                        var validation = Array.prototype.filter.call(forms, <span class="fstat-no" title="function not covered" >function (form) {</span></span>
+<span class="cstat-no" title="statement not covered" >                              form.addEventListener('submit', <span class="fstat-no" title="function not covered" >function (event) {</span></span>
+<span class="cstat-no" title="statement not covered" >                                    if (form.checkValidity() === false) {</span>
+<span class="cstat-no" title="statement not covered" >                                          event.preventDefault();</span>
+<span class="cstat-no" title="statement not covered" >                                          event.stopPropagation();</span>
+                                    }
+<span class="cstat-no" title="statement not covered" >                                    form.classList.add('was-validated');</span>
+                              }, false);
+                        });
+                  }
+&nbsp;
+                  //ButtonSave Click
+<span class="cstat-no" title="statement not covered" >                  $("#modalSaveChanges").click(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                        $("#btnAddItem").click();</span>
+<span class="cstat-no" title="statement not covered" >                        let form = $("#formAddItem");</span>
+<span class="cstat-no" title="statement not covered" >                        console.log(form[0]);</span>
+<span class="cstat-no" title="statement not covered" >                        if (form[0].checkValidity()) {</span>
+<span class="cstat-no" title="statement not covered" >                              var name = $("#itemName").val();</span>
+<span class="cstat-no" title="statement not covered" >                              var quantity = $("#quantity").val();</span>
+<span class="cstat-no" title="statement not covered" >                              var price = $("#price").val();</span>
+<span class="cstat-no" title="statement not covered" >                              var desc = $("#itemDesc").val();</span>
+<span class="cstat-no" title="statement not covered" >                              var image = $("#itemUploadImage")[0];</span>
+<span class="cstat-no" title="statement not covered" >                              let formdata = new FormData();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                              var newItem = {</span>
+                                    "name": name,
+                                    "price": price,
+                                    "quantity": quantity,
+                                    "description": desc
+                              }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                              formdata.append("file", image.files[0]);</span>
+<span class="cstat-no" title="statement not covered" >                              formdata.append("data", JSON.stringify(newItem));</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                              $.ajax({</span>
+                                    type: "POST",
+                                    url: "http://localhost:8080/item/" + check,
+                                    processData: false,
+                                    contentType: false,
+                                    enctype: "multipart/form-data",
+                                    data: formdata,
+                                    beforeSend: <span class="fstat-no" title="function not covered" >function(request) {</span>
+<span class="cstat-no" title="statement not covered" >                                          request.setRequestHeader("Authorization-key", getCookie("token"));</span>
+                                    },
+                                    success: <span class="fstat-no" title="function not covered" >function (response) {</span>
+<span class="cstat-no" title="statement not covered" >                                          if (response.code == "OK") {</span>
+<span class="cstat-no" title="statement not covered" >                                                alert("Successfully saved");</span>
+<span class="cstat-no" title="statement not covered" >                                                window.location.reload();</span>
+                                          }
+                                          else <span class="cstat-no" title="statement not covered" >if(response.code === "BAD_REQUEST"){</span>
+<span class="cstat-no" title="statement not covered" >                                                alert("You are not allowed to edit items!");</span>
+                                          }
+                                          else {
+<span class="cstat-no" title="statement not covered" >                                                console.log(response);</span>
+                                          }
+                                    },
+                                    error: <span class="fstat-no" title="function not covered" >function (response) {</span>
+<span class="cstat-no" title="statement not covered" >                                          console.log(response);</span>
+                                    }
+                              });
+                        }
+                        
+                  });
+            })
+      }
+}</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jan 02 2019 03:38:45 GMT+0700 (Western Indonesia Time)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

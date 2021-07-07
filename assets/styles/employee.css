@@ -1,0 +1,33 @@
+/* ---------Employee_Content---------
+.content{
+	flex-wrap: wrap;
+	float: right;
+	display: inline-flex;
+	width: 85%;
+	justify-content: center;
+	margin-right: 1em;
+	margin-top: 1em;
+}
+
+.employee-table{
+	padding: auto;
+	display: table;
+	border: 1px solid #E5E9F2;
+	height: 35em;
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.employee-table th, .employee-table td{
+	padding-left: 1em;
+	padding-bottom: 1em;
+	border: 1px solid black;
+}
+
+.employee-table tr:nth-child(odd){
+	background-color: #F9FAFC;
+}
+
+.employee-table tr:hover{
+	background-color: #DDDDDD;
+} */
